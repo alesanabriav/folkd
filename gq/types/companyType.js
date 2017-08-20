@@ -10,7 +10,6 @@ import {
 import GraphQLJSON from "graphql-type-json";
 import User from './userType';
 import Client from './clientType';
-import dataloader from 'dataloader';
 
 const Company = new GraphQLObjectType({
   name: "company",

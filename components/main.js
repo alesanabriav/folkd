@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import Header from './header';
+import Head from 'next/head';
 
-const Main = () => (
+const Main = (props) => (
   <div>
+    <Head>
+
+    </Head>
 		<Header />
-    {React.cloneElement(this.props.children, this.props)}
+    {props.children}
   </div>
 )
 
