@@ -1,6 +1,5 @@
-import { gql } from "react-apollo";
 
-export const getClientProjectsQuery = gql`
+export const getClientProjectsQuery = `
   query getClientProjects($clientId: Int!, $name: JSON) {
     projects(where: {client_id: $clientId, name: $name}) {
       id
@@ -14,7 +13,7 @@ export const getClientProjectsQuery = gql`
 }
 `;
 
-export const createProjectMutation = gql`
+export const createProjectMutation = `
   mutation createProject($name: String!, $clientId:Int!) {
     createProject(name: $name, client_id: $clientId) {
       id
@@ -28,7 +27,7 @@ export const createProjectMutation = gql`
   }
 `;
 
-export const updateProjectMutation = gql`
+export const updateProjectMutation = `
   mutation updateProject($projectId: Int!, $name:String!, $clientId:Int!) {
     createProject(name: $name, client_id: $clientId) {
       id

@@ -1,6 +1,5 @@
-import { gql } from 'react-apollo';
 
-export const getUsersQuery = gql`
+export const getUsersQuery = `
 	query getUsers{
 		users {
 			id
@@ -9,5 +8,3 @@ export const getUsersQuery = gql`
 		}
 	}
 `;
-
-
