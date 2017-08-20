@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { graphql, compose } from "react-apollo";
-import { getUsersQuery } from '../../queries/userQueries';
-import { getTodoQuery } from '../../queries/todoQueries';
-import { createStepMutation } from '../../queries/stepQueries';
+// import { getUsersQuery } from '../../queries/userQueries';
+// import { getTodoQuery } from '../../queries/todoQueries';
+// import { createStepMutation } from '../../queries/stepQueries';
 
 export class StepForm extends Component {
 	state = {
 		content: '',
 		todo_id: ''
 	}
-	
+
 	handleChange = e => {
 		this.setState({ [e.target.name] : e.target.value });
 	}
@@ -27,7 +26,7 @@ export class StepForm extends Component {
 		proxy.writeQuery({ query, variables, data: {todo: {...queryData.todo, steps}} });
 
 	}
-	
+
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const { content } = this.state;
@@ -41,7 +40,7 @@ export class StepForm extends Component {
 			update: this.updateSteps
 		})
 		.then(data => this.setState({content: ''}))
-		.catch((message, err) => console.log('err', message, err)); 
+		.catch((message, err) => console.log('err', message, err));
 	}
 
 	render() {
@@ -51,10 +50,10 @@ export class StepForm extends Component {
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<div className="form-group">
-					<textarea 
-						name="content" 
+					<textarea
+						name="content"
 						className="form-control"
-						rows="5" 
+						rows="5"
 						onChange={this.handleChange}
 						value={this.state.content}
 						></textarea>
@@ -63,12 +62,14 @@ export class StepForm extends Component {
 				<div className="form-group">
 					<button className="btn" onClick={this.handleSubmit}>Add</button>
 				</div>
-			
+
 		</form>
 		)
 	}
 }
 
-export default compose(
-  graphql(createStepMutation, {name: 'createStep'})
-)(StepForm);
+export default StepForm;
+
+//  compose(
+//   graphql(createStepMutation, {name: 'createStep'})
+// )();

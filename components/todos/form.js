@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { graphql, compose } from "react-apollo";
-import { getUsersQuery } from '../../queries/userQueries';
-import { createTodoMutation, getTodoQuery } from '../../queries/todoQueries';
-import Dropzone from 'react-dropzone';
+// import { getUsersQuery } from '../../queries/userQueries';
+// import { createTodoMutation, getTodoQuery } from '../../queries/todoQueries';
 
 export class TodoForm extends Component {
 	state = {
@@ -86,7 +84,8 @@ export class TodoForm extends Component {
 	}
 }
 
-export default compose(
-  graphql(getUsersQuery, {name: 'getUsers'}),
-  graphql(createTodoMutation, {name: 'createTodo'}),
-)(TodoForm);
+export default TodoForm
+// compose(
+//   graphql(getUsersQuery, {name: 'getUsers'}),
+//   graphql(createTodoMutation, {name: 'createTodo'}),
+// )();

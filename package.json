@@ -21,6 +21,7 @@
     "bcrypt": "^1.0.2",
     "express": "^4.15.4",
     "express-graphql": "^0.6.7",
+    "fecha": "^2.3.1",
     "graphql": "^0.10.5",
     "graphql-type-json": "^0.1.4",
     "mysql2": "^1.4.1",

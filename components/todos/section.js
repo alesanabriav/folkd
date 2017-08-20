@@ -18,7 +18,7 @@ class Todos extends Component {
     let { todo = {steps: []} } = data;
 
     if(data.loading) return this.renderLoading();
-    
+
     return (
       <section className="col-lg-6 todos">
         <header>
@@ -27,15 +27,15 @@ class Todos extends Component {
 
         <section>
           {
-            !todo.hasOwnProperty('id') ?  
+            !todo.hasOwnProperty('id') ?
             <TodoForm selectTodo={this.selectTodo} todo={todo} project={project} />
             : <div/>
           }
         </section>
-        
+
         <div className="todos-items">
         {
-          todo.hasOwnProperty('id') ? 
+          todo.hasOwnProperty('id') ?
           <div>
             <h2>{todo.title}</h2>
             <section className="todo__item">
@@ -50,7 +50,7 @@ class Todos extends Component {
           : <div/>
         }
 
-        {todo.steps.map((subtodo, ind) => 
+        {todo.steps.map((subtodo, ind) =>
           <section key={ind} className="todo__item">
             <header>
               Step: {ind + 1}
@@ -58,15 +58,14 @@ class Todos extends Component {
              <div className="todo__item__content">
               {subtodo.content}
             </div>
-          </section>  
+          </section>
         )}
         </div>
         {todo.hasOwnProperty('id') ? <StepForm todo={todo} project={project} /> : <div/>}
-        
-      </section> 
+
+      </section>
     );
   }
 }
-
 
 export default Todos;
