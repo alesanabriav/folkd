@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { graphql, compose } from "react-apollo";
-import { 
-  getClientProjectsQuery, 
-  createProjectMutation, 
-  updateProjectMutation 
-} from '../../queries/projectQueries';
+
+// import {
+//   getClientProjectsQuery,
+//   createProjectMutation,
+//   updateProjectMutation
+// } from '../../queries/projectQueries';
 
 class ProjectForm extends Component {
   state = {
@@ -16,15 +16,15 @@ class ProjectForm extends Component {
   }
 
   updateProjects = (proxy, { data }) => {
-    let variables = {
-      clientId: this.props.client.selected.id,
-      order: [["id", "DESC"]]
-    };
-    let query = getClientProjectsQuery;
-    const queryData = proxy.readQuery({ query, variables }); 
-    const projects = [data.createProject].concat(queryData.projects);
-    
-    proxy.writeQuery({ query, variables, data: { projects } });
+    // let variables = {
+    //   clientId: this.props.client.selected.id,
+    //   order: [["id", "DESC"]]
+    // };
+    // let query = getClientProjectsQuery;
+    // const queryData = proxy.readQuery({ query, variables });
+    // const projects = [data.createProject].concat(queryData.projects);
+    //
+    // proxy.writeQuery({ query, variables, data: { projects } });
 
   }
 
@@ -32,17 +32,17 @@ class ProjectForm extends Component {
     e.preventDefault();
     const { name } = this.state;
 
-    this.props.createProject({
-      variables: {
-        clientId: this.props.client.selected.id,
-        name
-      },
-      update: this.updateProjects
-    })
-    .then(data => {
-      this.setState({name: ""});
-      this.props.onProjectAdded();
-    });
+    // this.props.createProject({
+    //   variables: {
+    //     clientId: this.props.client.selected.id,
+    //     name
+    //   },
+    //   update: this.updateProjects
+    // })
+    // .then(data => {
+    //   this.setState({name: ""});
+    //   this.props.onProjectAdded();
+    // });
   }
 
   render() {
@@ -58,13 +58,14 @@ class ProjectForm extends Component {
             placeholder="Project Name"
           />
         </div>
-        
+
       </form>
     );
   }
 }
 
-export default compose(
-  graphql(createProjectMutation, {name: 'createProject'}),
-  graphql(updateProjectMutation, {name: 'updateProject'}),
-)(ProjectForm);
+export default ProjectForm
+// compose(
+//   graphql(createProjectMutation, {name: 'createProject'}),
+//   graphql(updateProjectMutation, {name: 'updateProject'}),
+// )();
