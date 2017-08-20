@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { graphql, compose } from 'react-apollo';
-import { 
-  createClientMutation, 
-  updateClientMutation, 
-  getClientsQuery 
-} from '../../queries/clientQueries';
+// import {
+//   createClientMutation,
+//   updateClientMutation,
+//   getClientsQuery
+// } from '../../queries/clientQueries';
 
 export class ClientForm extends Component {
-  
+
   state = {
     name: '',
     abbreviation: ''
@@ -24,19 +23,19 @@ export class ClientForm extends Component {
   updateClients = (proxy, { data }) => {
     let variables = { order: [['id', 'DESC']] };
     let query = getClientsQuery;
-    const queryData = proxy.readQuery({ 
+    const queryData = proxy.readQuery({
       query,
       variables
     });
-    
+
     const clients = [data.createClient].concat(queryData.clients);
-    
-    proxy.writeQuery({ 
+
+    proxy.writeQuery({
       query,
       variables,
       data: { clients }
     });
-  
+
   }
 
   handleSubmit = e => {
@@ -83,7 +82,4 @@ export class ClientForm extends Component {
   }
 }
 
-export default compose(
-  graphql(createClientMutation, {name: 'createClient'}),
-  graphql(updateClientMutation, {name: 'updateClient'}),
-)(ClientForm);
+export default ClientForm;

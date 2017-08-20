@@ -1,18 +1,17 @@
-import { getClientsQuery } from '../../queries/clientQueries';
+// import { getClientsQuery } from '../../queries/clientQueries';
 import ClientsSection from './section';
-import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 
-const ClientsWithData = graphql(getClientsQuery, {
-  options: props => ({
-    variables: {
-      order: [['id', 'DESC']]
-    }
-  })
-})(ClientsSection);
+// const ClientsWithData = graphql(getClientsQuery, {
+//   options: props => ({
+//     variables: {
+//       order: [['id', 'DESC']]
+//     }
+//   })
+// })();
+//
+// const mapStateToProps = state => ({
+//   client: state.client
+// });
 
-const mapStateToProps = state => ({
-  client: state.client
-});
-
-export default connect(mapStateToProps)(ClientsWithData);
+export default connect(state => state)(ClientsSection);

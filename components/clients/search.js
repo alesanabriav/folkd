@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { gql, graphql, compose } from 'react-apollo';
-import { getClientsQuery } from '../../queries/clientQueries';
+// import { getClientsQuery } from '../../queries/clientQueries';
 
 export class SearchClients extends Component {
 	state = {
@@ -20,9 +19,9 @@ export class SearchClients extends Component {
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<div className="input-group">
-				<input 
-						type="text" 
-						name="name" 
+				<input
+						type="text"
+						name="name"
 						className="form-control"
 						placeholder="Search clients"
 						onChange={this.handleChange}
