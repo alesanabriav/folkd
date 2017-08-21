@@ -8,6 +8,7 @@ import {
   GraphQLNonNull,
   GraphQLInputObjectType
 } from "graphql";
+
 import GraphQLJSON from "graphql-type-json";
 import models from "../../models";
 
@@ -36,12 +37,12 @@ export const registerUser = {
   	})
   }),
 	 args: {
-    name: {type: new GraphQLNonNull(GraphQLString)},
-    email: {type: new GraphQLNonNull(GraphQLString)},
-    password: {type: new GraphQLNonNull(GraphQLString)},
-    companyName: {type: new GraphQLNonNull(GraphQLString)}
+    name: { type: new GraphQLNonNull(GraphQLString) },
+    email: { type: new GraphQLNonNull(GraphQLString) },
+    password: { type: new GraphQLNonNull(GraphQLString) },
+    companyName: { type: new GraphQLNonNull(GraphQLString) }
   },
 	resolve() {
-		
+
 	}
 }

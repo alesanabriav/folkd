@@ -14,6 +14,14 @@ class Clients extends Component {
     showSearch: false
   }
 
+  componentDidMount() {
+    const variables = {
+      order: [['id', 'DESC']]
+    };
+    
+    this.props.getClients(variables);
+  }
+
   componentWillReceiveProps(props) {
     // if(!props.client.selected.hasOwnProperty('id') && props.clients.length > 0) {
     //   this.selectClient(props.data.clients[0]);

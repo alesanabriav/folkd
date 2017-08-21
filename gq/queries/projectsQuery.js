@@ -1,15 +1,15 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import Project from "../types/projectType";
-import projectsFilter from "../types/projectFilterType";
-import models from "../../models";
+} =  require("graphql");
+const GraphQLJSON =  require("graphql-type-json");
+const Project =  require("../types/projectType");
+const projectsFilter =  require("../types/projectFilterType");
+const models =  require("../../models");
 
 const projects = {
   type: new GraphQLList(Project),
@@ -23,4 +23,4 @@ const projects = {
   }
 };
 
-export default projects;
+module.exports = projects;

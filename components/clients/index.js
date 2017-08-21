@@ -1,17 +1,9 @@
-// import { getClientsQuery } from '../../queries/clientQueries';
 import ClientsSection from './section';
+import { getClients } from '../../actions/clients';
 import { connect } from 'react-redux';
 
-// const ClientsWithData = graphql(getClientsQuery, {
-//   options: props => ({
-//     variables: {
-//       order: [['id', 'DESC']]
-//     }
-//   })
-// })();
-//
-// const mapStateToProps = state => ({
-//   client: state.client
-// });
+const mapDispatchToProps = {
+  getClients
+}
 
-export default connect(state => state)(ClientsSection);
+export default connect(state => state, mapDispatchToProps)(ClientsSection);

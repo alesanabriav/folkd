@@ -1,4 +1,4 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
@@ -6,9 +6,9 @@ import {
   GraphQLNonNull,
   GraphQLBoolean,
   GraphQLInputObjectType
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import User from './userType';
+} = require("graphql");
+const GraphQLJSON = require("graphql-type-json");
+const User = require('./userType');
 
 const Step = new GraphQLObjectType({
   name: "step",
@@ -25,4 +25,4 @@ const Step = new GraphQLObjectType({
   })
 });
 
-export default Step;
+module.exports = Step;

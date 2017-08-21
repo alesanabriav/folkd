@@ -1,21 +1,14 @@
-import {
+const {
   GraphQLSchema,
   GraphQLObjectType
-} from "graphql";
+} = require("graphql");
 
 //queries
-import clientsQuery from './queries/clientsQuery';
-import projectsQuery from './queries/projectsQuery';
-import todosQuery from './queries/todosQuery';
-import todoQuery from './queries/todoQuery';
-import usersQuery from './queries/usersQuery';
-//mutations
-import { createCompany, updateCompany } from './mutations/companyMutations';
-import { createClient, updateClient } from './mutations/clientMutations';
-import { createProject, updateProject } from './mutations/projectMutations';
-import { loginUser, registerUser } from './mutations/userMutations';
-import { createTodo, updateTodo } from './mutations/todoMutations';
-import { createStep } from './mutations/stepMutations';
+const clientsQuery = require('./queries/clientsQuery');
+const projectsQuery = require('./queries/projectsQuery');
+const todosQuery = require('./queries/todosQuery');
+const todoQuery = require('./queries/todoQuery');
+const usersQuery = require('./queries/usersQuery');
 
 const Query = new GraphQLObjectType({
   name: "folkderAppQueries",
@@ -29,24 +22,24 @@ const Query = new GraphQLObjectType({
   })
 });
 
-const Mutation = new GraphQLObjectType({
-  name: "folkderAppMutations",
-  fields: () => ({
-    createCompany,
-    updateCompany,
-    createClient,
-    updateClient,
-    createProject,
-    updateProject,
-    createTodo,
-    updateTodo,
-    createStep
-  })
-});
+// const Mutation = new GraphQLObjectType({
+//   name: "folkderAppMutations",
+//   fields: () => ({
+//     createCompany,
+//     updateCompany,
+//     createClient,
+//     updateClient,
+//     createProject,
+//     updateProject,
+//     createTodo,
+//     updateTodo,
+//     createStep
+//   })
+// });
 
 const Schema = new GraphQLSchema({
   query: Query,
-  mutation: Mutation
+  // mutation: Mutation
 });
 
-export default Schema;
+module.exports = Schema;

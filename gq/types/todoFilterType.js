@@ -1,15 +1,15 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} from "graphql";
+} = require("graphql");
 
-import GraphQLJSON from "graphql-type-json";
+const GraphQLJSON = require("graphql-type-json");
 
-export const todoFilter = new GraphQLNonNull(
+const todoFilter = new GraphQLNonNull(
   new GraphQLInputObjectType({
     name: "todoFilters",
     fields: () => ({
@@ -18,7 +18,7 @@ export const todoFilter = new GraphQLNonNull(
   })
 );
 
-export const todosFilter = new GraphQLNonNull(
+const todosFilter = new GraphQLNonNull(
   new GraphQLInputObjectType({
     name: "todosFilters",
     fields: () => ({
@@ -28,3 +28,7 @@ export const todosFilter = new GraphQLNonNull(
   })
 );
 
+module.exports = {
+  todoFilter,
+  todosFilter
+}

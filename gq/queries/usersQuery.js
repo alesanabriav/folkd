@@ -1,14 +1,16 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import User from "../types/userType";
-import models from "../../models";
+} = require("graphql");
+const GraphQLJSON = require("graphql-type-json");
+const User = require("../types/userType");
+const models = require("../../models");
+
+console.log('type', User);
 
 const usersFilter = new GraphQLInputObjectType({
     name: "usersFilters",
@@ -31,4 +33,4 @@ const users = {
   }
 };
 
-export default users;
+module.exports = users;

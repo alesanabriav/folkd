@@ -1,12 +1,12 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import Company from './companyType';
+} = require("graphql");
+const GraphQLJSON = require("graphql-type-json");
+// const Company = require('./companyType');
 
 const User = new GraphQLObjectType({
   name: "user",
@@ -17,13 +17,13 @@ const User = new GraphQLObjectType({
       type: GraphQLString
     },
     email: { type: GraphQLString },
-    company: {
-      type: Company,
-      resolve(user) {
-        return user.getCompany();
-      }
-    }
+    // company: {
+    //   type: Company,
+    //   resolve(user) {
+    //     return user.getCompany();
+    //   }
+    // }
   })
 });
 
-export default User;
+module.exports = User;

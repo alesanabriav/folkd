@@ -1,11 +1,12 @@
-const express = require('express')
-const next = require('next')
-const graphqlHTTP = require('express-graphql')
-const port = parseInt(process.env.PORT, 10) || 3000
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
-const schema = require('./gq/schema')
+const express = require('express');
+const next = require('next');
+const graphqlHTTP = require('express-graphql');
+const port = parseInt(process.env.PORT, 10) || 3000;
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
+const schema = require('./gq/schema');
+console.log(schema);
 
 app.prepare()
 .then(() => {
@@ -16,10 +17,15 @@ app.prepare()
     return app.render(req, res, '/profile', params)
   })
 
-  server.use('/graphql', graphqlHTTP({
-    schema: schema,
-    graphiql: true
-  }))
+  // server.use('/graphql', graphqlHTTP({
+  //   schema: schema,
+  //   graphiql: true
+  // }))
+
+  server.use('/graphiql', graphqlHTTP({
+  	schema,
+  	graphiql: true
+  }));
 
   server.get('*', (req, res) => {
     return handle(req, res)

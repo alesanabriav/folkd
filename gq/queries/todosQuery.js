@@ -1,16 +1,16 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} from "graphql";
+} = require("graphql");
 
-import GraphQLJSON from "graphql-type-json";
-import Todo from "../types/todoType";
-import { todosFilter } from "../types/todoFilterType";
-import models from "../../models";
+const GraphQLJSON = require("graphql-type-json");
+const Todo = require("../types/todoType");
+const { todosFilter } = require("../types/todoFilterType");
+const models = require("../../models");
 
 const todos = {
   type: new GraphQLList(Todo),
@@ -25,4 +25,4 @@ const todos = {
   }
 };
 
-export default todos;
+module.exports = todos;

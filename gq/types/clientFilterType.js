@@ -1,5 +1,5 @@
-import { GraphQLInputObjectType } from "graphql";
-import GraphQLJSON from "graphql-type-json";
+const { GraphQLInputObjectType } = require("graphql");
+const GraphQLJSON = require("graphql-type-json");
 
 const clientFilter = new GraphQLInputObjectType({
   name: "clientFilters",
@@ -9,4 +9,4 @@ const clientFilter = new GraphQLInputObjectType({
   })
 });
 
-export default clientFilter;
+module.exports = clientFilter;

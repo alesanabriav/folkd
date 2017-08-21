@@ -1,13 +1,13 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import Todo from './todoType';
+} = require("graphql");
+const GraphQLJSON = require("graphql-type-json");
+const Todo = require('./todoType');
 
 const Project = new GraphQLObjectType({
   name: "project",
@@ -36,4 +36,4 @@ const Project = new GraphQLObjectType({
   })
 });
 
-export default Project;
+module.exports = Project;

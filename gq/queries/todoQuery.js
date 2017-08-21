@@ -1,16 +1,16 @@
-import {
+const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} from "graphql";
+} = require("graphql");
 
-import GraphQLJSON from "graphql-type-json";
-import Todo from "../types/todoType";
-import { todoFilter } from "../types/todoFilterType";
-import models from "../../models";
+const GraphQLJSON = require("graphql-type-json");
+const Todo = require("../types/todoType");
+const { todoFilter } = require("../types/todoFilterType");
+const models = require("../../models");
 
 const todo = {
   type: Todo,
@@ -24,4 +24,4 @@ const todo = {
   }
 };
 
-export default todo;
+module.exports = todo;
