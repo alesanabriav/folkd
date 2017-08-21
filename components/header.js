@@ -18,10 +18,10 @@ class Header extends Component {
 				<style jsx>{`
 					.header-container {
 						background: #fff;
-						height: 80px;
+						height: 60px;
 						width: 100%;
-						padding: 10px 40px;
-						box-shadow: 0 0 5px rgba(0,0,0,.1)
+						padding: 5px 40px;
+						box-shadow: 0 0 5px rgba(0, 0, 0, .2)
 					}
 				`}</style>
 			</header>

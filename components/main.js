@@ -19,7 +19,14 @@ const Main = (props) => (
     </div>
     <style global jx>{`
       body {
-        background: #6031BA;
+        background: #54558D;
+      }
+      ul {
+        padding: 0;
+      }
+
+      a:hover {
+        text-decoration: none;
       }
     `}</style>
   </div>

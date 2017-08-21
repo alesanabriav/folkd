@@ -3,6 +3,7 @@ const TYPE = 'CLIENTS';
 
 const initialState = {
   items: [],
+  selected: {},
   loading: false,
   fail: false
 };
@@ -12,11 +13,18 @@ export default function clients(state = initialState, action) {
     case `LOADING_${TYPE}`:
       return {...state, loading: true};
     case `FETCH_${TYPE}`:
-      return {...state, items: action.payload, loading: false};
+      return {
+        ...state,
+        items: action.payload,
+        selected: action.payload.length > 0 ? action.payload[0] : {},
+        loading: false
+      };
     case `ADD_${TYPE}`:
       return {...state, items: action.payload};
     case `UPDATE_${TYPE}`:
         return {...state, items: action.payload};
+    case `SELECT_${TYPE}`:
+      return {...state, selected: action.payload};
     case `FAIL_${TYPE}`:
       return {...state, fail: true};
     default:

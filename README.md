@@ -1,4 +1,5 @@
 # Folkders
 
-## todos
-- [ ] remove apollo-react and integrate apollo-fetch
+# ideas
+superadmin remove or add users / remove clients.
+admin can remove todos but can't remove clients and so on.

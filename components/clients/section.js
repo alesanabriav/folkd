@@ -18,18 +18,12 @@ class Clients extends Component {
     const variables = {
       order: [['id', 'DESC']]
     };
-    
+
     this.props.getClients(variables);
   }
 
-  componentWillReceiveProps(props) {
-    // if(!props.client.selected.hasOwnProperty('id') && props.clients.length > 0) {
-    //   this.selectClient(props.data.clients[0]);
-    // }
-  }
-
   selectClient = client => {
-    this.props.dispatch({type: 'SELECT_CLIENT', payload: client});
+    this.props.selectClient(client);
   }
 
   toggleForm = (e) => {
@@ -47,9 +41,8 @@ class Clients extends Component {
   }
 
   render() {
-    // const { clients = [], loading } = this.props.data;
-    // const { selected } = this.props.client;
-    // if(loading) return this.renderLoading();
+    const { items = [], selected, loading } = this.props.clients;
+    if(loading) return this.renderLoading();
 
     return (
       <section className="col-lg-3 clients">
@@ -62,15 +55,15 @@ class Clients extends Component {
         </header>
         {this.state.showForm ? <ClientForm /> : <div/>}
         {this.state.showSearch ? <SearchClient /> : <div/>}
-        <ul className="clients--list">
-          {/* {clients.map(client =>
+        <ul className="clients__list">
+          {items.map(client =>
             <Client
               key={client.id}
               client={client}
               selectClient={this.selectClient}
               selected={selected}
             />
-          )} */}
+          )}
         </ul>
         <style jsx>{`
           .clients {
@@ -82,6 +75,10 @@ class Clients extends Component {
 
           .clients h5 {
             color: #fff;
+          }
+
+          .clients__list {
+            margin: 20px -15px;
           }
         `}</style>
       </section>

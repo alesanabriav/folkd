@@ -10,6 +10,15 @@ const todosQuery = require('./queries/todosQuery');
 const todoQuery = require('./queries/todoQuery');
 const usersQuery = require('./queries/usersQuery');
 
+//mutations
+// import { createCompany, updateCompany } from './mutations/companyMutations';
+// import { createClient, updateClient } from './mutations/clientMutations';
+// import { createProject, updateProject } from './mutations/projectMutations';
+// import { loginUser, registerUser } from './mutations/userMutations';
+// import { createTodo, updateTodo } from './mutations/todoMutations';
+// import { createStep } from './mutations/stepMutations';
+
+
 const Query = new GraphQLObjectType({
   name: "folkderAppQueries",
   description: "Root Schema",

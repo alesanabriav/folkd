@@ -1,12 +1,9 @@
-import { createApolloFetch } from 'apollo-fetch';
 import {
   getClientsQuery,
   createClientMutation,
   updateClientMutation,
 } from '../queries/clientQueries';
-
-const endpoint = 'http://localhost:3000/graphql';
-const apolloFetch = createApolloFetch({ endpoint });
+import apolloFetch from '../lib/apollo_fetch';
 const TYPE = 'CLIENTS';
 
 const failAction = { type: `FAIL_${TYPE}` };
@@ -17,7 +14,7 @@ export function getClients(variables) {
     dispatch(loadingAction);
     apolloFetch({ query: getClientsQuery, variables })
     .then(res => {
-      dispatch({type: `FETCH_${TYPE}`, payload: res });
+      dispatch({ type: `FETCH_${TYPE}`, payload: res.data.clients });
       return res;
     })
     .catch(err => {
@@ -28,12 +25,19 @@ export function getClients(variables) {
   return action;
 }
 
+export function selectClient(client) {
+  const action = (dispatch) => {
+    dispatch({ type: `SELECT_${TYPE}`, payload: client });
+  }
+  return action;
+}
+
 export function addClient(variables) {
   const action = (dipatch) => {
     dispatch(loadingAction);
     apolloFetch({ getClientsQuery, variables })
     .then(res => {
-      dispatch({type: `ADD_${TYPE}`, payload: res });
+      dispatch({ type: `ADD_${TYPE}`, payload: res });
       return res;
     })
     .catch(err => {
@@ -49,7 +53,7 @@ export function updateClient(variables) {
     dispatch(loadingAction);
     apolloFetch({ getClientsQuery, variables })
     .then(res => {
-      dispatch({type: `UPDATE_${TYPE}`, payload: res });
+      dispatch({ type: `UPDATE_${TYPE}`, payload: res });
       return res;
     })
     .catch(err => {

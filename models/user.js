@@ -24,6 +24,13 @@ module.exports = function(sequelize, Sequelize) {
       },
       password: {
         type: Sequelize.STRING
+      },
+      role: {
+        type: Sequelize.STRING,
+        default: 'user'
+      },
+      "company_id": {
+        type: Sequelize.INTEGER
       }
     },
     {
@@ -31,13 +38,7 @@ module.exports = function(sequelize, Sequelize) {
         associate(models) {
           User.belongsTo(models.Company);
           User.hasMany(models.Todo);
-        },
-				checkPassword(user, plainPass) {
-					return bcrypt.compare(plainPass, user.password).then(function(res) {
-							if(res == true) return true;
-							return false;
-					});
-				}
+        }
       },
       hooks: {
         beforeCreate: (user, options) => {
@@ -49,6 +50,14 @@ module.exports = function(sequelize, Sequelize) {
       underscored: true
     }
   );
+
+  User.checkPassword = (user, plainPass) => {
+    return bcrypt.compare(plainPass, user.password)
+      .then(function(res) {
+        if(res == true) return true;
+        return false;
+      });
+  }
 
   return User;
 }

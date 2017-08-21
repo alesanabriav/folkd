@@ -1,9 +1,10 @@
 import ClientsSection from './section';
-import { getClients } from '../../actions/clients';
+import { getClients, selectClient } from '../../actions/clients';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = {
-  getClients
+  getClients,
+  selectClient
 }
 
 export default connect(state => state, mapDispatchToProps)(ClientsSection);
