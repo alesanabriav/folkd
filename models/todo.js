@@ -20,17 +20,16 @@ module.exports =  function(sequelize, Sequelize) {
 			}
     },
     {
-      classMethods: {
-        associate(models) {
-					Todo.belongsTo(models.Project);
-					Todo.belongsTo(models.User);
-					Todo.belongsTo(models.User, {as: 'Assign', foreignKey: 'assign_id' });
-          Todo.hasMany(models.Step);
-        },
-      },
       underscored: true
     }
   );
+
+  Todo.associate = (models) => {
+    Todo.belongsTo(models.Project);
+    Todo.belongsTo(models.User);
+    Todo.belongsTo(models.User, {as: 'Assign', foreignKey: 'assign_id' });
+    Todo.hasMany(models.Step);
+  }
 
   return Todo;
 }

@@ -34,12 +34,6 @@ module.exports = function(sequelize, Sequelize) {
       }
     },
     {
-      classMethods: {
-        associate(models) {
-          User.belongsTo(models.Company);
-          User.hasMany(models.Todo);
-        }
-      },
       hooks: {
         beforeCreate: (user, options) => {
           if(user.password) {
@@ -50,6 +44,11 @@ module.exports = function(sequelize, Sequelize) {
       underscored: true
     }
   );
+
+  User.associate = (models) => {
+    User.belongsTo(models.Company);
+    User.hasMany(models.Todo);
+  }
 
   User.checkPassword = (user, plainPass) => {
     return bcrypt.compare(plainPass, user.password)

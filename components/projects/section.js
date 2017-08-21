@@ -7,17 +7,6 @@ class Projects extends Component {
     showForm: false
   }
 
-  componentWillReceiveProps(props) {
-    // if(!props.project.selected.hasOwnProperty('id') && props.data.projects && props.data.projects.length > 0) {
-    //   this.selectProject(props.data.projects[0]);
-    // }
-    //
-    // if(props.data.projects && props.data.projects.length == 0) {
-    //   this.setState({showForm: true});
-    // }
-
-  }
-
   selectProject = (project) => {
     //select first todo on select project if has todos
     this.props.dispatch({type: 'SELECT_PROJECT', payload: project});
@@ -42,10 +31,12 @@ class Projects extends Component {
   }
 
   render() {
-    // const { data = {}, project } = this.props;
+    const { items, client, selected, loading } = this.props.projects;
     // const { projects = [] } = data;
     // const { selected } = project;
-    // if(data.loading) return this.renderLoading();
+    // if(loading) return this.renderLoading();
+
+    console.log(this.props.projects);
 
     return (
       <section className="col-lg-3 projects">
@@ -56,10 +47,10 @@ class Projects extends Component {
             <button className="btn btn-link"><i className="ion-search"></i></button>
           </div>
         </header>
-        {this.state.showForm ? <ProjectForm client={this.props.client} onProjectAdded={this.handleProjectAdded} /> : <div/>}
+        {/* {this.state.showForm ? <ProjectForm client={client} onProjectAdded={this.handleProjectAdded} /> : <div/>} */}
 
           <ul>
-            {/* {projects.map(project =>
+            {/* {items.map(project =>
               <Project
                 key={project.id}
                 project={project}

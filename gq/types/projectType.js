@@ -29,7 +29,7 @@ const Project = new GraphQLObjectType({
           limit: { type: GraphQLInt }
         },
       resolve(project, args) {
-        console.log(`---------projects query todos-----------`);
+        console.log(`$---------projects query todos-----------`);
         return project.getTodos(args);
       }
     }

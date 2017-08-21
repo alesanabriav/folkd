@@ -5,10 +5,6 @@ import SearchClient from './search';
 
 class Clients extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     showForm: false,
     showSearch: false
@@ -18,12 +14,25 @@ class Clients extends Component {
     const variables = {
       order: [['id', 'DESC']]
     };
+    this.fetchClients(variables);
+  }
 
-    this.props.getClients(variables);
+  fetchClients = (variables) => {
+    this.props.getClients(variables)
+    .then(action => {
+      const { clients } = action.data;
+      if(clients.length > 0) {
+        const projectsVariables = {
+          clientId: clients[0].id,
+          order: [["id", "DESC"]]
+        };
+        this.props.getProjects(projectsVariables);
+      }
+    })
   }
 
   selectClient = client => {
-    this.props.selectClient(client);
+    this.props.selectClient(client)
   }
 
   toggleForm = (e) => {

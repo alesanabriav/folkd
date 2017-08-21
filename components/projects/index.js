@@ -1,4 +1,3 @@
-// import { getClientProjectsQuery } from '../../queries/projectQueries';
 import ProjectsSection from './section';
 import { connect } from 'react-redux';
 
@@ -15,8 +14,8 @@ import { connect } from 'react-redux';
 // })(ProjectsSection);
 
 const mapStateToProps = state => ({
-  client: state.client,
-	project: state.project
+  client: state.clients.selected,
+	projects: state.projects
 });
 
 export default connect(mapStateToProps)(ProjectsSection);

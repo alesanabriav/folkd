@@ -12,14 +12,13 @@ const loadingAction = { type: `LOADING_${TYPE}` };
 export function getClients(variables) {
   const action = (dispatch) => {
     dispatch(loadingAction);
-    apolloFetch({ query: getClientsQuery, variables })
+
+    return apolloFetch({ query: getClientsQuery, variables })
     .then(res => {
       dispatch({ type: `FETCH_${TYPE}`, payload: res.data.clients });
       return res;
     })
-    .catch(err => {
-      dispatch( failAction );
-    });
+    .catch(err => dispatch( failAction ));
   }
 
   return action;
@@ -27,7 +26,7 @@ export function getClients(variables) {
 
 export function selectClient(client) {
   const action = (dispatch) => {
-    dispatch({ type: `SELECT_${TYPE}`, payload: client });
+    return dispatch({ type: `SELECT_${TYPE}`, payload: client });
   }
   return action;
 }

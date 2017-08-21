@@ -7,15 +7,14 @@ module.exports =  function(sequelize, Sequelize) {
       }
     },
     {
-      classMethods: {
-        associate(models) {
-          Project.hasMany(models.Todo);
-					Project.belongsTo(models.Client);
-        },
-      },
       underscored: true
     }
   );
+
+  Project.associate = (models) => {
+    Project.hasMany(models.Todo);
+    Project.belongsTo(models.Client);
+  };
 
   return Project;
 }

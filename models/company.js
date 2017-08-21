@@ -13,12 +13,6 @@ module.exports =  function(sequelize, Sequelize) {
       }
     },
     {
-      classMethods: {
-        associate(models) {
-          Company.hasMany(models.User);
-          Company.hasMany(models.Client);
-        },
-      },
       hooks: {
         beforeCreate: (company, options) => {
           company.slug = company.name.replace(' ', '-').toLowerCase();
@@ -27,6 +21,11 @@ module.exports =  function(sequelize, Sequelize) {
       underscored: true
     }
   );
+
+  Company.associate = (models) => {
+    Company.hasMany(models.User);
+    Company.hasMany(models.Client);
+  }
 
   return Company;
 }
