@@ -62,7 +62,17 @@ class Todos extends Component {
         )}
         </div>
         {todo.hasOwnProperty('id') ? <StepForm todo={todo} project={project} /> : <div/>}
-
+        <style jsx>{`
+          .todos {
+            background: rgba(0,0,0,.6);
+            padding-top: 20px;
+            height: 100vh;
+          }
+          
+          .todos h5 {
+            color: #fff;
+          }
+        `}</style>
       </section>
     );
   }

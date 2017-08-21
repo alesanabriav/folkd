@@ -4,17 +4,22 @@ import ClientForm from './form';
 import SearchClient from './search';
 
 class Clients extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     showForm: false,
     showSearch: false
   }
 
   componentWillReceiveProps(props) {
-    if(!props.client.selected.hasOwnProperty('id') && props.data.clients.length > 0) {
-      this.selectClient(props.data.clients[0]);
-    }
+    // if(!props.client.selected.hasOwnProperty('id') && props.clients.length > 0) {
+    //   this.selectClient(props.data.clients[0]);
+    // }
   }
-   
+
   selectClient = client => {
     this.props.dispatch({type: 'SELECT_CLIENT', payload: client});
   }
@@ -34,9 +39,9 @@ class Clients extends Component {
   }
 
   render() {
-    const { clients = [], loading } = this.props.data;
-    const { selected } = this.props.client;
-    if(loading) return this.renderLoading();
+    // const { clients = [], loading } = this.props.data;
+    // const { selected } = this.props.client;
+    // if(loading) return this.renderLoading();
 
     return (
       <section className="col-lg-3 clients">
@@ -50,15 +55,27 @@ class Clients extends Component {
         {this.state.showForm ? <ClientForm /> : <div/>}
         {this.state.showSearch ? <SearchClient /> : <div/>}
         <ul className="clients--list">
-          {clients.map(client =>
+          {/* {clients.map(client =>
             <Client
               key={client.id}
               client={client}
               selectClient={this.selectClient}
               selected={selected}
             />
-          )}
+          )} */}
         </ul>
+        <style jsx>{`
+          .clients {
+            background: rgba(0,0,0,.2);
+            padding-top: 20px;
+            height: 100vh;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16)
+          }
+
+          .clients h5 {
+            color: #fff;
+          }
+        `}</style>
       </section>
     )
   }

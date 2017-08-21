@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-// import {
-//   createClientMutation,
-//   updateClientMutation,
-//   getClientsQuery
-// } from '../../queries/clientQueries';
+
 
 export class ClientForm extends Component {
 
@@ -22,32 +18,17 @@ export class ClientForm extends Component {
 
   updateClients = (proxy, { data }) => {
     let variables = { order: [['id', 'DESC']] };
-    let query = getClientsQuery;
-    const queryData = proxy.readQuery({
-      query,
-      variables
-    });
-
-    const clients = [data.createClient].concat(queryData.clients);
-
-    proxy.writeQuery({
-      query,
-      variables,
-      data: { clients }
-    });
 
   }
 
   handleSubmit = e => {
     e.preventDefault();
     console.log('create client');
+    const variables = {
+      name: this.state.name
+    };
 
-    this.props.createClient({
-      variables: {
-        name: this.state.name
-      },
-      update: this.updateClients
-    })
+    this.props.addClient({variables})
     .then(this.cleanState());
   }
 

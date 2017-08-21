@@ -19,4 +19,4 @@ const mapStateToProps = state => ({
 	todo: state.todo
 });
 
-export default connect(mapStateToProps)(todosWithData);
+export default connect(mapStateToProps)(Todos);

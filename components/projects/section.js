@@ -6,15 +6,15 @@ class Projects extends Component {
   state = {
     showForm: false
   }
-  
-  componentWillReceiveProps(props) {
-    if(!props.project.selected.hasOwnProperty('id') && props.data.projects && props.data.projects.length > 0) {
-      this.selectProject(props.data.projects[0]);
-    }
 
-    if(props.data.projects && props.data.projects.length == 0) {
-      this.setState({showForm: true});
-    }
+  componentWillReceiveProps(props) {
+    // if(!props.project.selected.hasOwnProperty('id') && props.data.projects && props.data.projects.length > 0) {
+    //   this.selectProject(props.data.projects[0]);
+    // }
+    //
+    // if(props.data.projects && props.data.projects.length == 0) {
+    //   this.setState({showForm: true});
+    // }
 
   }
 
@@ -31,7 +31,7 @@ class Projects extends Component {
   toggleForm = (e) => {
     if(e) e.preventDefault();
     this.setState({ showForm: !this.state.showForm });
-  } 
+  }
 
   handleProjectAdded = () => {
     this.toggleForm();
@@ -42,10 +42,10 @@ class Projects extends Component {
   }
 
   render() {
-    const { data = {}, project } = this.props;
-    const { projects = [] } = data;
-    const { selected } = project;
-    if(data.loading) return this.renderLoading();
+    // const { data = {}, project } = this.props;
+    // const { projects = [] } = data;
+    // const { selected } = project;
+    // if(data.loading) return this.renderLoading();
 
     return (
       <section className="col-lg-3 projects">
@@ -59,16 +59,29 @@ class Projects extends Component {
         {this.state.showForm ? <ProjectForm client={this.props.client} onProjectAdded={this.handleProjectAdded} /> : <div/>}
 
           <ul>
-            {projects.map(project => 
-              <Project 
-                key={project.id} 
-                project={project} 
+            {/* {projects.map(project =>
+              <Project
+                key={project.id}
+                project={project}
                 selected={selected}
                 selectProject={this.selectProject}
                 changeTodo={this.changeTodo}
-                />  
-            )}
-          </ul> 
+                />
+            )} */}
+          </ul>
+
+          <style jsx>{`
+            .projects {
+              background: rgba(0,0,0,.4);
+              padding-top: 20px;
+              height: 100vh;
+              box-shadow: 0 3px 6px rgba(0,0,0,0.16)
+            }
+
+            .projects h5 {
+              color: #fff;
+            }
+          `}</style>
 
       </section>
     );

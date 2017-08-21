@@ -1,10 +1,10 @@
 import React from 'react';
 import withRedux from "next-redux-wrapper";
-import strore from '../store';
+import store from '../store';
 import Main from '../components/main';
 import Dashboard from '../components/dashboard';
 
-const Main = () => (
+const Index = () => (
   <div>
     <Main>
       <Dashboard/>
@@ -12,4 +12,4 @@ const Main = () => (
   </div>
 )
 
-export default withRedux(store)(Main);
+export default withRedux(store)(Index);
