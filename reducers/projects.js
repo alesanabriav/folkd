@@ -4,19 +4,29 @@ const TYPE = 'PROJECTS';
 const initialState = {
   items: [],
   selected: {},
+  variables: {
+    clientId: null,
+    order: [["id", "DESC"]]
+  },
   loading: false,
   fail: false
 };
 
-export default function projects(state = [], action) {
+export default function projects(state = initialState, action) {
   switch (action.type) {
     case `FETCH_${TYPE}`:
-    return {
-      ...state,
-      items: action.payload,
-      selected: action.payload.length > 0 ? action.payload[0] : {},
-      loading: false
-    };
+      return {
+        ...state,
+        items: action.payload,
+        selected: action.payload.length > 0 ? action.payload[0] : {},
+        loading: false
+      };
+    case `SET_${TYPE}_CLIENT_ID`:
+      const variables = {...state.variables, clientId: action.payload};
+      return {
+        ...state,
+        variables
+      };
     case `ADD_${TYPE}`:
       return {...state, items: action.payload};
     default:

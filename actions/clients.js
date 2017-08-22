@@ -26,8 +26,12 @@ export function getClients(variables) {
 
 export function selectClient(client) {
   const action = (dispatch) => {
-    return dispatch({ type: `SELECT_${TYPE}`, payload: client });
+    return new Promise((resolve) => {
+      dispatch({ type: `SELECT_${TYPE}`, payload: client });
+      return resolve();
+    })
   }
+
   return action;
 }
 

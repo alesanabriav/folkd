@@ -4,6 +4,7 @@ const TYPE = 'CLIENTS';
 const initialState = {
   items: [],
   selected: {},
+  variables: { order: [['id', 'DESC']] },
   loading: false,
   fail: false
 };

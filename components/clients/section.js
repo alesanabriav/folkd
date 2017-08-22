@@ -10,29 +10,8 @@ class Clients extends Component {
     showSearch: false
   }
 
-  componentDidMount() {
-    const variables = {
-      order: [['id', 'DESC']]
-    };
-    this.fetchClients(variables);
-  }
-
-  fetchClients = (variables) => {
-    this.props.getClients(variables)
-    .then(action => {
-      const { clients } = action.data;
-      if(clients.length > 0) {
-        const projectsVariables = {
-          clientId: clients[0].id,
-          order: [["id", "DESC"]]
-        };
-        this.props.getProjects(projectsVariables);
-      }
-    })
-  }
-
   selectClient = client => {
-    this.props.selectClient(client)
+    this.props.onChangeClient(client);
   }
 
   toggleForm = (e) => {

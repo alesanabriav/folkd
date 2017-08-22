@@ -9,7 +9,7 @@ const loadingAction = { type: `LOADING_${TYPE}` };
 export function getProjects(variables) {
   const action = (dispatch) => {
     dispatch(loadingAction);
-    apolloFetch({ query: getClientProjectsQuery, variables })
+    return apolloFetch({ query: getClientProjectsQuery, variables })
     .then(res => {
       dispatch({ type: `FETCH_${TYPE}`, payload: res.data.projects });
       return res;
@@ -19,6 +19,16 @@ export function getProjects(variables) {
     });
   }
 
+  return action;
+}
+
+export function setClientId(id) {
+  const action = (dispatch) => {
+    return new Promise((resolve) => {
+      dispatch({ type: `SET_${TYPE}_CLIENT_ID`, payload: id });
+      return resolve({ type: `SET_${TYPE}_CLIENT_ID`, payload: id });
+    })
+  }
   return action;
 }
 

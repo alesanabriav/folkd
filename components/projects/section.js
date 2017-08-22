@@ -31,17 +31,17 @@ class Projects extends Component {
   }
 
   render() {
-    const { items, client, selected, loading } = this.props.projects;
+    const { items, selected, loading } = this.props.projects;
+    const { client } = this.props;
     // const { projects = [] } = data;
     // const { selected } = project;
     // if(loading) return this.renderLoading();
-
-    console.log(this.props.projects);
+    console.log(client);
 
     return (
       <section className="col-lg-3 projects">
         <header>
-          <h5>Projects</h5>
+          <h5>Projects {client.name}</h5>
            <div className="btns">
             <button onClick={this.toggleForm} className="btn btn-link"><i className="ion-plus"></i></button>
             <button className="btn btn-link"><i className="ion-search"></i></button>
@@ -50,7 +50,7 @@ class Projects extends Component {
         {/* {this.state.showForm ? <ProjectForm client={client} onProjectAdded={this.handleProjectAdded} /> : <div/>} */}
 
           <ul>
-            {/* {items.map(project =>
+            {items.map(project =>
               <Project
                 key={project.id}
                 project={project}
@@ -58,7 +58,7 @@ class Projects extends Component {
                 selectProject={this.selectProject}
                 changeTodo={this.changeTodo}
                 />
-            )} */}
+            )}
           </ul>
 
           <style jsx>{`
@@ -66,7 +66,11 @@ class Projects extends Component {
               background: rgba(0,0,0,.4);
               padding-top: 20px;
               height: 100vh;
-              box-shadow: 0 3px 6px rgba(0,0,0,0.16)
+              box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            }
+
+            .projects ul {
+              margin: 20px -15px;
             }
 
             .projects h5 {

@@ -7,7 +7,7 @@ const initialState = {
   fail: false
 };
 
-export default function todos(state = [], action) {
+export default function todos(state = initialState, action) {
   switch (action.type) {
     case `FETCH_${TYPE}`:
       return {...state, items: action.payload, loading: false};
