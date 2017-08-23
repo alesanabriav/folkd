@@ -30,6 +30,9 @@ class Dashboard extends Component {
       return this.props.setClientId(client.id);
     })
     .then(() => {
+      return this.props.cleanTodo();
+    })
+    .then(() => {
       this.props.getProjects(this.props.projects.variables)
     })
   }
@@ -50,7 +53,8 @@ const mapDispatchToProps = {
   getClients: actions.clients.getClients,
   selectClient: actions.clients.selectClient,
   getProjects: actions.projects.getProjects,
-  setClientId: actions.projects.setClientId
+  setClientId: actions.projects.setClientId,
+  cleanTodo: actions.todos.cleanTodo
 }
 
 export default connect(state => state, mapDispatchToProps)(Dashboard);

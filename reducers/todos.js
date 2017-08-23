@@ -2,7 +2,9 @@
 const TYPE = 'TODOS';
 
 const initialState = {
-  items: [],
+  item: {},
+  subitems: [],
+  id: null,
   loading: false,
   fail: false
 };
@@ -10,9 +12,11 @@ const initialState = {
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case `FETCH_${TYPE}`:
-      return {...state, items: action.payload, loading: false};
-    case `ADD_${TYPE}`:
-      return {...state, items: action.payload};
+      return { ...state, item: action.payload, loading: false };
+    case `ADD_${TYPE}_SUBTODO`:
+      return { ...state, items: action.payload };
+    case `CLEAN_${TYPE}_ITEM`:
+      return { ...state, item: {} };
     default:
       return state
   }

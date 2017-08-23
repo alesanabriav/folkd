@@ -1,22 +1,10 @@
 import { connect } from 'react-redux';
 import Todos from './section';
-import { getTodoQuery } from '../../queries/todoQueries';
-
-// const todosWithData = graphql(getTodoQuery, {
-//    options: props => ({
-//     variables: {
-//       id: props.project.todoId
-//     }
-//   }),
-//   skip: props => {
-//     return !props.project.todoId ? true : false;
-//   }
-// })(Todos);
 
 const mapStateToProps = state => ({
-  client: state.client,
-	project: state.project,
-	todo: state.todo
+  client: state.clients.selected,
+	project: state.projects.selected,
+	todo: state.todos.item
 });
 
 export default connect(mapStateToProps)(Todos);

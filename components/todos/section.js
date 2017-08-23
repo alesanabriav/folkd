@@ -5,24 +5,18 @@ import StepForm from './stepForm';
 
 class Todos extends Component {
 
-  selectTodo = (todo) => {
-    this.props.dispatch({type: 'SELECT_PROJECT_TODO', payload: todo.id})
-  }
-
   renderLoading = () => {
     return (<section className="col-lg-6 todos"><h5>loading...</h5></section>);
   }
 
   render() {
-    const { project = {selected: {}}, data = {} } = this.props;
-    let { todo = {steps: []} } = data;
-
-    if(data.loading) return this.renderLoading();
+    const { project, todo, loading } = this.props;
+    if(loading) return this.renderLoading();
 
     return (
       <section className="col-lg-6 todos">
         <header>
-          <h5>Task for {project.selected.name}</h5>
+          <h5>Task for {project.name}</h5>
         </header>
 
         <section>
@@ -50,7 +44,7 @@ class Todos extends Component {
           : <div/>
         }
 
-        {todo.steps.map((subtodo, ind) =>
+        {todo.steps && todo.steps.map((subtodo, ind) =>
           <section key={ind} className="todo__item">
             <header>
               Step: {ind + 1}
@@ -61,14 +55,18 @@ class Todos extends Component {
           </section>
         )}
         </div>
+
         {todo.hasOwnProperty('id') ? <StepForm todo={todo} project={project} /> : <div/>}
+
         <style jsx>{`
           .todos {
             background: rgba(0,0,0,.6);
             padding-top: 20px;
             height: 100vh;
+            color: #fff;
+            overflow-y: auto;
           }
-          
+
           .todos h5 {
             color: #fff;
           }

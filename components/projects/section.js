@@ -9,12 +9,10 @@ class Projects extends Component {
 
   selectProject = (project) => {
     //select first todo on select project if has todos
-    this.props.dispatch({type: 'SELECT_PROJECT', payload: project});
-    this.props.dispatch({type: 'SELECT_PROJECT_TODO', payload: null});
   }
 
   changeTodo = (todoId) => {
-    this.props.dispatch({type: 'SELECT_PROJECT_TODO', payload: todoId});
+    this.props.getTodo(todoId);
   }
 
   toggleForm = (e) => {
@@ -32,7 +30,7 @@ class Projects extends Component {
 
   render() {
     const { items, selected, loading } = this.props.projects;
-    const { client } = this.props;
+    const { client, todo } = this.props;
     // const { projects = [] } = data;
     // const { selected } = project;
     // if(loading) return this.renderLoading();
@@ -47,6 +45,7 @@ class Projects extends Component {
             <button className="btn btn-link"><i className="ion-search"></i></button>
           </div>
         </header>
+
         {/* {this.state.showForm ? <ProjectForm client={client} onProjectAdded={this.handleProjectAdded} /> : <div/>} */}
 
           <ul>
@@ -55,8 +54,9 @@ class Projects extends Component {
                 key={project.id}
                 project={project}
                 selected={selected}
+                todoSelected={todo}
                 selectProject={this.selectProject}
-                changeTodo={this.changeTodo}
+                onChangeTodo={this.changeTodo}
                 />
             )}
           </ul>
@@ -67,6 +67,7 @@ class Projects extends Component {
               padding-top: 20px;
               height: 100vh;
               box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+              overflow-y: auto;
             }
 
             .projects ul {
