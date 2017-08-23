@@ -1,4 +1,4 @@
-import {
+const {
   graphql,
   GraphQLSchema,
   GraphQLObjectType,
@@ -7,12 +7,12 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} from "graphql";
+} = require("graphql");
 
-import GraphQLJSON from "graphql-type-json";
-import models from "../../models";
+const GraphQLJSON = require("graphql-type-json");
+const models = require("../../models");
 
-export const loginUser = {
+const loginUser = {
 	type: new GraphQLObjectType({
         name: "userLogin",
         fields: () => ({
@@ -28,7 +28,7 @@ export const loginUser = {
       }
 };
 
-export const registerUser = {
+const registerUser = {
 	name: "userRegister",
   type: new GraphQLObjectType({
   	name: "userRegister",
@@ -45,4 +45,9 @@ export const registerUser = {
 	resolve() {
 
 	}
+}
+
+module.exports = {
+  loginUser,
+  registerUser
 }

@@ -1,13 +1,13 @@
-import {
+const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import AWS from 'aws-sdk';
-import models from "../../models";
+} = "graphql";
+const GraphQLJSON = "graphql-type-json";
+const AWS = 'aws-sdk';
+const models = "../../models";
 const s3 = new AWS.S3();
 
 // var params = {Bucket: 'bucket', Key: 'key', Body: stream};

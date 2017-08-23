@@ -1,4 +1,4 @@
-import {
+const {
   graphql,
   GraphQLSchema,
   GraphQLObjectType,
@@ -7,12 +7,12 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import models from "../../models";
-import Company from '../types/companyType';
+} = require("graphql");
+const GraphQLJSON = require("graphql-type-json");
+const models = require("../../models");
+const Company = require('../types/companyType');
 
-export const createCompany = {
+const createCompany = {
 	type: Company,
   args: {
     name: { type: new GraphQLNonNull(GraphQLString) },
@@ -23,7 +23,7 @@ export const createCompany = {
   }
 };
 
-export const updateCompany = {
+const updateCompany = {
   type: Company,
   args: {
     id: { type: new GraphQLNonNull(GraphQLInt) },
@@ -34,3 +34,8 @@ export const updateCompany = {
         .then(company => models.Company.findOne({where: args.id}));
   }
 };
+
+module.exports = {
+  createCompany,
+  updateCompany
+}

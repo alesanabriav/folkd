@@ -1,14 +1,14 @@
-import {
+const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import models from "../../models";
-import Project from '../types/projectType';
+} = require("graphql");
+const GraphQLJSON = require("graphql-type-json");
+const models = require("../../models");
+const Project = require('../types/projectType');
 
-export const createProject = {
+const createProject = {
 	type: Project,
 	args: {
 		name: { type: new GraphQLNonNull(GraphQLString) },
@@ -19,7 +19,7 @@ export const createProject = {
 	}
 }
 
-export const updateProject = {
+const updateProject = {
   type: Project,
   args: {
     id: { type: new GraphQLNonNull(GraphQLInt) },
@@ -30,3 +30,8 @@ export const updateProject = {
         .then(project => models.Project.findOne({ where: args.id }));
   }
 };
+
+module.exports = {
+  createProject,
+  updateProject
+}

@@ -1,16 +1,16 @@
-import {
+const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLBoolean,
   GraphQLInputObjectType
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import models from "../../models";
-import Todo from '../types/todoType';
+} = require("graphql");
+const GraphQLJSON = require("graphql-type-json");
+const models = require("../../models");
+const Todo = require('../types/todoType');
 
-export const createTodo = {
+const createTodo = {
 	type: Todo,
 	args: {
 		title: { type: GraphQLString },
@@ -25,7 +25,7 @@ export const createTodo = {
 	}
 }
 
-export const updateTodo = {
+const updateTodo = {
   type: Todo,
   args: {
     title: { type: GraphQLString },
@@ -40,3 +40,8 @@ export const updateTodo = {
       .then(company => models.Todo.findOne({ where: args.id }));
   }
 };
+
+module.exports = {
+  createTodo,
+  updateTodo
+}

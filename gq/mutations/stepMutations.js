@@ -1,16 +1,16 @@
-import {
+const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLBoolean,
   GraphQLInputObjectType
-} from "graphql";
-import GraphQLJSON from "graphql-type-json";
-import models from "../../models";
-import Step from '../types/stepType';
+} = require("graphql");
+const GraphQLJSON = require("graphql-type-json");
+const models = require("../../models");
+const Step = require('../types/stepType');
 
-export const createStep = {
+const createStep = {
 	type: Step,
 	args: {
 		content: { type: new GraphQLNonNull(GraphQLString) },
@@ -24,4 +24,8 @@ export const createStep = {
       return Promise.reject('no permitted');
     });
 	}
+}
+
+module.exports = {
+  createStep
 }
