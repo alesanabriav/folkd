@@ -19,10 +19,10 @@ export function getTodo(id) {
 
 export function addTodo(variables = {}) {
   const action = (dispatch) => {
-    apolloFetch({ query: addTodoMutation, variables })
+    return apolloFetch({ query: addTodoMutation, variables })
     .then(res => {
-      dispatch({ type: `ADD_${TYPE}`, payload: res.data.todo });
-      return res;
+      dispatch({ type: `ADD_${TYPE}`, payload: res.data.createTodo });
+      return res.data.createTodo;
     });
   }
 

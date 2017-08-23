@@ -17,12 +17,7 @@ const User = new GraphQLObjectType({
       type: GraphQLString
     },
     email: { type: GraphQLString },
-    // company: {
-    //   type: Company,
-    //   resolve(user) {
-    //     return user.getCompany();
-    //   }
-    // }
+    role: {type: GraphQLString }
   })
 });
 

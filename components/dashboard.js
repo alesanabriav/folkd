@@ -23,6 +23,9 @@ class Dashboard extends Component {
       this.props.getProjects(this.props.projects.variables);
     })
     .then(() => {
+      this.props.getUser();
+    })
+    .then(() => {
       this.props.getUsers();
     })
   }
@@ -58,6 +61,7 @@ const mapDispatchToProps = {
   getProjects: actions.projects.getProjects,
   setClientId: actions.projects.setClientId,
   getUsers: actions.users.getUsers,
+  getUser: actions.users.getUser,
   cleanTodo: actions.todos.cleanTodo
 }
 

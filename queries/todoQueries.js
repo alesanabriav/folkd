@@ -27,6 +27,7 @@ export const addTodoMutation = `
 	mutation createTodo($content: String!, $title: String, $project_id: Int!, $assign_id: Int) {
 		createTodo(title: $title, content: $content, project_id: $project_id, assign_id: $assign_id) {
 			id
+      project_id
 			title
 			content
 			created_at

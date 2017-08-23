@@ -22,6 +22,16 @@ export function getProjects(variables) {
   return action;
 }
 
+export function addProjectTodo(todo) {
+  const action = (dispatch) => {
+    return new Promise((resolve) => {
+      dispatch({ type: `ADD_${TYPE}_TODO`, payload: todo });
+      return resolve();
+    })
+  }
+  return action;
+}
+
 export function selectProject(project = {}) {
   const action = (dispatch) => {
     return new Promise((resolve) => {
@@ -40,12 +50,4 @@ export function setClientId(id) {
     })
   }
   return action;
-}
-
-export function addClient() {
-
-}
-
-export function updateClient() {
-
 }

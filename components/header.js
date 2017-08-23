@@ -8,11 +8,11 @@ class Header extends Component {
 	}
 
 	render() {
-
 		return (
 			<header>
 				<div className="header-container">
 					<img src="/static/logo.png" alt="" width="120px"/>
+		
 					<a href="#" className="header-container__logout" onClick={this.logout}>
 						<i className="ion-log-out"></i> Salir
 					</a>
@@ -25,7 +25,7 @@ class Header extends Component {
 						padding: 5px 40px;
 						box-shadow: 0 0 5px rgba(0, 0, 0, .2)
 					}
-					
+
 					.header-container__logout {
 						float: right;
 						margin-top: 10px;

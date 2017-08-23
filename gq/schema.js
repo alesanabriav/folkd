@@ -9,6 +9,7 @@ const projectsQuery = require('./queries/projectsQuery');
 const todosQuery = require('./queries/todosQuery');
 const todoQuery = require('./queries/todoQuery');
 const usersQuery = require('./queries/usersQuery');
+const userQuery = require('./queries/userQuery');
 
 //mutations
 const { createCompany, updateCompany } = require('./mutations/companyMutations');
@@ -18,7 +19,6 @@ const { loginUser, registerUser } = require('./mutations/userMutations');
 const { createTodo, updateTodo } = require('./mutations/todoMutations');
 const { createStep } = require('./mutations/stepMutations');
 
-
 const Query = new GraphQLObjectType({
   name: "folkderAppQueries",
   description: "Root Schema",
@@ -27,7 +27,8 @@ const Query = new GraphQLObjectType({
     projects: projectsQuery,
     todos: todosQuery,
     todo: todoQuery,
-    users: usersQuery
+    users: usersQuery,
+    user: userQuery
   })
 });
 

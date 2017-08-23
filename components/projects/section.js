@@ -32,12 +32,10 @@ class Projects extends Component {
   }
 
   render() {
-    const { items, selected, loading } = this.props.projects;
+    const { items, selected, todos, loading } = this.props.projects;
     const { client, todo } = this.props;
-    // const { projects = [] } = data;
-    // const { selected } = project;
-    // if(loading) return this.renderLoading();
-    console.log(client);
+
+    if(loading) return this.renderLoading();
 
     return (
       <section className="col-lg-3 projects">
@@ -49,14 +47,13 @@ class Projects extends Component {
           </div>
         </header>
 
-        {/* {this.state.showForm ? <ProjectForm client={client} onProjectAdded={this.handleProjectAdded} /> : <div/>} */}
-
           <ul>
             {items.map(project =>
               <Project
                 key={project.id}
                 project={project}
                 selected={selected}
+                todos={todos}
                 todoSelected={todo}
                 onSelectProject={this.selectProject}
                 onChangeTodo={this.changeTodo}

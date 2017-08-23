@@ -5,6 +5,18 @@ export const getUsersQuery = `
 			id
 			name
 			email
+			role
 		}
 	}
 `;
+
+export const getUserQuery = `
+	query getUser {
+		user {
+			id
+			name
+			email
+			role,
+		}
+	}
+`

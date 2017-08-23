@@ -14,9 +14,11 @@ const Main = (props) => (
     	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
     </Head>
 		<Header />
+
     <div className="container-fluid">
       {props.children}
     </div>
+
     <style global jsx>{`
       body {
         background: #54558D;

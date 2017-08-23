@@ -10,8 +10,6 @@ const GraphQLJSON = require("graphql-type-json");
 const User = require("../types/userType");
 const models = require("../../models");
 
-console.log('type', User);
-
 const usersFilter = new GraphQLInputObjectType({
     name: "usersFilters",
     fields: () => ({

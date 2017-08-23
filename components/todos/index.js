@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Todos from './section';
 import { addTodo } from '../../actions/todos';
+import { addProjectTodo } from '../../actions/projects';
 
 const mapStateToProps = state => ({
   client: state.clients.selected,
@@ -10,7 +11,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addTodo
+  addTodo,
+  addProjectTodo
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);

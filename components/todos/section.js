@@ -6,7 +6,9 @@ import StepForm from './stepForm';
 class Todos extends Component {
 
   handleSubmit = (variables) => {
-    this.props.addTodo(variables);
+    this.props.addTodo(variables).then((todo) => {
+      this.props.addProjectTodo(todo);
+    })
   }
 
   renderLoading = () => {

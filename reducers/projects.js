@@ -4,6 +4,7 @@ const TYPE = 'PROJECTS';
 const initialState = {
   items: [],
   selected: {},
+  todos: [],
   variables: {
     clientId: null,
     order: [["id", "DESC"]]
@@ -15,16 +16,21 @@ const initialState = {
 export default function projects(state = initialState, action) {
   switch (action.type) {
     case `FETCH_${TYPE}`:
+      const selected = action.payload.length > 0 ? action.payload[0] : {};
+      const todos = selected.todos;
+
       return {
         ...state,
         items: action.payload,
-        selected: action.payload.length > 0 ? action.payload[0] : {},
-        loading: false
+        loading: false,
+        selected,
+        todos
       };
     case `SELECT_${TYPE}`:
       return {
         ...state,
         selected: action.payload,
+        todos: action.payload.todos,
         loading: false
       };
     case `SET_${TYPE}_CLIENT_ID`:
@@ -36,7 +42,8 @@ export default function projects(state = initialState, action) {
     case `ADD_${TYPE}`:
       return {...state, items: action.payload};
     case `ADD_${TYPE}_TODO`:
-      return { ...state, items: action.payload };
+      const todosUpdated = [action.payload].concat(state.todos);
+      return { ...state, todos: todosUpdated };
     default:
       return state
   }

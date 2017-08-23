@@ -12,7 +12,7 @@ export class Project extends Component {
   }
 
   render() {
-    const { project, selected, todoSelected } = this.props;
+    const { project, selected, todos, todoSelected } = this.props;
 
     return (
       <li className={`projects__item ${project.id == selected.id ? 'projects__item--active' : ''}`}>
@@ -22,9 +22,9 @@ export class Project extends Component {
           <span className="projects__item__todos-count">{project.todosCount}</span>
         </a>
 
-        {project.todos.length > 0 ?
+        {todos.length > 0 ?
           <ul className={project.id == selected.id ? "projects__todos projects__todos--open" :"projects__todos" }>
-            {project.todos.map(todo =>
+            {todos.map(todo =>
               <li key={todo.id} className={todo.id == todoSelected.id ? 'projects__todo--active' : '' }>
                 <a href="#" onClick={this.changeTodo.bind(null, todo.id)}>{todo.title}</a>
               </li>
