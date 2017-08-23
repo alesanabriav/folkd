@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export class Project extends Component {
   selectProject = (e) => {
     e.preventDefault();
-    this.props.selectProject(this.props.project);
+    this.props.onSelectProject(this.props.project);
   }
 
   changeTodo = (todoId, e) => {

@@ -8,7 +8,10 @@ class Projects extends Component {
   }
 
   selectProject = (project) => {
-    //select first todo on select project if has todos
+    this.props.cleanTodo()
+    .then(() => {
+      this.props.selectProject(project);
+    })
   }
 
   changeTodo = (todoId) => {
@@ -55,7 +58,7 @@ class Projects extends Component {
                 project={project}
                 selected={selected}
                 todoSelected={todo}
-                selectProject={this.selectProject}
+                onSelectProject={this.selectProject}
                 onChangeTodo={this.changeTodo}
                 />
             )}
@@ -65,7 +68,7 @@ class Projects extends Component {
             .projects {
               background: rgba(0,0,0,.4);
               padding-top: 20px;
-              height: 100vh;
+              height: calc(100vh - 60px);
               box-shadow: 0 3px 6px rgba(0,0,0,0.16);
               overflow-y: auto;
             }

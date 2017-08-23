@@ -23,9 +23,9 @@ class Login extends React.Component {
 				if(data.token) {
 					console.log(data);
 					localStorage.setItem('folk-token', data.token);
-					// setTimeout(() => {
-					// 	window.location = '/';
-					// })
+					setTimeout(() => {
+						window.location = '/';
+					})
 				}
 		});
 	}

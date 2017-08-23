@@ -22,6 +22,9 @@ class Dashboard extends Component {
     .then(() => {
       this.props.getProjects(this.props.projects.variables);
     })
+    .then(() => {
+      this.props.getUsers();
+    })
   }
 
   changeClient = (client) => {
@@ -54,6 +57,7 @@ const mapDispatchToProps = {
   selectClient: actions.clients.selectClient,
   getProjects: actions.projects.getProjects,
   setClientId: actions.projects.setClientId,
+  getUsers: actions.users.getUsers,
   cleanTodo: actions.todos.cleanTodo
 }
 

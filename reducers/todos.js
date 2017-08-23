@@ -13,6 +13,8 @@ export default function todos(state = initialState, action) {
   switch (action.type) {
     case `FETCH_${TYPE}`:
       return { ...state, item: action.payload, loading: false };
+    case `ADD_${TYPE}`:
+      return { ...state, item: action.payload };
     case `ADD_${TYPE}_SUBTODO`:
       return { ...state, items: action.payload };
     case `CLEAN_${TYPE}_ITEM`:

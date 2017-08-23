@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { getUsersQuery } from '../../queries/userQueries';
 // import { createTodoMutation, getTodoQuery } from '../../queries/todoQueries';
 
-export class TodoForm extends Component {
+class TodoForm extends Component {
 	state = {
 		title: "",
 		content: "",
@@ -23,23 +23,18 @@ export class TodoForm extends Component {
 		e.preventDefault();
 		const { title, content, assign_id } = this.state;
 		const { todo = {}, project = {} } = this.props;
-		const { selected } = project;
 
-		this.props.createTodo({
-			variables: {
-				project_id: selected.id,
-				title,
-				content,
-				assign_id
-			}
-		}).then(({ data }) => {
-			this.props.selectTodo(data.createTodo);
-		});
+		const variables = {
+			project_id: project.id,
+			title,
+			content,
+			assign_id
+		};
+		this.props.onSubmit(variables);
 	}
 
 	render() {
-		const { getUsers = {} } = this.props;
-		const { users = [], loading } = getUsers;
+		const { users } = this.props;
 
 		return (
 			<form onSubmit={this.handleSubmit} className="todos-form">
@@ -84,8 +79,4 @@ export class TodoForm extends Component {
 	}
 }
 
-export default TodoForm
-// compose(
-//   graphql(getUsersQuery, {name: 'getUsers'}),
-//   graphql(createTodoMutation, {name: 'createTodo'}),
-// )();
+export default TodoForm;

@@ -56,13 +56,20 @@ export class StepForm extends Component {
 						rows="5"
 						onChange={this.handleChange}
 						value={this.state.content}
+						placeholder="Todo Description"
 						></textarea>
 				</div>
 
 				<div className="form-group">
-					<button className="btn" onClick={this.handleSubmit}>Add</button>
+					<button className="btn btn-light" onClick={this.handleSubmit}>Add todo</button>
 				</div>
-
+				<style jsx>{`
+					button {
+						float: right;
+						width: 200px;
+						cursor: pointer;
+					}
+				`}</style>
 		</form>
 		)
 	}

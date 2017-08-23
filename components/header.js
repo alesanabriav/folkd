@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Header extends Component {
 	logout = (e) => {
 		e.preventDefault();
-		localStorage.removeItem('token');
+		localStorage.removeItem('folk-token');
 		window.location = '/login';
 	}
 
@@ -13,7 +13,9 @@ class Header extends Component {
 			<header>
 				<div className="header-container">
 					<img src="/static/logo.png" alt="" width="120px"/>
-					<a href="#" style={{float: 'right'}} onClick={this.logout}>Salir</a>
+					<a href="#" className="header-container__logout" onClick={this.logout}>
+						<i className="ion-log-out"></i> Salir
+					</a>
 				</div>
 				<style jsx>{`
 					.header-container {
@@ -22,6 +24,12 @@ class Header extends Component {
 						width: 100%;
 						padding: 5px 40px;
 						box-shadow: 0 0 5px rgba(0, 0, 0, .2)
+					}
+					
+					.header-container__logout {
+						float: right;
+						margin-top: 10px;
+						color: #333;
 					}
 				`}</style>
 			</header>

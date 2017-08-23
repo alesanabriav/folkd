@@ -57,7 +57,7 @@ class Clients extends Component {
           .clients {
             background: rgba(0,0,0,.2);
             padding-top: 20px;
-            height: 100vh;
+            height: calc(100vh - 60px);
             box-shadow: 0 3px 6px rgba(0,0,0,0.16);
             overflow-y: auto;
           }

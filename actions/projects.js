@@ -22,6 +22,16 @@ export function getProjects(variables) {
   return action;
 }
 
+export function selectProject(project = {}) {
+  const action = (dispatch) => {
+    return new Promise((resolve) => {
+      dispatch({ type: `SELECT_${TYPE}`, payload: project });
+      return resolve({ type: `SELECT_${TYPE}`, payload: project });
+    })
+  }
+  return action;
+}
+
 export function setClientId(id) {
   const action = (dispatch) => {
     return new Promise((resolve) => {
