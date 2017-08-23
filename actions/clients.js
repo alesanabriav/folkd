@@ -1,6 +1,6 @@
 import {
   getClientsQuery,
-  createClientMutation,
+  addClientMutation,
   updateClientMutation,
 } from '../queries/clientQueries';
 import apolloFetch from '../lib/apollo_fetch';
@@ -36,12 +36,11 @@ export function selectClient(client) {
 }
 
 export function addClient(variables) {
-  const action = (dipatch) => {
-    dispatch(loadingAction);
-    apolloFetch({ getClientsQuery, variables })
+  const action = (dispatch) => {
+    return apolloFetch({ query: addClientMutation, variables })
     .then(res => {
-      dispatch({ type: `ADD_${TYPE}`, payload: res });
-      return res;
+      dispatch({ type: `ADD_${TYPE}`, payload: res.data.createClient });
+      return res.data.createClient;
     })
     .catch(err => {
       dispatch( failAction );

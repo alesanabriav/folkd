@@ -1,5 +1,5 @@
 import ClientsSection from './section';
-import { getClients, selectClient } from '../../actions/clients';
+import { getClients, selectClient, addClient } from '../../actions/clients';
 import { getProjects } from '../../actions/projects';
 import { connect } from 'react-redux';
 
@@ -10,6 +10,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   getClients,
   selectClient,
+  addClient,
   getProjects
 }
 

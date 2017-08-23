@@ -5,7 +5,7 @@ export const getClientProjectsQuery = `
       id
       name,
       todosCount,
-      todos {
+      todos(order: [["id", "desc"]]) {
         id,
         title
       }

@@ -21,13 +21,13 @@ export default function clients(state = initialState, action) {
         loading: false
       };
     case `ADD_${TYPE}`:
-      return {...state, items: action.payload};
+      return { ...state, items: [action.payload].concat(state.items) };
     case `UPDATE_${TYPE}`:
-        return {...state, items: action.payload};
+        return { ...state, items: action.payload };
     case `SELECT_${TYPE}`:
-      return {...state, selected: action.payload};
+      return { ...state, selected: action.payload };
     case `FAIL_${TYPE}`:
-      return {...state, fail: true};
+      return { ...state, fail: true };
     default:
       return state
   }

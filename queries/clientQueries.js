@@ -8,7 +8,7 @@ export const getClientsQuery = `
 }
 `;
 
-export const createClientMutation = `
+export const addClientMutation = `
   mutation createClient($name: String!, $abbreviation: String) {
     createClient(name: $name, abbreviation: $abbreviation) {
       id

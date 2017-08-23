@@ -16,20 +16,12 @@ export class ClientForm extends Component {
     this.setState({name: '', abbreviation: ''});
   }
 
-  updateClients = (proxy, { data }) => {
-    let variables = { order: [['id', 'DESC']] };
-
-  }
-
   handleSubmit = e => {
     e.preventDefault();
-    console.log('create client');
-    const variables = {
-      name: this.state.name
-    };
 
-    this.props.addClient({variables})
-    .then(this.cleanState());
+    this.props.onSubmit(this.state).then(() => {
+      this.cleanState();
+    });
   }
 
   render() {

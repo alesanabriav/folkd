@@ -14,6 +14,10 @@ class Clients extends Component {
     this.props.onChangeClient(client);
   }
 
+  addClient = (variables) => {
+    return this.props.addClient(variables);
+  }
+
   toggleForm = (e) => {
     e.preventDefault();
     this.setState({showForm: !this.state.showForm});
@@ -37,11 +41,11 @@ class Clients extends Component {
         <header>
           <h5>Clients</h5>
           <div className="btns">
-            <button onClick={this.toggleForm} className="btn btn-link"><i className="ion-plus"></i></button>
-            <button onClick={this.toggleSearch} className="btn btn-link"><i className="ion-search"></i></button>
+            <button onClick={this.toggleForm} className="btn btn-light btn-sm"><i className="ion-plus"></i></button>
+            <button onClick={this.toggleSearch} className="btn btn-light btn-sm"><i className="ion-search"></i></button>
           </div>
         </header>
-        {this.state.showForm ? <ClientForm /> : <div/>}
+        {this.state.showForm ? <ClientForm onSubmit={this.addClient} /> : <div/>}
         {this.state.showSearch ? <SearchClient /> : <div/>}
         <ul className="clients__list">
           {items.map(client =>
@@ -60,6 +64,23 @@ class Clients extends Component {
             height: calc(100vh - 60px);
             box-shadow: 0 3px 6px rgba(0,0,0,0.16);
             overflow-y: auto;
+          }
+
+          .clients header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+          }
+
+          .btns {
+            display: flex;
+            align-self: flex-end;
+          }
+
+          .btns button {
+            margin-left: 10px;
+            cursor: pointer;
           }
 
           .clients h5 {

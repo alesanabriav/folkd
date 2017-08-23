@@ -70,6 +70,23 @@ class Projects extends Component {
               overflow-y: auto;
             }
 
+            .projects header {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 20px;
+            }
+
+            .btns {
+              display: flex;
+              align-self: flex-end;
+            }
+
+            .btns button {
+              margin-left: 10px;
+              cursor: pointer;
+            }
+
             .projects ul {
               margin: 20px -15px;
             }
