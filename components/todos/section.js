@@ -82,6 +82,7 @@ class Todos extends Component {
 
           .todos h5 {
             color: #fff;
+            margin-bottom: 20px
           }
 
           .todos-items {

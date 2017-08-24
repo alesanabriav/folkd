@@ -12,7 +12,8 @@ class Register extends Component {
     showTeam: true,
     showCompany: false,
     showUser: false,
-    showInvitations: false
+    showInvitations: false,
+    omitInvitations: false
   }
 
   addTeam = (data) => {
@@ -20,11 +21,21 @@ class Register extends Component {
       request
       .post('register/team', data)
       .then(res => {
-        this.setState({
-          company: res.data,
-          showTeam: false,
-          showCompany: true
-        })
+        if(res.data.name !== null || res.data.name !== '') {
+          this.setState({
+            company: res.data,
+            showTeam: false,
+            showUser: true,
+            omitInvitations: true
+          })
+        } else {
+          this.setState({
+            company: res.data,
+            showTeam: false,
+            showCompany: true
+          })
+        }
+
       })
     }
 
@@ -50,6 +61,9 @@ class Register extends Component {
     .then(res => {
       const {token, user} = res.data;
       localStorage.setItem('folk-token', token);
+      if(this.state.omitInvitations) {
+        return window.location = '/';
+      }
       this.setState({
         user: user,
         showUser: false,

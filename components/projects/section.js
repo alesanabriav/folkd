@@ -47,7 +47,12 @@ class Projects extends Component {
             <button className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>
           </div>
         </header>
-        {showForm || !selected.hasOwnProperty('id')  ? <ProjectForm client={client} onSubmit={this.addProject} /> : '' }
+        
+        {showForm || !selected.hasOwnProperty('id') && client.hasOwnProperty('id')
+          ? <ProjectForm client={client} onSubmit={this.addProject} />
+          : ''
+        }
+
           <ul>
             {items.map(project =>
               <Project

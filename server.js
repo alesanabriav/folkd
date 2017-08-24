@@ -24,12 +24,21 @@ app.prepare()
     login(req).then(({ token }) => res.json({ token }));
   });
 
+  function findOrCreateTeam(data) {
+    return models.Company
+    .findOne({where: { team_name: data.team_name }})
+    .then(company => {
+      if(company) return company;
+      return models.Company.create(data);
+    })
+  }
+
   server.post('/register/:type', (req, res) => {
     const { body, params } = req;
     console.log(params, body);
 
     if(params.type === 'team') {
-      return models.Company.create(body)
+      return findOrCreateTeam(body)
       .then(user => res.status(201).json(user))
       .catch(err => res.status(400).json(err));
     }
