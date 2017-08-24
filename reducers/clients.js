@@ -1,4 +1,3 @@
-
 const TYPE = 'CLIENTS';
 
 const initialState = {

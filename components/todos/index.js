@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Todos from './section';
-import { addTodo } from '../../actions/todos';
+import { addTodo, addTodoStep } from '../../actions/todos';
 import { addProjectTodo } from '../../actions/projects';
 
 const mapStateToProps = state => ({
@@ -12,7 +12,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   addTodo,
-  addProjectTodo
+  addProjectTodo,
+  addTodoStep
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);

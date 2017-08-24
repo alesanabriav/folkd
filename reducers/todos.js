@@ -1,4 +1,3 @@
-
 const TYPE = 'TODOS';
 
 const initialState = {

@@ -1,4 +1,3 @@
-
 const TYPE = 'PROJECTS';
 
 const initialState = {
@@ -40,11 +39,15 @@ export default function projects(state = initialState, action) {
         variables
       };
     case `ADD_${TYPE}`:
-      console.log(state.items);
-      return { ...state, items: [action.payload].concat(state.items) };
+      return {
+        ...state,
+        items: [action.payload].concat(state.items)
+      };
     case `ADD_${TYPE}_TODO`:
-      const todosUpdated = [action.payload].concat(state.todos);
-      return { ...state, todos: todosUpdated };
+      return {
+        ...state,
+        todos: [action.payload].concat(state.todos)
+      };
     default:
       return state
   }

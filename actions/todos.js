@@ -1,5 +1,6 @@
 import apolloFetch from '../lib/apollo_fetch';
 import { getTodoQuery, addTodoMutation  } from '../queries/todoQueries';
+import { addStepMutation } from '../queries/stepQueries';
 const TYPE = 'TODOS';
 const failAction = { type: `FAIL_${TYPE}` };
 const loadingAction = { type: `LOADING_${TYPE}` };
@@ -23,6 +24,18 @@ export function addTodo(variables = {}) {
     .then(res => {
       dispatch({ type: `ADD_${TYPE}`, payload: res.data.createTodo });
       return res.data.createTodo;
+    });
+  }
+
+  return action;
+}
+
+export function addTodoStep(variables) {
+  const action = (dispatch) => {
+    return apolloFetch({ query: addStepMutation, variables })
+    .then(res => {
+      dispatch({ type: `ADD_${TYPE}_STEP`, payload: res.data.createStep });
+      return res.data.createStep;
     });
   }
 

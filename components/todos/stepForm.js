@@ -1,48 +1,20 @@
 import React, { Component } from "react";
-// import { getUsersQuery } from '../../queries/userQueries';
-// import { getTodoQuery } from '../../queries/todoQueries';
-// import { createStepMutation } from '../../queries/stepQueries';
 
 export class StepForm extends Component {
 	state = {
-		content: '',
-		todo_id: ''
+		content: ''
 	}
 
 	handleChange = e => {
-		this.setState({ [e.target.name] : e.target.value });
-	}
-
-	updateSteps = (proxy, { data }) => {
-		let query = getTodoQuery;
-		let variables = {
-      id: this.props.project.todoId
-    };
-
-		const queryData = proxy.readQuery({ query, variables });
-
-		let steps = [data.createStep].concat(queryData.todo.steps);
-
-		proxy.writeQuery({ query, variables, data: {todo: {...queryData.todo, steps}} });
-
+		this.setState({ [e.target.name]: e.target.value });
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const { content } = this.state;
-		const { todo = {} } = this.props;
-
-		this.props.createStep({
-			variables: {
-				todo_id: todo.id,
-				content
-			},
-			update: this.updateSteps
-		})
-		.then(data => this.setState({content: ''}))
-		.catch((message, err) => console.log('err', message, err));
+		const variables = { content };
+		this.props.onSubmit(variables);
 	}
-
 	render() {
 		const { getUsers = {} } = this.props;
 		const { users = [], loading } = getUsers;
@@ -56,13 +28,14 @@ export class StepForm extends Component {
 						rows="5"
 						onChange={this.handleChange}
 						value={this.state.content}
-						placeholder="Todo Description"
+						placeholder="Description"
 						></textarea>
 				</div>
 
 				<div className="form-group">
-					<button className="btn btn-light" onClick={this.handleSubmit}>Add todo</button>
+					<button className="btn btn-light" onClick={this.handleSubmit}>Add step</button>
 				</div>
+
 				<style jsx>{`
 					button {
 						float: right;
@@ -76,7 +49,3 @@ export class StepForm extends Component {
 }
 
 export default StepForm;
-
-//  compose(
-//   graphql(createStepMutation, {name: 'createStep'})
-// )();

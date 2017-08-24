@@ -11,6 +11,13 @@ class Todos extends Component {
     })
   }
 
+  handleSubmitStep = (variables) => {
+    const { todo } = this.props;
+    variables = {...variables, todo_id: todo.id};
+    this.props.addTodoStep(variables)
+      .then(step => console.log(step));
+  }
+
   renderLoading = () => {
     return (<section className="col-lg-6 todos"><h5>loading...</h5></section>);
   }
@@ -69,7 +76,9 @@ class Todos extends Component {
         )}
         </div>
 
-        {todo.hasOwnProperty('id') ? <StepForm todo={todo} project={project} /> : <div/>}
+        { todo.hasOwnProperty('id')
+          ? <StepForm onSubmit={this.handleSubmitStep} project={project} />
+          : <div/> }
 
         <style jsx>{`
           .todos {
