@@ -6,17 +6,37 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
-      created_at: Sequelize.DATE,
-      updated_at: Sequelize.DATE,
-      user_id: Sequelize.INTEGER,
-      assign_id: Sequelize.INTEGER,
-      project_id: Sequelize.INTEGER,
-      title: Sequelize.STRING,
-      content: Sequelize.TEXT,
+      user_id: {
+        type: Sequelize.INTEGER
+      },
+      assign_id: {
+        type: Sequelize.INTEGER
+      },
+      project_id: {
+        type: Sequelize.INTEGER
+      },
+      title: {
+        type: Sequelize.STRING
+      },
+      content: {
+        type: Sequelize.TEXT
+      },
       is_completed: {
-        type: Sequelize.BOOLEAN, 
-        defaultValue: 0 
-      }
+        type: Sequelize.BOOLEAN,
+        defaultValue: 0
+      },
+      deadline_start: {
+        type: Sequelize.DATE
+      },
+      deadline_end: {
+        type: Sequelize.DATE
+      },
+      created_at: {
+        type: Sequelize.DATE
+      },
+      updated_at: {
+        type: Sequelize.DATE
+      },
     });
   },
 

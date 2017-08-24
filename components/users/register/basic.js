@@ -1,9 +1,8 @@
-import React from 'react';
-import request from 'axios';
+import React, { Component } from 'react';
 
 const getErrMessages = errObj => {
 	let obj = {};
-	
+
 	errObj.errors.forEach(err => {
 		obj[err.path] = err.message;
 	});
@@ -11,8 +10,9 @@ const getErrMessages = errObj => {
 	return obj;
 };
 
-class Register extends React.Component {
+class Register extends Component {
 	state = {
+		name: '',
 		email: '',
 		password: '',
 		errors: {}
@@ -22,41 +22,56 @@ class Register extends React.Component {
 		this.setState({...this.state, [e.target.name]: e.target.value});
 	}
 
-	store = e => {
+	handleSubmit = e => {
 		e.preventDefault();
-		request.post('/register', this.state)
-		.then(({data}) => {
-			this.props.redirect(`/register/${data.id}/company`);
-		})
-		.catch(({response}) => this.setState({ errors: getErrMessages(response.data) }) );
+		this.props.onSubmit(this.state);
 	}
 
 	render() {
+		const { name, email, password, errors } = this.state;
+
 		return (
-			<form onSubmit={this.store} className="col-md-3">
-			<div className="form-group">
-				<input 
-					type="text" 
-					name="email"
-					placeholder="Email" 
-					className="form-control"
-					onChange={this.handleChange} 
-					value={this.state.email}	
-				/>
-				{this.state.errors.email}
-			</div>
-				
-			<div className="form-group">
-				<input 
-						type="password" 
-						name="password"
-						placeholder="Password" 
+			<form onSubmit={this.handleSubmit}>
+				<div className="form-group">
+					<input
+						type="text"
+						name="name"
+						placeholder="Name"
 						className="form-control"
-						onChange={this.handleChange} 
-						value={this.state.password}	
+						onChange={this.handleChange}
+						value={name}
+					/>
+					{errors.name}
+				</div>
+
+			<div className="form-group">
+				<input
+					type="text"
+					name="email"
+					placeholder="Email"
+					className="form-control"
+					onChange={this.handleChange}
+					value={email}
+				/>
+				{errors.email}
+			</div>
+
+			<div className="form-group">
+				<input
+						type="password"
+						name="password"
+						placeholder="Password"
+						className="form-control"
+						onChange={this.handleChange}
+						value={password}
 				/>
 				</div>
-					<button onClick={this.store} className="btn btn-secondary">Register</button>
+					<button onClick={this.handleSubmit} className="btn btn-outline-light">Register</button>
+					<style jsx>{`
+						button {
+							float: right;
+						}
+					`}</style>
 			</form>
 		)
 	}

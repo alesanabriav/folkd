@@ -13,18 +13,30 @@ module.exports = {
         type: Sequelize.DATE
       },
       company_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'companies',
-          key: 'id'
-        }
+        type: Sequelize.INTEGER
       },
-      name: Sequelize.STRING,
-      email: Sequelize.STRING,
-      password: Sequelize.STRING,
-      role: Sequelize.STRING,
-      options: Sequelize.TEXT,
-      email_verified: {type: Sequelize.BOOLEAN, defaultValue: 0 }
+      name: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
+      },
+      role_name: {
+        type: Sequelize.STRING
+      },
+      role: {
+        type: Sequelize.STRING
+      },
+      options: {
+        type: Sequelize.TEXT
+      },
+      email_verified: {
+        type: Sequelize.BOOLEAN,
+         defaultValue: 0
+      }
     });
   },
 

@@ -6,17 +6,45 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
-      name: Sequelize.STRING,
-      slug: Sequelize.STRING,
-      logo: Sequelize.STRING,
-      address: Sequelize.STRING,
-      phone: Sequelize.STRING,
-      country: Sequelize.STRING,
-      city: Sequelize.STRING,
-      options: Sequelize.TEXT,
-      sector: Sequelize.STRING,
-      created_at: Sequelize.DATE,
-      updated_at: Sequelize.DATE,
+      team_name: {
+        type: Sequelize.STRING
+      },
+      name: {
+        type: Sequelize.STRING
+      },
+      size: {
+        type: Sequelize.STRING
+      },
+      slug: {
+        type: Sequelize.STRING
+      },
+      logo: {
+        type: Sequelize.STRING
+      },
+      address: {
+        type: Sequelize.STRING
+      },
+      phone: {
+        type: Sequelize.STRING
+      },
+      country: {
+        type: Sequelize.STRING
+      },
+      city: {
+        type: Sequelize.STRING
+      },
+      options: {
+        type: Sequelize.TEXT
+      },
+      sector: {
+        type: Sequelize.STRING
+      },
+      created_at: {
+        type: Sequelize.DATE
+      },
+      updated_at: {
+        type: Sequelize.DATE
+      },
     });
   },
 

@@ -6,16 +6,25 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
+      user_id: {
+        type: Sequelize.INTEGER
+      },
+			todo_id: {
+        type: Sequelize.INTEGER
+      },
+			step_id: {
+        type: Sequelize.INTEGER
+      },
+      url: {
+        type: Sequelize.STRING
+      },
        created_at: {
         type: Sequelize.DATE
       },
       updated_at: {
         type: Sequelize.DATE
       },
-      user_id: Sequelize.INTEGER,
-			todo_id: Sequelize.INTEGER,
-			step_id: Sequelize.INTEGER,
-			url: Sequelize.STRING
+
     });
   },
 

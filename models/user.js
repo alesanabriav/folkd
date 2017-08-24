@@ -25,12 +25,18 @@ module.exports = function(sequelize, Sequelize) {
       password: {
         type: Sequelize.STRING
       },
+      role_name: {
+        type: Sequelize.STRING,
+      },
       role: {
         type: Sequelize.STRING,
         default: 'user'
       },
       "company_id": {
         type: Sequelize.INTEGER
+      },
+      options: {
+        type: Sequelize.TEXT
       }
     },
     {

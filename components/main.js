@@ -21,7 +21,7 @@ const Main = (props) => (
 
     <style global jsx>{`
       body {
-        background: #E80051;
+        background: #282C34;
       }
       ul {
         padding: 0;
