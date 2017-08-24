@@ -1,7 +1,7 @@
 
 export const getClientProjectsQuery = `
   query getClientProjects($clientId: Int!, $name: JSON) {
-    projects(where: {client_id: $clientId, name: $name}) {
+    projects(where: {client_id: $clientId, name: $name}, order: [["id", "desc"]]) {
       id
       name,
       todosCount,

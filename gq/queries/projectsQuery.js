@@ -19,6 +19,7 @@ const projects = {
     order: { type: GraphQLJSON }
   },
   resolve(r, args, ctx, info) {
+    console.log('----projects args:', args);
     return models.Project.findAll(args);
   }
 };

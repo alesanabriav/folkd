@@ -7,7 +7,7 @@ const initialState = {
   todos: [],
   variables: {
     clientId: null,
-    order: [["id", "desc"]]
+    order: [['id', 'DESC']]
   },
   loading: false,
   fail: false
@@ -17,7 +17,7 @@ export default function projects(state = initialState, action) {
   switch (action.type) {
     case `FETCH_${TYPE}`:
       const selected = action.payload.length > 0 ? action.payload[0] : {};
-      const todos = selected.todos;
+      const todos = selected.todos ? selected.todos : [];
 
       return {
         ...state,
