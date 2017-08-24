@@ -1,48 +1,23 @@
 import React, { Component } from "react";
 
-// import {
-//   getClientProjectsQuery,
-//   createProjectMutation,
-//   updateProjectMutation
-// } from '../../queries/projectQueries';
-
 class ProjectForm extends Component {
   state = {
-      name: ""
+    name: ""
   }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  updateProjects = (proxy, { data }) => {
-    // let variables = {
-    //   clientId: this.props.client.selected.id,
-    //   order: [["id", "DESC"]]
-    // };
-    // let query = getClientProjectsQuery;
-    // const queryData = proxy.readQuery({ query, variables });
-    // const projects = [data.createProject].concat(queryData.projects);
-    //
-    // proxy.writeQuery({ query, variables, data: { projects } });
-
-  }
-
   handleSubmit = e => {
     e.preventDefault();
     const { name } = this.state;
+    const variables = {
+      clientId: this.props.client.id,
+      name
+    };
 
-    // this.props.createProject({
-    //   variables: {
-    //     clientId: this.props.client.selected.id,
-    //     name
-    //   },
-    //   update: this.updateProjects
-    // })
-    // .then(data => {
-    //   this.setState({name: ""});
-    //   this.props.onProjectAdded();
-    // });
+    this.props.onSubmit(variables);
   }
 
   render() {
@@ -64,8 +39,4 @@ class ProjectForm extends Component {
   }
 }
 
-export default ProjectForm
-// compose(
-//   graphql(createProjectMutation, {name: 'createProject'}),
-//   graphql(updateProjectMutation, {name: 'updateProject'}),
-// )();
+export default ProjectForm;

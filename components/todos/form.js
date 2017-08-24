@@ -13,12 +13,6 @@ class TodoForm extends Component {
 		this.setState({ [e.target.name] : e.target.value });
 	}
 
-	updateTodos = (proxy, { data }) => {
-		//it should update project todos list
-		// it should update todos views with this new todo
-
-	}
-
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const { title, content, assign_id } = this.state;
@@ -30,6 +24,7 @@ class TodoForm extends Component {
 			content,
 			assign_id
 		};
+
 		this.props.onSubmit(variables);
 	}
 
@@ -65,15 +60,21 @@ class TodoForm extends Component {
 					<textarea
 						name="content"
 						className="form-control"
+						placeholder="Todo description"
 						rows="5"
 						onChange={this.handleChange}
 						value={this.state.content}
 						></textarea>
 				</div>
 				<div className="form-group">
-					<button className="btn btn-secondary" onClick={this.handleSubmit}>Create & Assign</button>
+					<button className="btn btn-outline-light" onClick={this.handleSubmit}>Create</button>
 				</div>
-
+				<style>{`
+					.btn {
+						float: right;
+						cursor: pointer;
+					}
+				`}</style>
 		</form>
 		)
 	}

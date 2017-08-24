@@ -66,7 +66,7 @@ export class Project extends Component {
           }
 
           .projects__item ul li a {
-            background: rgba(0,0,0,.1);
+            background: rgba(0,0,0,.01);
             padding: 10px 40px;
             display: block;
           }

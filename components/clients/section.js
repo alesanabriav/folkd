@@ -29,7 +29,7 @@ class Clients extends Component {
   }
 
   renderLoading = () => {
-    return (<section className="col-lg-3 clients"><h5>loading...</h5></section>)
+    return (<section className="col-lg-3 clients"><h1>loading...</h1></section>)
   }
 
   render() {
@@ -41,8 +41,8 @@ class Clients extends Component {
         <header>
           <h5>Clients</h5>
           <div className="btns">
-            <button onClick={this.toggleForm} className="btn btn-light btn-sm"><i className="ion-plus"></i></button>
-            <button onClick={this.toggleSearch} className="btn btn-light btn-sm"><i className="ion-search"></i></button>
+            <button onClick={this.toggleForm} className="btn btn-outline-light btn-sm"><i className="ion-plus"></i></button>
+            <button onClick={this.toggleSearch} className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>
           </div>
         </header>
         {this.state.showForm ? <ClientForm onSubmit={this.addClient} /> : <div/>}

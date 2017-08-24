@@ -22,11 +22,11 @@ class Todos extends Component {
     return (
       <section className="col-lg-6 todos">
         <header>
-          <h5>Task for {project.name}</h5>
+          <h5>{project.id ? `Task for ${project.name}` : 'Select a project'}</h5>
         </header>
 
         <section>
-          { !todo.hasOwnProperty('id') ?
+          { project.hasOwnProperty('id') && !todo.hasOwnProperty('id') ?
             <TodoForm
               selectTodo={this.selectTodo}
               users={users}

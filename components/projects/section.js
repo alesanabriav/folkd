@@ -23,17 +23,18 @@ class Projects extends Component {
     this.setState({ showForm: !this.state.showForm });
   }
 
-  handleProjectAdded = () => {
-    this.toggleForm();
+  addProject = (variables) => {
+    this.props.addProject(variables);
   }
 
   renderLoading = () => {
-    return (<section className="col-lg-3 projects"><h5>loading...</h5></section>);
+    return (<section className="col-lg-3 projects"><h1>loading...</h1></section>);
   }
 
   render() {
     const { items, selected, todos, loading } = this.props.projects;
     const { client, todo } = this.props;
+    const { showForm } = this.state;
 
     if(loading) return this.renderLoading();
 
@@ -42,11 +43,11 @@ class Projects extends Component {
         <header>
           <h5>Projects {client.name}</h5>
            <div className="btns">
-            <button onClick={this.toggleForm} className="btn btn-link"><i className="ion-plus"></i></button>
-            <button className="btn btn-link"><i className="ion-search"></i></button>
+            <button onClick={this.toggleForm} className="btn btn-outline-light btn-sm"><i className="ion-plus"></i></button>
+            <button className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>
           </div>
         </header>
-
+        {showForm || !selected.hasOwnProperty('id')  ? <ProjectForm client={client} onSubmit={this.addProject} /> : '' }
           <ul>
             {items.map(project =>
               <Project

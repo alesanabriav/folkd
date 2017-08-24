@@ -7,7 +7,7 @@ const initialState = {
   todos: [],
   variables: {
     clientId: null,
-    order: [["id", "DESC"]]
+    order: [["id", "desc"]]
   },
   loading: false,
   fail: false
@@ -34,13 +34,14 @@ export default function projects(state = initialState, action) {
         loading: false
       };
     case `SET_${TYPE}_CLIENT_ID`:
-      const variables = {...state.variables, clientId: action.payload};
+      const variables = { ...state.variables, clientId: action.payload };
       return {
         ...state,
         variables
       };
     case `ADD_${TYPE}`:
-      return {...state, items: action.payload};
+      console.log(state.items);
+      return { ...state, items: [action.payload].concat(state.items) };
     case `ADD_${TYPE}_TODO`:
       const todosUpdated = [action.payload].concat(state.todos);
       return { ...state, todos: todosUpdated };
