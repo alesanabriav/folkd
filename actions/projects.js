@@ -56,6 +56,17 @@ export function selectProject(project = {}) {
   return action;
 }
 
+export function selectProjectById(id) {
+  const action = (dispatch) => {
+    return new Promise((resolve) => {
+      dispatch({ type: `SELECT_${TYPE}_BY_ID`, payload: id });
+      return resolve();
+    })
+  }
+
+  return action;
+}
+
 export function setClientId(id) {
   const action = (dispatch) => {
     return new Promise((resolve) => {

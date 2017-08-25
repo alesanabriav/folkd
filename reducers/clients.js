@@ -25,6 +25,10 @@ export default function clients(state = initialState, action) {
         return { ...state, items: action.payload };
     case `SELECT_${TYPE}`:
       return { ...state, selected: action.payload };
+    case `SELECT_${TYPE}_BY_ID`:
+      let selected = state.items.filter(item => item.id == action.payload);
+      selected = selected.length > 0 ? selected[0] : {};
+      return {...state, selected };
     case `FAIL_${TYPE}`:
       return { ...state, fail: true };
     default:

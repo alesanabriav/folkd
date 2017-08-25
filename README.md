@@ -1,9 +1,10 @@
 # Folkders
 
-# ideas
-superadmin remove or add users / remove clients.
-admin can remove todos but can't remove clients and so on.
-tag todos by natural language
+# sections
+dashboard / folders
+profile / update data / change password
+team / change logo / update data
+admin / accept users / remove users / change roles
 
-# bugs
-create todo inside project disappear after click on project again
+# features
+get current state by url ?client=2&project=2&todo=11

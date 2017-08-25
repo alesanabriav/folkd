@@ -20,13 +20,19 @@ class Dashboard extends Component {
       }
     })
     .then(() => {
-      this.props.getProjects(this.props.projects.variables);
+      return this.props.getProjects(this.props.projects.variables);
     })
     .then(() => {
-      this.props.getUser();
+      return this.props.getUser();
     })
     .then(() => {
-      this.props.getUsers();
+      return this.props.getUsers();
+    })
+    .then(() => {
+      const { url } = this.props;
+      if(url.query.hasOwnProperty('client')) {
+        this.props.selectClientById(url.query.client)
+      }
     })
   }
 
@@ -47,7 +53,9 @@ class Dashboard extends Component {
 
     return (
       <section className="row">
-        <Clients onChangeClient={this.changeClient} />
+        <Clients
+          onChangeClient={this.changeClient}
+        />
         <Projects />
         <Todos />
       </section>
@@ -58,6 +66,7 @@ class Dashboard extends Component {
 const mapDispatchToProps = {
   getClients: actions.clients.getClients,
   selectClient: actions.clients.selectClient,
+  selectClientById: actions.clients.selectClientById,
   getProjects: actions.projects.getProjects,
   setClientId: actions.projects.setClientId,
   getUsers: actions.users.getUsers,

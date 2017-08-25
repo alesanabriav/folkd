@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import Client from './item';
 import ClientForm from './form';
 import SearchClient from './search';
@@ -11,6 +12,8 @@ class Clients extends Component {
   }
 
   selectClient = client => {
+    const href = `/?client=${client.id}`
+    Router.push(href, href, { shallow: true })
     this.props.onChangeClient(client);
   }
 
@@ -37,7 +40,7 @@ class Clients extends Component {
     if(loading) return this.renderLoading();
 
     return (
-      <section className="col-lg-3 clients">
+      <section className="col-lg-2 col-md-3 clients">
         <header>
           <h5>Clients</h5>
           <div className="btns">

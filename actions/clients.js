@@ -35,6 +35,17 @@ export function selectClient(client) {
   return action;
 }
 
+export function selectClientById(id) {
+  const action = (dispatch) => {
+    return new Promise((resolve) => {
+      dispatch({ type: `SELECT_${TYPE}_BY_ID`, payload: id });
+      return resolve();
+    })
+  }
+
+  return action;
+}
+
 export function addClient(variables) {
   const action = (dispatch) => {
     return apolloFetch({ query: addClientMutation, variables })

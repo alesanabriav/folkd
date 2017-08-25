@@ -4,6 +4,7 @@ export const getClientsQuery = `
     clients(where: {name: $clientName}, order: $order) {
       id
       name
+      abbreviation
     }
 }
 `;

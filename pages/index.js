@@ -4,12 +4,18 @@ import store from '../store';
 import Main from '../components/main';
 import Dashboard from '../components/dashboard';
 
-const Index = () => (
-  <div>
-    <Main>
-      <Dashboard/>
-    </Main>
-  </div>
-)
+class Index extends React.Component {
+  render() {
+    console.log(this.props.url);
+
+    return (
+      <div>
+        <Main {...this.props}>
+          <Dashboard />
+        </Main>
+      </div>
+    )
+  }
+}
 
 export default withRedux(store)(Index);

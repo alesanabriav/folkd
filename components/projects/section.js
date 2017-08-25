@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Router from 'next/router';
 import Project from "./item";
 import ProjectForm from "./form";
 
@@ -28,7 +29,7 @@ class Projects extends Component {
   }
 
   renderLoading = () => {
-    return (<section className="col-lg-3 projects"><h1>loading...</h1></section>);
+    return (<section className="col-lg-4 col-md-3 projects"><h1>loading...</h1></section>);
   }
 
   render() {
@@ -39,7 +40,7 @@ class Projects extends Component {
     if(loading) return this.renderLoading();
 
     return (
-      <section className="col-lg-3 projects">
+      <section className="col-lg-4 col-md-3 projects">
         <header>
           <h5>Projects {client.name}</h5>
            <div className="btns">
@@ -47,7 +48,7 @@ class Projects extends Component {
             <button className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>
           </div>
         </header>
-        
+
         {showForm || !selected.hasOwnProperty('id') && client.hasOwnProperty('id')
           ? <ProjectForm client={client} onSubmit={this.addProject} />
           : ''

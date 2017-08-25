@@ -4,6 +4,9 @@ module.exports =  function(sequelize, Sequelize) {
     {
       name: {
         type: Sequelize.STRING
+      },
+      abbreviation: {
+        type: Sequelize.STRING
       }
     },
     {
