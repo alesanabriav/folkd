@@ -19,6 +19,7 @@ app.prepare()
   const server = express();
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: false }));
+  server.use(express.static(__dirname + '/node_modules'));
 
   server.post('/login', (req, res) => {
     login(req).then(({ token }) => res.json({ token }));

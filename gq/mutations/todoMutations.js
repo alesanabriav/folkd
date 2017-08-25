@@ -15,6 +15,8 @@ const createTodo = {
 	args: {
 		title: { type: GraphQLString },
 		content: { type: new GraphQLNonNull(GraphQLString) },
+    deadline_start: { type: GraphQLString  },
+    deadline_end: { type: GraphQLString  },
     project_id: { type: new GraphQLNonNull(GraphQLInt) },
     assign_id: { type: GraphQLInt },
     todo_id: { type: GraphQLInt }
@@ -30,14 +32,25 @@ const updateTodo = {
   args: {
     title: { type: GraphQLString },
 		content: { type: new GraphQLNonNull(GraphQLString) },
-    project_id: { type: new GraphQLNonNull(GraphQLInt) },
+    deadline_start: { type: GraphQLString  },
+    deadline_end: { type: GraphQLString  },
     assign_id: { type: GraphQLInt },
     todo_id: { type: GraphQLInt },
     is_completed: { type: GraphQLBoolean }
   },
   resolve(root, args) {
-    return models.Todo.update(args.data, { where: { id: args.id } })
-      .then(company => models.Todo.findOne({ where: args.id }));
+    models.Todo.findOne({ where: args.id })
+    .then(todo => {
+      if(todo.is_completed == false || todo.is_completed == 0) {
+        return todo.update(args.data, { where: { id: args.id } })
+          .then(() => {
+            return models.Todo.findOne({ where: args.id });
+          });
+      } else {
+        return todo;
+      }
+
+    })
   }
 };
 

@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import fecha from 'fecha';
+import moment from 'moment';
 import MarkdownIt from 'markdown-it';
 import taskLists from 'markdown-it-task-lists';
 import TodoForm from './form';
 import StepForm from './stepForm';
 
 class Todos extends Component {
+  state = {
+    showTodoForm: false,
+    showMainTodo: false
+  }
 
   handleSubmit = (variables) => {
     this.props.addTodo(variables).then((todo) => {
@@ -19,6 +23,10 @@ class Todos extends Component {
     return this.props.addTodoStep(variables);
   }
 
+  toggleTodoForm = () => {
+    this.setState({ showTodoForm: !this.state.showTodoForm });
+  }
+
   renderMD(content) {
     const md = new MarkdownIt();
 		md.use(taskLists);
@@ -26,11 +34,12 @@ class Todos extends Component {
   }
 
   renderLoading = () => {
-    return (<section className="col-lg-6 todos"><h5>loading...</h5></section>);
+    return (<section className="col-lg-6 todos"><h1>loading...</h1></section>);
   }
 
   render() {
     const { project, todo, steps, users, user, loading } = this.props;
+    const { showTodoForm } = this.state;
     if(loading) return this.renderLoading();
 
     return (
@@ -40,8 +49,9 @@ class Todos extends Component {
         </header>
 
         <section>
-          { project.hasOwnProperty('id') && !todo.hasOwnProperty('id') ?
+          { project.hasOwnProperty('id') && !todo.hasOwnProperty('id') || showTodoForm ?
             <TodoForm
+              editTodo={showTodoForm}
               selectTodo={this.selectTodo}
               users={users}
               todo={todo}
@@ -56,14 +66,33 @@ class Todos extends Component {
         {
           todo.hasOwnProperty('id') ?
           <div>
-            <h2>{todo.title}</h2>
+            <div className="todos-items__header">
+              <h2>
+                {todo.title}   {todo.author.id == user.id ?
+                  <button className="btn btn-outline-light btn-sm" onClick={this.toggleTodoForm}>Edit</button>
+                  : ''}
+              </h2>
+
+              <span>
+                By: <i>{todo.author.id == user.id ? 'me' : todo.author.name}</i>
+              </span>
+
+              <span>
+                Assigned: <i>{todo.assigned.name}</i>
+              </span>
+
+              <span>
+                Created: <i>{moment(todo.created_at).format('dddd DD MMM YY HH:mm')}</i>
+              </span>
+
+              <div className="deadline">
+                <span className="deadline__start">{moment(todo.deadline_start).format('DD MMM')}</span>
+                <span className="deadline__end">{moment(todo.deadline_end).format('DD MMM')}</span>
+                <span className="deadline__line"></span>
+                <span className="deadline__line--fill" style={{width: `${100 - (100 / (todo.deadline_days / todo.deadline_current))}%`}}></span>
+              </div>
+            </div>
             <section className="todo__item">
-              <header>
-                <span>owner: {todo.author.id == user.id ? 'me' : todo.author.name}</span>
-                <span>Assigned: {todo.assigned.name}</span>
-                <span>step: {fecha.format(new Date(todo.created_at), 'DD-MM-YY HH:mm:ss')}</span>
-                <button className="btn btn-outline-light btn-sm">Edit</button>
-              </header>
               <div className="todo__item__content">
                 <div dangerouslySetInnerHTML={{__html: this.renderMD(todo.content)}}/>
               </div>
@@ -75,9 +104,9 @@ class Todos extends Component {
         {steps && steps.map((subtodo, ind) =>
           <section key={ind} className="todo__item">
             <header>
-              <span>step: {subtodo.position}</span>
-              <span>owner: {subtodo.author.name}</span>
-              <span>Step: {fecha.format(new Date(subtodo.created_at), 'DD-MM-YYYY HH:mm:ss')}</span>
+              <span><h4>Step: {subtodo.position}</h4></span>
+              <span>By: {subtodo.author.name}</span>
+              <span>Date: {moment(subtodo.created_at).format('dddd DD MMM YY HH:mm')}</span>
             </header>
              <div className="todo__item__content">
                <div dangerouslySetInnerHTML={{__html: this.renderMD(subtodo.content)}}/>
@@ -100,6 +129,10 @@ class Todos extends Component {
             position: relative;
           }
 
+          .todos header {
+
+          }
+
           .todos h5 {
             color: #fff;
             margin-bottom: 20px
@@ -107,6 +140,18 @@ class Todos extends Component {
 
           .todos-items {
             margin-top: 20px;
+          }
+          .todos-items__header {
+            margin-bottom: 10px;
+          }
+
+          .todos-items__header span {
+            margin-right: 10px;
+            font-size: 14px;
+          }
+
+          .todos-items__header span i {
+            font-weight: 200;
           }
 
           .todo__item {
@@ -118,11 +163,18 @@ class Todos extends Component {
           .todo__item header {
             font-size: 13px;
             margin-bottom: 10px;
-            padding: 10px 20px;
+            padding: 10px 20px 0 20px;
+            display: flex;
+            align-items: center;
           }
 
           .todo__item header span {
-            display: block;
+            display: inline-block;
+            margin-right: 10px;
+          }
+
+          .todo__item header span i {
+            font-weight: 200;
           }
 
           .todo__item header button {
@@ -135,6 +187,55 @@ class Todos extends Component {
             padding: 20px;
             color: #1F293B;
           }
+
+          .deadline {
+            position: relative;
+            width: 200px;
+            height: 20px;
+            margin: 40px 0 0 0;
+          }
+
+          .deadline__line {
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255, 255, .1);
+            z-index: 1;
+            left: 0;
+          }
+
+          .deadline__line--fill {
+            position: absolute;
+            width: 50%;
+            height: 10px;
+            background: rgba(0,0, 0, .5);
+            z-index: 2;
+            left: 0;
+          }
+
+          .deadline__indicator {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, .9);
+            left: 50%;
+          }
+
+          .deadline__start {
+            position: absolute;
+            left: 0;
+            bottom: 20px;
+            font-size: 12px;
+          }
+
+          .deadline__end {
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+            font-size: 12px;
+          }
+
+
 
         `}</style>
       </section>

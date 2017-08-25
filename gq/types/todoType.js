@@ -18,6 +18,8 @@ const Todo = new GraphQLObjectType({
     project_id: { type: GraphQLInt },
     title: { type: GraphQLString },
     content: { type: GraphQLString },
+    deadline_start: { type: GraphQLString },
+    deadline_end: { type: GraphQLString },
     created_at: { type: GraphQLString },
     is_completed: { type: GraphQLBoolean },
     steps: {

@@ -26,10 +26,10 @@ module.exports = {
         defaultValue: 0
       },
       deadline_start: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       deadline_end: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       created_at: {
         type: Sequelize.DATE

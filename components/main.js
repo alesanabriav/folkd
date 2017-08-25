@@ -12,6 +12,7 @@ const Main = (props) => (
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
     	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+      <link rel="stylesheet" href="react-datepicker/dist/react-datepicker.css" />
     </Head>
 		<Header />
 
@@ -22,6 +23,7 @@ const Main = (props) => (
     <style global jsx>{`
       body {
         background: #54558D;
+        font-size: 14px;
       }
       ul {
         padding: 0;
@@ -33,6 +35,14 @@ const Main = (props) => (
 
       a:hover {
         text-decoration: none;
+      }
+
+      .btn {
+        cursor: pointer;
+      }
+
+      .btn-outline-light:hover, .btn-light:hover {
+        color: #333;
       }
 
       .todo-result {
@@ -52,6 +62,13 @@ const Main = (props) => (
 
       .todo__item__content img {
         max-width: 100%;
+      }
+
+      .react-datepicker-wrapper, .react-datepicker__input-container {
+        width: 100%;
+      }
+      .react-datepicker__day--keyboard-selected {
+        background-color: rgba(0,0,0,.5)
       }
     `}</style>
   </div>

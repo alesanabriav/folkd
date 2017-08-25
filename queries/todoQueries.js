@@ -5,6 +5,9 @@ export const getTodoQuery = `
 			id
 			title
 			content
+      deadline_start
+      deadline_end
+      is_completed
 			created_at
 			author {
 				id
@@ -29,23 +32,77 @@ export const getTodoQuery = `
 `;
 
 export const addTodoMutation = `
-	mutation createTodo($content: String!, $title: String, $project_id: Int!, $assign_id: Int) {
-		createTodo(title: $title, content: $content, project_id: $project_id, assign_id: $assign_id) {
-			id
-      project_id
-			title
-			content
-			created_at
-			author {
-				id
-				name
-			}
-			assigned {
-				id
-				name
-			}
-		}
-	}
+  mutation createTodo(
+    $content: String!,
+    $title: String,
+    $project_id: Int!,
+    $assign_id: Int,
+    $deadline_start: String,
+    $deadline_end: String
+  ) {
+  createTodo(
+    title: $title,
+    content: $content,
+    project_id: $project_id,
+    assign_id: $assign_id,
+    deadline_start: $deadline_start,
+    deadline_end: $deadline_end
+  ) {
+    id
+    project_id
+    title
+    content
+    deadline_start
+    deadline_end
+    is_completed
+    created_at
+    author {
+      id
+      name
+    }
+    assigned {
+      id
+      name
+    }
+  }
+  }
+`;
+
+export const updateTodoMutation = `
+  mutation updateTodo(
+    $content: String!,
+    $title: String,
+    $project_id: Int!,
+    $assign_id: Int,
+    $deadline_start: String,
+    $deadline_end: String,
+    $is_completed: Boolean
+  ) {
+  updateTodo(
+    title: $title,
+    content: $content,
+    project_id: $project_id,
+    assign_id: $assign_id,
+    deadline_start: $deadline_start,
+    deadline_end: $deadline_end,
+    is_completed: $is_completed
+  ) {
+    id
+    project_id
+    title
+    content
+    is_completed
+    created_at
+    author {
+      id
+      name
+    }
+    assigned {
+      id
+      name
+    }
+  }
+  }
 `;
 
 export const createSubTodoMutation = `

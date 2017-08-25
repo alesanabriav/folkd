@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import MarkdownIt from 'markdown-it';
 import taskLists from 'markdown-it-task-lists';
+import DatePicker from 'react-datepicker';
 
 class TodoForm extends Component {
 	state = {
 		title: "",
 		content: "",
 		assign_id: 0,
-		description: ""
+		description: "",
+		deadline_start_obj: null,
+		deadline_end_obj: null,
+		deadline_start: "",
+		deadline_end: "",
+		focused: false,
+		date: null
 	}
 
 	handleChange = e => {
@@ -22,16 +29,22 @@ class TodoForm extends Component {
 		this.setState({ content: description, description: result });
 	}
 
+	handleDeadline = (type, e) => {
+		this.setState({ [`deadline_${type}_obj`]: e });
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault();
-		const { title, content, assign_id } = this.state;
+		const { title, content, assign_id, deadline_start, deadline_end } = this.state;
 		const { todo = {}, project = {} } = this.props;
 
 		const variables = {
 			project_id: project.id,
 			title,
 			content,
-			assign_id
+			assign_id,
+			deadline_start,
+			deadline_end
 		};
 
 		this.props.onSubmit(variables);
@@ -65,6 +78,26 @@ class TodoForm extends Component {
 						)}
 					</select>
 				</div>
+				<div className="row">
+				<div className="form-group datepicker-container col-lg-6">
+					<DatePicker
+						className="form-control"
+						placeholderText="deadline start"
+						selected={this.state.deadline_start_obj}
+        		onChange={this.handleDeadline.bind(null, 'start')}
+						onSelect={date => this.setState({deadline_start: date.format('YYYY-MM-DD')})}
+					/>
+				</div>
+				<div className="form-group datepicker-container col-lg-6">
+					<DatePicker
+						className="form-control"
+						placeholderText="deadline end"
+						selected={this.state.deadline_end_obj}
+        		onChange={this.handleDeadline.bind(null, 'end')}
+						onSelect={date => this.setState({deadline_end: date.format('YYYY-MM-DD')})}
+					/>
+				</div>
+				</div>
 				<div className="form-group">
 					<textarea
 						name="content"
@@ -74,12 +107,14 @@ class TodoForm extends Component {
 						onChange={this.handleDescription}
 						value={this.state.content}
 						></textarea>
+						{this.state.description.length > 0 ?
 						<div className="todo-result">
 							<div
 								className="result__container"
 								dangerouslySetInnerHTML={{__html: this.state.description}}
 							/>
 						</div>
+						: ''}
 				</div>
 				<div className="form-group">
 					<button className="btn btn-outline-light" onClick={this.handleSubmit}>Create</button>

@@ -17,7 +17,13 @@ module.exports =  function(sequelize, Sequelize) {
             msg: "It must have content"
           }
         }
-			}
+			},
+      deadline_start: {
+        type: Sequelize.DATE
+      },
+      deadline_end: {
+        type: Sequelize.DATE
+      },
     },
     {
       underscored: true
