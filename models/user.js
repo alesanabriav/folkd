@@ -54,6 +54,7 @@ module.exports = function(sequelize, Sequelize) {
   User.associate = (models) => {
     User.belongsTo(models.Company);
     User.hasMany(models.Todo);
+    User.hasMany(models.Step);
   }
 
   User.checkPassword = (user, plainPass) => {

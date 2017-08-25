@@ -13,8 +13,11 @@ export class StepForm extends Component {
 		e.preventDefault();
 		const { content } = this.state;
 		const variables = { content };
-		this.props.onSubmit(variables);
+		this.props.onSubmit(variables).then(() => {
+			this.setState({content: ''});
+		})
 	}
+
 	render() {
 		const { getUsers = {} } = this.props;
 		const { users = [], loading } = getUsers;
@@ -37,6 +40,12 @@ export class StepForm extends Component {
 				</div>
 
 				<style jsx>{`
+					form {
+						bottom: 0;
+						float: left;
+						width: 100%;
+						margin-bottom: 40px;
+					}
 					button {
 						float: right;
 						width: 200px;

@@ -34,6 +34,25 @@ const Main = (props) => (
       a:hover {
         text-decoration: none;
       }
+
+      .todo-result {
+        margin-top: 20px;
+        padding: 20px;
+        background: rgba(255,255,255,.8);
+        color: #333;
+      }
+
+      .todo-result img {
+        max-width: 100%;
+      }
+
+      .todo-result pre {
+        color: #444;
+      }
+
+      .todo__item__content img {
+        max-width: 100%;
+      }
     `}</style>
   </div>
 )

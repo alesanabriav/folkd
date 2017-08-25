@@ -29,7 +29,7 @@ export default function todos(state = initialState, action) {
         steps
       };
     case `CLEAN_${TYPE}_ITEM`:
-      return { ...state, item: {} };
+      return { ...state, item: {}, steps: [] };
     default:
       return state
   }

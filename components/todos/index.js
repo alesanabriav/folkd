@@ -7,7 +7,9 @@ const mapStateToProps = state => ({
   client: state.clients.selected,
 	project: state.projects.selected,
 	todo: state.todos.item,
-  users: state.users.items
+	steps: state.todos.steps,
+  users: state.users.items,
+  user: state.users.current
 });
 
 const mapDispatchToProps = {

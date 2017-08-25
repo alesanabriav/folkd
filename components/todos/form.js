@@ -1,16 +1,25 @@
 import React, { Component } from "react";
-// import { getUsersQuery } from '../../queries/userQueries';
-// import { createTodoMutation, getTodoQuery } from '../../queries/todoQueries';
+import MarkdownIt from 'markdown-it';
+import taskLists from 'markdown-it-task-lists';
 
 class TodoForm extends Component {
 	state = {
 		title: "",
 		content: "",
-		assign_id: 0
+		assign_id: 0,
+		description: ""
 	}
 
 	handleChange = e => {
 		this.setState({ [e.target.name] : e.target.value });
+	}
+
+	handleDescription = (e) => {
+		const description = e.target.value;
+		const md = new MarkdownIt();
+		md.use(taskLists);
+		var result = md.render(description);
+		this.setState({ content: description, description: result });
 	}
 
 	handleSubmit = (e) => {
@@ -52,7 +61,7 @@ class TodoForm extends Component {
 						>
 						<option value="">Assign to</option>
 						{users.map(user =>
-							<option key={user.id} value={user.id}>{user.name}</option>
+							<option key={user.id} value={user.id}>{user.email}</option>
 						)}
 					</select>
 				</div>
@@ -62,14 +71,29 @@ class TodoForm extends Component {
 						className="form-control"
 						placeholder="Todo description"
 						rows="5"
-						onChange={this.handleChange}
+						onChange={this.handleDescription}
 						value={this.state.content}
 						></textarea>
+						<div className="todo-result">
+							<div
+								className="result__container"
+								dangerouslySetInnerHTML={{__html: this.state.description}}
+							/>
+						</div>
 				</div>
 				<div className="form-group">
 					<button className="btn btn-outline-light" onClick={this.handleSubmit}>Create</button>
 				</div>
-				<style>{`
+				<style jsx>{`
+					form {
+						width: 100%;
+						float: left;
+						padding: 20px;
+						background: rgba(255,255,255,.1)
+					}
+
+
+
 					.btn {
 						float: right;
 						cursor: pointer;

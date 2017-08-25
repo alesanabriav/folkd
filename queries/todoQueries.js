@@ -17,7 +17,12 @@ export const getTodoQuery = `
 			steps(order: [["id", "desc"]]) {
 				id
 				content
+        position
         created_at
+        author {
+          id
+          name
+        }
 			}
 		}
 }

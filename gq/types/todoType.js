@@ -28,14 +28,14 @@ const Todo = new GraphQLObjectType({
         limit: { type: GraphQLInt }
       },
       resolve(todo, args) {
-        console.log(`---------todo: steps call-----------`);
+        console.log(`---------steps call-----------`);
         return todo.getSteps(args);
       }
     },
     author: {
       type: User,
       resolve(todo) {
-         console.log(`---------todo: user call-----------`);
+        //  console.log(`---------todo: user call-----------`);
         return todo.getUser();
       }
     },

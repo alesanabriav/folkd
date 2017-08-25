@@ -9,7 +9,10 @@ module.exports =  function(sequelize, Sequelize) {
             msg: "It must have content"
           }
         }
-			}
+			},
+      position: {
+        type: Sequelize.INTEGER
+      }
     },
     {
       validate: {
@@ -19,16 +22,14 @@ module.exports =  function(sequelize, Sequelize) {
           }
         }
       },
-      classMethods: {
-        associate(models) {
-					Step.belongsTo(models.User);
-          Step.belongsTo(models.Todo);
-        },
-
-      },
       underscored: true
     }
   );
+
+  Step.associate = (models) => {
+    Step.belongsTo(models.User);
+    Step.belongsTo(models.Todo);
+  }
 
   return Step;
 }

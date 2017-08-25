@@ -15,11 +15,13 @@ const Step = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLInt },
     content: { type: GraphQLString },
+    position: { type: GraphQLInt },
     created_at: { type: GraphQLString },
     author: {
       type: User,
-      resolve(todo) {
-        return todo.getUser();
+      resolve(step) {
+        console.log('-----------step author=-------------');
+        return step.getUser();
       }
     }
   })
