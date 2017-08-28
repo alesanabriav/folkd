@@ -6,8 +6,6 @@ import Dashboard from '../components/dashboard';
 
 class Index extends React.Component {
   render() {
-    console.log(this.props.url);
-
     return (
       <div>
         <Main {...this.props}>

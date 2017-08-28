@@ -25,14 +25,17 @@ module.exports = function(sequelize, Sequelize) {
       password: {
         type: Sequelize.STRING
       },
-      role_name: {
-        type: Sequelize.STRING,
-      },
+      //member / admin / owner
       role: {
-        type: Sequelize.STRING,
-        default: 'user'
+        type: Sequelize.STRING
       },
-      "company_id": {
+      authorized: {
+        type: Sequelize.BOOLEAN
+      },
+      email_verified: {
+        type: Sequelize.BOOLEAN
+      },
+      company_id: {
         type: Sequelize.INTEGER
       },
       options: {

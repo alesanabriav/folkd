@@ -24,18 +24,20 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      role_name: {
-        type: Sequelize.STRING
-      },
       role: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'member'
       },
       options: {
         type: Sequelize.TEXT
       },
+      authorized: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: 0
+      },
       email_verified: {
         type: Sequelize.BOOLEAN,
-         defaultValue: 0
+        defaultValue: 0
       }
     });
   },

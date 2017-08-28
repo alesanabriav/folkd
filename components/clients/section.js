@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Router from 'next/router';
 import Client from './item';
 import ClientForm from './form';
 import SearchClient from './search';
@@ -12,8 +11,6 @@ class Clients extends Component {
   }
 
   selectClient = client => {
-    const href = `/?client=${client.id}`
-    Router.push(href, href, { shallow: true })
     this.props.onChangeClient(client);
   }
 
