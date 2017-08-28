@@ -38,6 +38,12 @@ module.exports = {
       email_verified: {
         type: Sequelize.BOOLEAN,
         defaultValue: 0
+      },
+      ga_access_token: {
+        type: Sequelize.STRING,
+      },
+      ga_refresh_token: {
+        type: Sequelize.STRING
       }
     });
   },

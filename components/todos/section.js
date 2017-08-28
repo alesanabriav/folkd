@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from 'moment';
+import request from 'axios';
 import MarkdownIt from 'markdown-it';
 import taskLists from 'markdown-it-task-lists';
 import TodoForm from './form';
@@ -33,6 +34,16 @@ class Todos extends Component {
 		return md.render(content);
   }
 
+  handleUpload = (e) => {
+    var data = new FormData();
+    data.append('id', 1);
+    data.append('file', e.target.files[0]);
+    request.post('/upload', data)
+    .then((res) => {
+      console.log(res.data);
+    })
+  }
+
   renderLoading = () => {
     return (<section className="col-lg-6 todos"><h1>loading...</h1></section>);
   }
@@ -47,6 +58,10 @@ class Todos extends Component {
         <header>
           <h5>{project.id ? `Task for ${project.name}` : 'Select a project'}</h5>
         </header>
+
+        <form enctype="multipart/form-data">
+          <input type="file" name="file" onChange={this.handleUpload} />
+        </form>
 
         <section>
           { project.hasOwnProperty('id') && !todo.hasOwnProperty('id') || showTodoForm ?

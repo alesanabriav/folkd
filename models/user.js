@@ -40,6 +40,12 @@ module.exports = function(sequelize, Sequelize) {
       },
       options: {
         type: Sequelize.TEXT
+      },
+      ga_access_token: {
+        type: Sequelize.STRING,
+      },
+      ga_refresh_token: {
+        type: Sequelize.STRING
       }
     },
     {

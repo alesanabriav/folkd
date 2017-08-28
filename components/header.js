@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import request from 'axios';
 
 class Header extends Component {
 	logout = (e) => {
@@ -7,12 +8,20 @@ class Header extends Component {
 		window.location = '/login';
 	}
 
+	getDriveUrl = (e) => {
+		e.preventDefault();
+		const state = encodeURIComponent(JSON.stringify({id: 3}));
+		request
+		.post('/gaoauth-url', state)
+		.then(res => window.location = res.data.url);
+	}
+
 	render() {
 		return (
 			<header>
 				<div className="header-container">
-					<img src="/static/logo.png" alt="" width="120px"/>
-		
+					<a href="/" class="navbar-brand"><img src="/static/logo.png" alt="" width="120px"/></a>
+					<a href="#" onClick={this.getDriveUrl}>drive</a>
 					<a href="#" className="header-container__logout" onClick={this.logout}>
 						<i className="ion-log-out"></i> Salir
 					</a>
