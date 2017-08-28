@@ -9,6 +9,7 @@ const {
 } = require("graphql");
 const GraphQLJSON = require("graphql-type-json");
 const User = require('./userType');
+const Attachment = require('./attachmentType');
 
 const Step = new GraphQLObjectType({
   name: "step",
@@ -20,8 +21,15 @@ const Step = new GraphQLObjectType({
     author: {
       type: User,
       resolve(step) {
-        console.log('-----------step author=-------------');
+        // console.log('-----------step author=-------------');
         return step.getUser();
+      }
+    },
+    attachment: {
+      type: Attachment,
+      resolve(step) {
+        //  console.log(`---------step: attachment call-----------`);
+        return step.getAttachment();
       }
     }
   })

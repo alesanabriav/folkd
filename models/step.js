@@ -29,6 +29,7 @@ module.exports =  function(sequelize, Sequelize) {
   Step.associate = (models) => {
     Step.belongsTo(models.User);
     Step.belongsTo(models.Todo);
+    Step.hasMany(models.Attachment);
   }
 
   return Step;
