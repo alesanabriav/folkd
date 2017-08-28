@@ -10,7 +10,7 @@ module.exports = function(sequelize, Sequelize) {
       },
       step_id: {
         type: Sequelize.INTEGER
-      }
+      },
       url: {
         type: Sequelize.STRING
       },

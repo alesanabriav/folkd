@@ -26,10 +26,10 @@ const Step = new GraphQLObjectType({
       }
     },
     attachment: {
-      type: Attachment,
+      type: new GraphQLList(Attachment),
       resolve(step) {
         //  console.log(`---------step: attachment call-----------`);
-        return step.getAttachment();
+        return step.getAttachments();
       }
     }
   })

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Todos from './section';
-import { addTodo, addTodoStep } from '../../actions/todos';
+import { addTodo, addTodoStep, addTodoAttachment } from '../../actions/todos';
 import { addProjectTodo } from '../../actions/projects';
 
 const mapStateToProps = state => {
@@ -18,6 +18,7 @@ const mapStateToProps = state => {
   	project: state.projects.selected,
   	todo: {...state.todos.item, deadline_days, deadline_current},
   	steps: state.todos.steps,
+  	attachments: state.todos.attachments,
     users: state.users.items,
     user: state.users.current
   }
@@ -26,7 +27,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   addTodo,
   addProjectTodo,
-  addTodoStep
+  addTodoStep,
+  addTodoAttachment
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);

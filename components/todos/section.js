@@ -35,13 +35,23 @@ class Todos extends Component {
   }
 
   handleUpload = (e) => {
+    const { todo, user } = this.props;
     var data = new FormData();
-    data.append('id', 1);
+    data.append('user_id', user.id);
+    data.append('todo_id', todo.id);
     data.append('file', e.target.files[0]);
     request.post('/upload', data)
     .then((res) => {
-      console.log(res.data);
+      this.props.addTodoAttachment(res.data);
     })
+  }
+
+  getDriveUrl = (e) => {
+    e.preventDefault();
+    const state = encodeURIComponent(JSON.stringify({id: 3}));
+    request
+    .post('/gaoauth-url', state)
+    .then(res => window.location = res.data.url);
   }
 
   renderLoading = () => {
@@ -49,7 +59,7 @@ class Todos extends Component {
   }
 
   render() {
-    const { project, todo, steps, users, user, loading } = this.props;
+    const { project, todo, steps, attachments, users, user, loading } = this.props;
     const { showTodoForm } = this.state;
     if(loading) return this.renderLoading();
 
@@ -58,10 +68,6 @@ class Todos extends Component {
         <header>
           <h5>{project.id ? `Task for ${project.name}` : 'Select a project'}</h5>
         </header>
-
-        <form enctype="multipart/form-data">
-          <input type="file" name="file" onChange={this.handleUpload} />
-        </form>
 
         <section>
           { project.hasOwnProperty('id') && !todo.hasOwnProperty('id') || showTodoForm ?
@@ -107,9 +113,22 @@ class Todos extends Component {
                 <span className="deadline__line--fill" style={{width: `${100 - (100 / (todo.deadline_days / todo.deadline_current))}%`}}></span>
               </div>
             </div>
+
             <section className="todo__item">
               <div className="todo__item__content">
                 <div dangerouslySetInnerHTML={{__html: this.renderMD(todo.content)}}/>
+              </div>
+              <div className="todo__item__upload">
+                <ul>
+                {attachments.map(attachment => {
+                  return <li><a target="blank" href={attachment.url}>{attachment.url}</a></li>
+                })}
+                </ul>
+                {user.has_drive ?
+                <form encType="multipart/form-data">
+                  <input type="file" name="file" onChange={this.handleUpload} />
+                </form>
+                : <a href="#" onClick={this.getDriveUrl}>Upload files</a>}
               </div>
             </section>
           </div>
@@ -156,6 +175,7 @@ class Todos extends Component {
           .todos-items {
             margin-top: 20px;
           }
+
           .todos-items__header {
             margin-bottom: 10px;
           }
@@ -201,6 +221,10 @@ class Todos extends Component {
             background: rgba(255,255,255,.8);
             padding: 20px;
             color: #1F293B;
+          }
+
+          .todo__item__upload {
+            padding: 20px;
           }
 
           .deadline {

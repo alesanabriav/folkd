@@ -27,6 +27,9 @@ export const getTodoQuery = `
           name
         }
 			}
+      attachments {
+        url
+      }
 		}
 }
 `;

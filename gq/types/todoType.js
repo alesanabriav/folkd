@@ -49,11 +49,11 @@ const Todo = new GraphQLObjectType({
         return todo.getAssign();
       }
     },
-    attachment: {
-      type: Attachment,
+    attachments: {
+      type: new GraphQLList(Attachment),
       resolve(todo) {
         //  console.log(`---------todo: attachment call-----------`);
-        return todo.getAttachment();
+        return todo.getAttachments();
       }
     }
   })

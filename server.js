@@ -51,7 +51,6 @@ app.prepare()
 
   server.post('/register/:type', (req, res) => {
     const { body, params } = req;
-    console.log(params, body);
 
     if(params.type === 'team') {
       return findOrCreateTeam(body)
@@ -98,9 +97,11 @@ app.prepare()
   })
 
   server.post('/upload', upload.single('file'), (req, res) => {
-    console.log(req.body);
-    ga.uploadFile(req.body.id, req.file);
-    return res.json(req.file);
+    ga.uploadFile(req.body, req.file).then(attachment => {
+      console.log(attachment);
+      return res.json(attachment);
+    })
+
   });
 
   server.use('/graphql',

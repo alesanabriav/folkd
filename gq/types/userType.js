@@ -3,6 +3,7 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
+  GraphQLBoolean,
   GraphQLNonNull
 } = require("graphql");
 const GraphQLJSON = require("graphql-type-json");
@@ -17,7 +18,13 @@ const User = new GraphQLObjectType({
       type: GraphQLString
     },
     email: { type: GraphQLString },
-    role: {type: GraphQLString }
+    role: { type: GraphQLString },
+    has_drive: {
+      type: GraphQLBoolean,
+      resolve(todo) {
+        return todo.ga_access_token && todo.ga_access_token ? true : false
+      }
+    }
   })
 });
 

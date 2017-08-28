@@ -16,7 +16,8 @@ export const getUserQuery = `
 			id
 			name
 			email
-			role,
+			role
+			has_drive
 		}
 	}
 `
