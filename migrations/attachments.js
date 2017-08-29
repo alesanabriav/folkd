@@ -15,6 +15,9 @@ module.exports = {
 			step_id: {
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING
+      },
       url: {
         type: Sequelize.STRING
       },

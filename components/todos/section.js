@@ -46,7 +46,8 @@ class Todos extends Component {
       headers: {'Authorization': `Bearer ${token}`}
     };
 
-    request.post('/upload', data, config)
+    this.props.uploadingTodoAttachment()
+    .then(() => request.post('/upload', data, config))
     .then((res) => {
       this.props.addTodoAttachment(res.data);
     })
@@ -71,7 +72,16 @@ class Todos extends Component {
   }
 
   render() {
-    const { project, todo, steps, attachments, users, user, loading } = this.props;
+    const {
+      project,
+      todo,
+      steps,
+      attachments,
+      users,
+      user,
+      loading,
+      uploading
+    } = this.props;
     const { showTodoForm } = this.state;
     if(loading) return this.renderLoading();
 
@@ -111,7 +121,7 @@ class Todos extends Component {
               </span>
 
               <span>
-                Assigned: <i>{todo.assigned.name}</i>
+                Assigned: <i>{todo.assigned.id == user.id ? 'me' : todo.assigned.name}</i>
               </span>
 
               <span>
@@ -133,14 +143,20 @@ class Todos extends Component {
               <div className="todo__item__upload">
                 <ul>
                 {attachments.map(attachment => {
-                  return <li><a target="blank" href={attachment.url}>{attachment.url}</a></li>
+                  return <li><a target="blank" href={attachment.url}>{attachment.name}</a></li>
                 })}
                 </ul>
+                {uploading ? 'uploading...' : ''}
+
                 {user.has_drive ?
-                <form encType="multipart/form-data">
-                  <input type="file" name="file" onChange={this.handleUpload} />
-                </form>
-                : <a href="#" onClick={this.getDriveUrl}>Upload files</a>}
+                  <form encType="multipart/form-data">
+                    <input type="file" name="file" onChange={this.handleUpload} />
+                  </form>
+                : ''}
+
+                {!user.has_drive ?
+                  <a href="#" onClick={this.getDriveUrl}>Upload files</a>
+                : ''}
               </div>
             </section>
           </div>

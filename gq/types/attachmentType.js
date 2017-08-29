@@ -12,6 +12,7 @@ const Attachment = new GraphQLObjectType({
   name: "attachment",
   fields: () => ({
     id: { type: GraphQLInt },
+    name: { type: GraphQLString },
     url: { type: GraphQLString }
   })
 });

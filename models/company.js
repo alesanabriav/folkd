@@ -27,6 +27,7 @@ module.exports =  function(sequelize, Sequelize) {
     {
       hooks: {
         beforeCreate: (company, options) => {
+          company.team_name = company.team_name.toLowerCase();
           company.slug = company.team_name.replace(' ', '-').toLowerCase();
         }
       },

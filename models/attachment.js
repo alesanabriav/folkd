@@ -11,6 +11,9 @@ module.exports = function(sequelize, Sequelize) {
       step_id: {
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING
+      },
       url: {
         type: Sequelize.STRING
       },

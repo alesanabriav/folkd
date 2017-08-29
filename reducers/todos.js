@@ -6,11 +6,16 @@ const initialState = {
   attachments: [],
   id: null,
   loading: false,
+  uploading: false,
   fail: false
 };
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
+    case `LOADING_${TYPE}`:
+      return {...state, loading: true};
+    case `UPLOADING_${TYPE}_ATTACHMENT`:
+      return {...state, uploading: true};
     case `FETCH_${TYPE}`:
       return {
         ...state,
@@ -32,6 +37,7 @@ export default function todos(state = initialState, action) {
     case `ADD_${TYPE}_ATTACHMENT`:
       return {
         ...state,
+        uploading: false,
         attachments: [action.payload].concat(state.attachments)
       };
     case `CLEAN_${TYPE}_ITEM`:

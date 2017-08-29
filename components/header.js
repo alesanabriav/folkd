@@ -30,6 +30,9 @@ class Header extends Component {
 					        	<a className="nav-link" href="#">Team</a>
 									</Link>
 					      </li>
+								<li className="nav-item">
+					        <a className="nav-link" onClick={this.logout} href="#">cerrar</a>
+					      </li>
 					    </ul>
 					  </div>
 					</nav>

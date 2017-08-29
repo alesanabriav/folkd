@@ -4,11 +4,23 @@ import { addStepMutation } from '../queries/stepQueries';
 const TYPE = 'TODOS';
 const failAction = { type: `FAIL_${TYPE}` };
 const loadingAction = { type: `LOADING_${TYPE}` };
+const uploadingAction = { type: `UPLOADING_${TYPE}_ATTACHMENT` };
+
+export function uploadingTodoAttachment() {
+  const action = (dispatch) => {
+    return new Promise((resolve, reject) => {
+      dispatch(uploadingAction);
+      return resolve();
+    });
+  }
+
+  return action;
+}
 
 export function getTodo(id) {
   const action = (dispatch) => {
     const variables = { id };
-    apolloFetch({ query: getTodoQuery, variables })
+    return apolloFetch({ query: getTodoQuery, variables })
     .then(res => {
       dispatch({ type: `FETCH_${TYPE}`, payload: res.data.todo });
       return res;

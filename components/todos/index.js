@@ -1,10 +1,16 @@
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Todos from './section';
-import { addTodo, addTodoStep, addTodoAttachment } from '../../actions/todos';
+import {
+  addTodo,
+  addTodoStep,
+  addTodoAttachment,
+  uploadingTodoAttachment
+} from '../../actions/todos';
 import { addProjectTodo } from '../../actions/projects';
 
 const mapStateToProps = state => {
+  // I need selectors to make this memoized
   const now = moment();
   const start = moment(state.todos.item.deadline_start);
   const end = moment(state.todos.item.deadline_end);
@@ -20,7 +26,8 @@ const mapStateToProps = state => {
   	steps: state.todos.steps,
   	attachments: state.todos.attachments,
     users: state.users.items,
-    user: state.users.current
+    user: state.users.current,
+    uploading: state.todos.uploading
   }
 };
 
@@ -28,7 +35,8 @@ const mapDispatchToProps = {
   addTodo,
   addProjectTodo,
   addTodoStep,
-  addTodoAttachment
+  addTodoAttachment,
+  uploadingTodoAttachment
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);
