@@ -11,7 +11,7 @@ class Header extends Component {
 
 	render() {
 		const { user = {} } = this.props;
-		
+
 		return (
 			<header>
 				<nav className="navbar navbar-expand-lg navbar-light bg-light">

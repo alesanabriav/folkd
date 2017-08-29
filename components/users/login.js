@@ -11,7 +11,8 @@ class Login extends React.Component {
 		email: '',
 		password: '',
 		verified: false,
-		verifyEmail: false
+		verifyEmail: false,
+		error: false
 	}
 
 	componentDidMount() {
@@ -37,13 +38,13 @@ class Login extends React.Component {
 						window.location = '/';
 					})
 				} else {
-					this.setState({verifyEmail: true});
+					this.setState({error: true});
 				}
 		});
 	}
 
 	render() {
-		const {verifyEmail, verified} = this.state;
+		const {verifyEmail, verified, error} = this.state;
 		return (
 			<div className="row login">
 			<div className="col-lg-4 col-md-6 login__container">
@@ -54,6 +55,9 @@ class Login extends React.Component {
 				<div className="alert alert-light" style={verified ? {display: 'block'} : {display: 'none'}} role="alert">
   				Now you can login.
 				</div>
+					<div className="alert alert-danger" style={error ? ? {display: 'block'} : {display: 'none'}}>
+						Verify your email or password.
+					</div>
 					<form>
 						<div className="input-group">
 							<input type="text" placeholder="email" className="form-control" onChange={this.handleChange.bind(null, 'email')}/>
