@@ -36,11 +36,17 @@ class Todos extends Component {
 
   handleUpload = (e) => {
     const { todo, user } = this.props;
-    var data = new FormData();
+    const token = localStorage.getItem('folk-token');
+    const data = new FormData();
     data.append('user_id', user.id);
     data.append('todo_id', todo.id);
     data.append('file', e.target.files[0]);
-    request.post('/upload', data)
+
+    const config = {
+      headers: {'Authorization': `Bearer ${token}`}
+    };
+
+    request.post('/upload', data, config)
     .then((res) => {
       this.props.addTodoAttachment(res.data);
     })
@@ -48,9 +54,15 @@ class Todos extends Component {
 
   getDriveUrl = (e) => {
     e.preventDefault();
-    const state = encodeURIComponent(JSON.stringify({id: 3}));
+    const token = localStorage.getItem('folk-token');
+    const {user} = this.props;
+    const state = encodeURIComponent(JSON.stringify({id: user.id}));
+    const config = {
+      headers: {'Authorization': `Bearer ${token}`}
+    };
+
     request
-    .post('/gaoauth-url', state)
+    .post('/gaoauth-url', {state}, config)
     .then(res => window.location = res.data.url);
   }
 
@@ -64,7 +76,7 @@ class Todos extends Component {
     if(loading) return this.renderLoading();
 
     return (
-      <section className="col-lg-6 todos">
+      <section className="col-lg-6 col-md-6 todos">
         <header>
           <h5>{project.id ? `Task for ${project.name}` : 'Select a project'}</h5>
         </header>
@@ -161,6 +173,13 @@ class Todos extends Component {
             color: #fff;
             overflow-y: auto;
             position: relative;
+          }
+
+          @media (max-width: 700px) {
+            .todos {
+              height: calc(60vh - 60px);
+            }
+
           }
 
           .todos header {

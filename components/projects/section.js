@@ -77,6 +77,12 @@ class Projects extends Component {
               overflow-y: auto;
             }
 
+            @media (max-width: 700px) {
+              .projects {
+                height: calc(20vh - 60px)
+              }
+            }
+
             .projects header {
               width: 100%;
               display: flex;

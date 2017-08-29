@@ -66,6 +66,12 @@ class Clients extends Component {
             overflow-y: auto;
           }
 
+          @media (max-width: 700px) {
+            .clients {
+              height: calc(20vh - 60px)
+            }
+          }
+
           .clients header {
             width: 100%;
             display: flex;

@@ -84,16 +84,19 @@ app.prepare()
     return app.render(req, res, '/profile', params)
   });
 
-  server.post('/gaoauth-url', (req, res) => {
-    const state = req.body;
+  server.post('/gaoauth-url',
+    passport.authenticate('bearer', { session: false }),
+    (req, res) => {
+    const { state } = req.body;
+    const { user } = req.user;
     return res.json({ url: ga.getUrl(state) });
   });
 
   server.get('/gaoauth', (req, res) => {
-    const { code } = req.query;
-    console.log('query', req.query);
-    ga.setToken(code, 1);
-    return res.json({});
+    const { code, state } = req.query;
+    const user = JSON.parse(decodeURIComponent(state));
+    ga.setToken(code, user.id);
+    return res.redirect('/');
   })
 
   server.post('/upload', upload.single('file'), (req, res) => {
