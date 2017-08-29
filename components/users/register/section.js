@@ -62,7 +62,7 @@ class Register extends Component {
       const {token, user} = res.data;
       localStorage.setItem('folk-token', token);
       if(this.state.omitInvitations) {
-        return window.location = '/';
+        return window.location = '/login?verified=0';
       }
       this.setState({
         user: user,

@@ -1,5 +1,6 @@
 import React from 'react';
 import request from 'axios';
+import qs from 'qs';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -8,7 +9,16 @@ class Login extends React.Component {
 
 	state =  {
 		email: '',
-		password: ''
+		password: '',
+		verified: false,
+		verifyEmail: false
+	}
+
+	componentDidMount() {
+		const query = qs.parse(window.location.search.replace('?', ''));
+		if(query.verified == '1') {
+			this.setState({verified: true});
+		}
 	}
 
 	handleChange = (field, e) => {
@@ -19,21 +29,31 @@ class Login extends React.Component {
 	login = (e) => {
 		e.preventDefault();
 
-		request.post('/login', this.state).then(({data}) => {
+		request.post('/login', this.state)
+			.then(({data}) => {
 				if(data.token) {
-					console.log(data);
 					localStorage.setItem('folk-token', data.token);
 					setTimeout(() => {
 						window.location = '/';
 					})
+				} else {
+					this.setState({verifyEmail: true});
 				}
 		});
 	}
 
 	render() {
+		const {verifyEmail, verified} = this.state;
 		return (
 			<div className="row login">
 			<div className="col-lg-4 col-md-6 login__container">
+
+				<div className="alert alert-light" style={verifyEmail ? {display: 'block'} : {display: 'none'}} role="alert">
+  				we've send you an email to confirm your address, please check it.
+				</div>
+				<div className="alert alert-light" style={verified ? {display: 'block'} : {display: 'none'}} role="alert">
+  				Now you can login.
+				</div>
 					<form>
 						<div className="input-group">
 							<input type="text" placeholder="email" className="form-control" onChange={this.handleChange.bind(null, 'email')}/>
@@ -78,6 +98,12 @@ class Login extends React.Component {
 						border: 1px solid rgba(255, 255, 255, .7);
 						background: rgba(0,0,0,.5);
 						width: 100%;
+					}
+
+					.alert {
+						background: rgba(255,255, 255, .8);
+						color: #333;
+						border: none;
 					}
 				`}</style>
 			</div>

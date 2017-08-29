@@ -5,8 +5,7 @@ import Router from 'next/router';
 
 class Main extends Component {
   render() {
-    const url = this.props.url ? this.props.url : {};
-    console.log('main', url);
+    const { url = {}, users = {} } = this.props;
     return (
       <div>
         <Head>
@@ -19,7 +18,7 @@ class Main extends Component {
           <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
           <link rel="stylesheet" href="react-datepicker/dist/react-datepicker.css" />
         </Head>
-        <Header />
+        <Header user={users.current} />
 
         <div className="container-fluid">
           {React.cloneElement(this.props.children, { url } )}

@@ -6,6 +6,7 @@ import Dashboard from '../components/dashboard';
 
 class Index extends React.Component {
   render() {
+
     return (
       <div>
         <Main {...this.props}>
@@ -16,4 +17,4 @@ class Index extends React.Component {
   }
 }
 
-export default withRedux(store)(Index);
+export default withRedux(store, state => state)(Index);

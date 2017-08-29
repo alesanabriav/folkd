@@ -18,6 +18,9 @@ export const getUserQuery = `
 			email
 			role
 			has_drive
+			company {
+				name
+			}
 		}
 	}
 `

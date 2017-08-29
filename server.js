@@ -38,7 +38,8 @@ app.prepare()
   server.use(express.static(__dirname + '/node_modules'));
 
   server.post('/login', (req, res) => {
-    login(req).then(({ token }) => res.json({ token }));
+    login(req)
+      .then(({ token }) => res.json({ token }));
   });
 
   function findOrCreateTeam(data) {
@@ -87,13 +88,13 @@ app.prepare()
           return models.User.emailVerified(user);
         }
       })
-      .then(() => {
+      .then((user) => {
         return models.User.generateVerifyToken(user);
       })
-      .then(usr => {
-          return res.json(user);
+      .then(user => {
+          return res.redirect('/login?verified=1');
       })
-      .catch(err => res.status(401).json({message: 'token due'}));
+      .catch(err => res.status(401).redirect('/login?verified=0'));
   });
 
 

@@ -89,14 +89,16 @@ module.exports = function(sequelize, Sequelize) {
 
     return bcrypt.hash(token, 10)
       .then(hash => {
-        return user.update({ verify_token: hash });
+        return user.update({ verify_token: hash })
+          .then(user => user);
       });
 
     ;
   };
 
   User.emailVerified = (user) => {
-    return user.update({ email_verified: true });
+    return user.update({ email_verified: true })
+    .then(user => user);
   }
 
   return User;

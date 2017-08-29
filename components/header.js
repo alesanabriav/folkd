@@ -10,6 +10,8 @@ class Header extends Component {
 	}
 
 	render() {
+		const { user = {} } = this.props;
+		
 		return (
 			<header>
 				<nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -19,6 +21,7 @@ class Header extends Component {
 					  </button>
 
 					  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+							{user.hasOwnProperty('id') ?
 					    <ul className="navbar-nav mr-auto">
 					      <li className="nav-item active">
 					        <Link href="/">
@@ -34,6 +37,7 @@ class Header extends Component {
 					        <a className="nav-link" onClick={this.logout} href="#">cerrar</a>
 					      </li>
 					    </ul>
+							: ''}
 					  </div>
 					</nav>
 				<style jsx>{`
