@@ -27,7 +27,7 @@ class Main extends Component {
 
         <style global jsx>{`
           body {
-            background: #6031BA;
+            background:  #4A32D2;
             font-size: 14px;
             font-family: 'Source Sans Pro', sans-serif;
           }

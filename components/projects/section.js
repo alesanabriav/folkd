@@ -42,7 +42,7 @@ class Projects extends Component {
     return (
       <section className="col-lg-4 col-md-3 projects">
         <header>
-          <h5>Projects {client.name}</h5>
+          <h5>Projects {client.abbreviation}</h5>
            <div className="btns">
             <button onClick={this.toggleForm} className="btn btn-outline-light btn-sm"><i className="ion-plus"></i></button>
             <button className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>

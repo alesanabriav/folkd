@@ -26,9 +26,9 @@ export class ClientForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="form-inline">
-        <div className="row">
-          <div className="input-group col-lg-6">
+      <form onSubmit={this.handleSubmit}>
+
+          <div className="form-group">
             <input
               type="text"
               name="name"
@@ -38,7 +38,7 @@ export class ClientForm extends Component {
               placeholder="Name"
             />
           </div>
-          <div className="input-group col-lg-6">
+          <div className="form-group">
             <input
               type="text"
               name="abbreviation"
@@ -48,7 +48,6 @@ export class ClientForm extends Component {
               placeholder="Shortname"
             />
           </div>
-        </div>
         <button style={{display: 'none'}}></button>
       </form>
     );

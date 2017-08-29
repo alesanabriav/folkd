@@ -141,11 +141,7 @@ class Todos extends Component {
                 <div dangerouslySetInnerHTML={{__html: this.renderMD(todo.content)}}/>
               </div>
               <div className="todo__item__upload">
-                <ul>
-                {attachments.map(attachment => {
-                  return <li><a target="blank" href={attachment.url}>{attachment.name}</a></li>
-                })}
-                </ul>
+
                 {uploading ? 'uploading...' : ''}
 
                 {user.has_drive ?
@@ -157,6 +153,14 @@ class Todos extends Component {
                 {!user.has_drive ?
                   <a href="#" onClick={this.getDriveUrl}>Upload files</a>
                 : ''}
+
+                <ul className="todo__item__uploads">
+                  {attachments.map(attachment =>
+                    <li>
+                      <a target="blank" href={attachment.url}>{attachment.name}</a>
+                    </li>
+                  )}
+                </ul>
               </div>
             </section>
           </div>
@@ -195,10 +199,6 @@ class Todos extends Component {
             .todos {
               height: calc(60vh - 60px);
             }
-
-          }
-
-          .todos header {
 
           }
 
@@ -260,6 +260,10 @@ class Todos extends Component {
 
           .todo__item__upload {
             padding: 20px;
+          }
+
+          .todo__item__uploads {
+            margin-top: 20px;
           }
 
           .deadline {
