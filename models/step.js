@@ -1,6 +1,6 @@
 module.exports =  function(sequelize, Sequelize) {
   const Step = sequelize.define(
-    "Step",
+    "step",
     {
 			content: {
 				type: Sequelize.TEXT,

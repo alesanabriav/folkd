@@ -1,6 +1,6 @@
 module.exports =  function(sequelize, Sequelize) {
   const Company = sequelize.define(
-    "Company",
+    "company",
     {
       team_name: {
         type: Sequelize.STRING

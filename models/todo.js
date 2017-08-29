@@ -1,6 +1,6 @@
 module.exports =  function(sequelize, Sequelize) {
   const Todo = sequelize.define(
-    "Todo",
+    "todo",
     {
       title: {
         type: Sequelize.STRING,

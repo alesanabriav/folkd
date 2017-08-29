@@ -1,6 +1,6 @@
 module.exports = function(sequelize, Sequelize) {
   const Attachment = sequelize.define(
-    "Attachment",
+    "attachment",
     {
       user_id: {
         type: Sequelize.INTEGER
