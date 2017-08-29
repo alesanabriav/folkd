@@ -27,6 +27,7 @@
     "googleapis": "^21.3.0",
     "graphql": "^0.10.5",
     "graphql-type-json": "^0.1.4",
+    "js-capitalize": "^1.0.2",
     "jsonwebtoken": "^7.4.3",
     "mailgun-js": "^0.13.1",
     "markdown-it": "^8.4.0",

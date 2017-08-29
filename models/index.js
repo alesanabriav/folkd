@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
+const capitalize = require('js-capitalize');
 const config = require('../config');
 
 const sequelize = new Sequelize(config.seq.database, config.seq.username, config.seq.password, {
@@ -26,7 +27,8 @@ fs
   .forEach(function(file) {
     let model = require(`./${file}`);
     model = model(sequelize, Sequelize);
-    db[model.name] = model;
+    const name = capitalize(model.name);
+    db[name] = model;
   });
 
 Object.keys(db).forEach(function(modelName) {

@@ -3298,6 +3298,10 @@ joi@^6.10.1:
     moment "2.x.x"
     topo "1.x.x"
 
+js-capitalize:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/js-capitalize/-/js-capitalize-1.0.2.tgz#3b426fed0a9ed753b0a04b34783f044a4ee1b417"
+
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
