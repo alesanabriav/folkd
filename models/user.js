@@ -41,6 +41,9 @@ module.exports = function(sequelize, Sequelize) {
       options: {
         type: Sequelize.TEXT
       },
+      verify_token: {
+        type: Sequelize.STRING
+      },
       ga_access_token: {
         type: Sequelize.STRING,
       },
@@ -51,8 +54,15 @@ module.exports = function(sequelize, Sequelize) {
     {
       hooks: {
         beforeCreate: (user, options) => {
-          if(user.password) {
-            return bcrypt.hash(user.password, 10).then(hash => user.password = hash );
+          if(user.email && user.password) {
+            let token = `${user.email}-${Date.now()}`;
+
+            return bcrypt.hash(token, 10)
+              .then(hash => user.verify_token = hash )
+              .then(() => {
+                return bcrypt.hash(user.password, 10);
+              })
+              .then(hash => user.password = hash);
           }
         }
       },
@@ -72,6 +82,21 @@ module.exports = function(sequelize, Sequelize) {
         if(res == true) return true;
         return false;
       });
+  }
+
+  User.generateVerifyToken = (user) => {
+    let token = `${user.email}-${Date.now()}`;
+
+    return bcrypt.hash(token, 10)
+      .then(hash => {
+        return user.update({ verify_token: hash });
+      });
+
+    ;
+  };
+
+  User.emailVerified = (user) => {
+    return user.update({ email_verified: true });
   }
 
   return User;

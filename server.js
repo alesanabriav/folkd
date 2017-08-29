@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const multer  = require('multer')
 const uid = require('uid');
 const schema = require('./gq/schema');
+const { sendMail } = require('./lib/mail');
 const HttpBearer = require('./lib/http_bearer');
 const { login, getToken } = require('./lib/login');
 const ga = require('./lib/ga');
@@ -67,17 +68,34 @@ app.prepare()
     if(params.type === 'user') {
       return models.User.create(body)
       .then(user => {
-        delete user.password;
-        return user;
-      })
-      .then(user => {
         const token = getToken(user);
+        sendMail(user);
+        delete user.password;
+        delete user.verify_token;
         res.status(201).json({token, user});
       })
       .catch(err => res.status(400).json(err));
     }
 
   });
+
+  server.get('/verify', (req, res) => {
+    const { id, token } = req.query;
+    models.User.findOne({where: {id: id, verify_token: token}})
+      .then(user => {
+        if(user) {
+          return models.User.emailVerified(user);
+        }
+      })
+      .then(() => {
+        return models.User.generateVerifyToken(user);
+      })
+      .then(usr => {
+          return res.json(user);
+      })
+      .catch(err => res.status(401).json({message: 'token due'}));
+  });
+
 
   server.get('/profile/:id', (req, res) => {
     const params = Object.assign({}, req.query, req.params);
@@ -97,15 +115,18 @@ app.prepare()
     const user = JSON.parse(decodeURIComponent(state));
     ga.setToken(code, user.id);
     return res.redirect('/');
-  })
-
-  server.post('/upload', upload.single('file'), (req, res) => {
-    ga.uploadFile(req.body, req.file).then(attachment => {
-      console.log(attachment);
-      return res.json(attachment);
-    })
-
   });
+
+  server.post('/upload',
+    passport.authenticate('bearer', { session: false }),
+    upload.single('file'),
+    (req, res) => {
+      ga.uploadFile(req.body, req.file).then(attachment => {
+        console.log(attachment);
+        return res.json(attachment);
+      })
+  });
+
 
   server.use('/graphql',
     passport.authenticate('bearer', { session: false }),

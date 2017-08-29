@@ -39,8 +39,11 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: 0
       },
+      verify_token: {
+        type: Sequelize.STRING
+      },
       ga_access_token: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       ga_refresh_token: {
         type: Sequelize.STRING
