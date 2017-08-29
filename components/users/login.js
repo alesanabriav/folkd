@@ -38,7 +38,7 @@ class Login extends React.Component {
 						window.location = '/';
 					})
 				} else {
-					this.setState({error: true});
+					this.setState({ error: true });
 				}
 		});
 	}
@@ -55,7 +55,7 @@ class Login extends React.Component {
 				<div className="alert alert-light" style={verified ? {display: 'block'} : {display: 'none'}} role="alert">
   				Now you can login.
 				</div>
-					<div className="alert alert-danger" style={error ? ? {display: 'block'} : {display: 'none'}}>
+					<div className="alert alert-danger" style={error ?  {display: 'block'} : {display: 'none'}}>
 						Verify your email or password.
 					</div>
 					<form>
