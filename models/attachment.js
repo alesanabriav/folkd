@@ -11,6 +11,9 @@ module.exports = function(sequelize, Sequelize) {
       step_id: {
         type: Sequelize.INTEGER
       },
+      drive_id: {
+        type: Sequelize.STRING
+      },
       name: {
         type: Sequelize.STRING
       },

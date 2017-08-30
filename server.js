@@ -11,22 +11,24 @@ const { sendMail } = require('./lib/mail');
 const HttpBearer = require('./lib/http_bearer');
 const { login, getToken } = require('./lib/login');
 const ga = require('./lib/ga');
+const gaStorageEngine = require('./lib/ga_storage_engine');
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const models = require('./models');
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, `${__dirname}/uploads`)
-  },
-  filename: function (req, file, cb) {
-    cb(null, `${uid(10)}-${Date.now()}${path.extname(file.originalname)}`)
-  }
-})
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, `${__dirname}/uploads`)
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, `${uid(10)}-${Date.now()}${path.extname(file.originalname)}`)
+//   }
+// })
 
-const upload = multer({ storage: storage });
+
+const upload = multer({ storage: gaStorageEngine() });
 
 passport.use(HttpBearer);
 
@@ -122,12 +124,11 @@ app.prepare()
     passport.authenticate('bearer', { session: false }),
     upload.single('file'),
     (req, res) => {
-      ga.uploadFile(req.body, req.file).then(attachment => {
-        console.log(attachment);
-        return res.json(attachment);
-      })
+      const { body, user, file } = req;
+      // return res.json(file);
+      ga.uploadFile(body, user, file)
+        .then(attachment => res.json(attachment));
   });
-
 
   server.use('/graphql',
     passport.authenticate('bearer', { session: false }),
