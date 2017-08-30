@@ -17,17 +17,6 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const models = require('./models');
-
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, `${__dirname}/uploads`)
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, `${uid(10)}-${Date.now()}${path.extname(file.originalname)}`)
-//   }
-// })
-
-
 const upload = multer({ storage: gaStorageEngine() });
 
 passport.use(HttpBearer);
@@ -64,20 +53,20 @@ app.prepare()
 
     if(params.type === 'company') {
       return models.Company.update(body, { where: { id: body.id } })
-      .then(user => res.status(200).json(user))
-      .catch(err => res.status(400).json(err));
+        .then(user => res.status(200).json(user))
+        .catch(err => res.status(400).json(err));
     }
 
     if(params.type === 'user') {
       return models.User.create(body)
-      .then(user => {
-        const token = getToken(user);
-        sendMail(user);
-        delete user.password;
-        delete user.verify_token;
-        res.status(201).json({token, user});
-      })
-      .catch(err => res.status(400).json(err));
+        .then(user => {
+          const token = getToken(user);
+          sendMail(user);
+          delete user.password;
+          delete user.verify_token;
+          res.status(201).json({token, user});
+        })
+        .catch(err => res.status(400).json(err));
     }
 
   });
