@@ -70,6 +70,11 @@ class Todos extends Component {
     .then(res => window.location = res.data.url);
   }
 
+  completeTodo = (e) => {
+    e.preventDefault();
+    
+  }
+
   renderLoading = () => {
     return (<section className="col-lg-6 todos"><h1>loading...</h1></section>);
   }
@@ -114,8 +119,9 @@ class Todos extends Component {
           <div>
             <div className="todos-items__header">
               <h2>
-                {todo.title}   {todo.author.id == user.id ?
+                {todo.title}  {todo.author.id == user.id ?
                   <button className="btn btn-outline-light btn-sm" onClick={this.toggleTodoForm}>Edit</button>
+                  <button className="btn btn-outline-light btn-sm" onClick={this.completeTodo}>Close</button>
                   : ''}
               </h2>
 

@@ -62,6 +62,18 @@ export function addTodoAttachment(attachment) {
   return action;
 }
 
+
+export function completeTodo(id) {
+  const action = (dispatch) => {
+    const variables = { id };
+    return apolloFetch({ query: getTodoQuery, variables })
+    .then(res => {
+      dispatch({ type: `FETCH_${TYPE}`, payload: res.data.todo });
+      return res;
+    });
+  }
+}
+
 export function cleanTodo() {
   const action = (dispatch) => {
     return new Promise((resolve) => {

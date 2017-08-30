@@ -38,8 +38,8 @@ export const getTodoQuery = `
 export const addTodoMutation = `
   mutation createTodo(
     $content: String!,
-    $title: String,
     $project_id: Int!,
+    $title: String,
     $assign_id: Int,
     $deadline_start: String,
     $deadline_end: String
@@ -74,9 +74,9 @@ export const addTodoMutation = `
 
 export const updateTodoMutation = `
   mutation updateTodo(
+    $id: Int!,
     $content: String!,
     $title: String,
-    $project_id: Int!,
     $assign_id: Int,
     $deadline_start: String,
     $deadline_end: String,
@@ -85,7 +85,6 @@ export const updateTodoMutation = `
   updateTodo(
     title: $title,
     content: $content,
-    project_id: $project_id,
     assign_id: $assign_id,
     deadline_start: $deadline_start,
     deadline_end: $deadline_end,
