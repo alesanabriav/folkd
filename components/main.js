@@ -15,7 +15,7 @@ class Main extends Component {
           <title>Folkders</title>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
           <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" />
-          <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+          <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
           <link rel="stylesheet" href="react-datepicker/dist/react-datepicker.css" />
         </Head>
         <Header user={users.current} />
