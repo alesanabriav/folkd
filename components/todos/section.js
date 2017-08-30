@@ -43,7 +43,10 @@ class Todos extends Component {
     data.append('file', e.target.files[0]);
 
     const config = {
-      headers: {'Authorization': `Bearer ${token}`}
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'transfer-encoding': 'chunked'
+      }
     };
 
     this.props.uploadingTodoAttachment()
