@@ -29,6 +29,11 @@ export default function todos(state = initialState, action) {
         ...state,
         item: action.payload
       };
+      case `UPDATE_${TYPE}_ITEM`:
+        return {
+          ...state,
+          item: {...state.item, ...action.payload}
+        };
     case `ADD_${TYPE}_STEP`:
       return {
         ...state,

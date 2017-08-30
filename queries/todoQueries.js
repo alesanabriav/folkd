@@ -83,6 +83,7 @@ export const updateTodoMutation = `
     $is_completed: Boolean
   ) {
   updateTodo(
+    id: $id,
     title: $title,
     content: $content,
     assign_id: $assign_id,
@@ -94,6 +95,8 @@ export const updateTodoMutation = `
     project_id
     title
     content
+    deadline_start
+    deadline_end
     is_completed
     created_at
     author {

@@ -24,6 +24,9 @@ module.exports =  function(sequelize, Sequelize) {
       deadline_end: {
         type: Sequelize.DATE
       },
+      is_completed: {
+        type: Sequelize.BOOLEAN
+      }
     },
     {
       underscored: true

@@ -3,6 +3,7 @@ import moment from 'moment';
 import Todos from './section';
 import {
   addTodo,
+  completeTodo,
   addTodoStep,
   addTodoAttachment,
   uploadingTodoAttachment
@@ -33,6 +34,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   addTodo,
+  completeTodo,
   addProjectTodo,
   addTodoStep,
   addTodoAttachment,

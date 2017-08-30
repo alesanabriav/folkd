@@ -22,7 +22,8 @@ const createTodo = {
     todo_id: { type: GraphQLInt }
 	},
 	resolve(root, args, ctx) {
-    args = {...args, user_id: ctx.user.id}
+    args = {...args, user_id: ctx.user.id};
+
 		return models.Todo.create(args);
 	}
 }
@@ -30,6 +31,7 @@ const createTodo = {
 const updateTodo = {
   type: Todo,
   args: {
+    id: { type: GraphQLInt },
     title: { type: GraphQLString },
 		content: { type: new GraphQLNonNull(GraphQLString) },
     deadline_start: { type: GraphQLString  },
@@ -39,10 +41,12 @@ const updateTodo = {
     is_completed: { type: GraphQLBoolean }
   },
   resolve(root, args) {
-    models.Todo.findOne({ where: args.id })
+
+    return models.Todo.findOne({ where: args.id })
     .then(todo => {
+
       if(todo.is_completed == false || todo.is_completed == 0) {
-        return todo.update(args.data, { where: { id: args.id } })
+        return models.Todo.update(args, { where: { id: args.id } })
           .then(() => {
             return models.Todo.findOne({ where: args.id });
           });

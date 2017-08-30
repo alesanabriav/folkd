@@ -4,8 +4,8 @@ import {
   updateClientMutation,
 } from '../queries/clientQueries';
 import apolloFetch from '../lib/apollo_fetch';
-const TYPE = 'CLIENTS';
 
+const TYPE = 'CLIENTS';
 const failAction = { type: `FAIL_${TYPE}` };
 const loadingAction = { type: `LOADING_${TYPE}` };
 

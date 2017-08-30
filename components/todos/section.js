@@ -38,14 +38,14 @@ class Todos extends Component {
     const { todo, user } = this.props;
     const token = localStorage.getItem('folk-token');
     const data = new FormData();
+
     data.append('user_id', user.id);
     data.append('todo_id', todo.id);
     data.append('file', e.target.files[0]);
 
     const config = {
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'transfer-encoding': 'chunked'
+        'Authorization': `Bearer ${token}`
       }
     };
 
@@ -59,7 +59,7 @@ class Todos extends Component {
   getDriveUrl = (e) => {
     e.preventDefault();
     const token = localStorage.getItem('folk-token');
-    const {user} = this.props;
+    const { user } = this.props;
     const state = encodeURIComponent(JSON.stringify({id: user.id}));
     const config = {
       headers: {'Authorization': `Bearer ${token}`}
@@ -72,7 +72,8 @@ class Todos extends Component {
 
   completeTodo = (e) => {
     e.preventDefault();
-    
+    const { todo } = this.props;
+    this.props.completeTodo(todo);
   }
 
   renderLoading = () => {
@@ -120,8 +121,10 @@ class Todos extends Component {
             <div className="todos-items__header">
               <h2>
                 {todo.title}  {todo.author.id == user.id ?
+                  <div>
                   <button className="btn btn-outline-light btn-sm" onClick={this.toggleTodoForm}>Edit</button>
                   <button className="btn btn-outline-light btn-sm" onClick={this.completeTodo}>Close</button>
+                  </div>
                   : ''}
               </h2>
 

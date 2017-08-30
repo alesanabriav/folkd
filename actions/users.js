@@ -1,5 +1,6 @@
 import apolloFetch from '../lib/apollo_fetch';
-import { getUsersQuery, getUserQuery } from '../queries/usersQueries'
+import { getUsersQuery, getUserQuery } from '../queries/usersQueries';
+
 const TYPE = 'USERS';
 const failAction = { type: `FAIL_${TYPE}` };
 const loadingAction = { type: `LOADING_${TYPE}` };

@@ -17,6 +17,9 @@ module.exports =  function(sequelize, Sequelize) {
       slug: {
         type: Sequelize.STRING
       },
+      domain: {
+        type: Sequelize.STRING
+      },
       logo: {
         type: Sequelize.STRING
       },

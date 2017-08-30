@@ -1,6 +1,7 @@
 import apolloFetch from '../lib/apollo_fetch';
-import { getTodoQuery, addTodoMutation  } from '../queries/todoQueries';
+import { getTodoQuery, addTodoMutation, updateTodoMutation  } from '../queries/todoQueries';
 import { addStepMutation } from '../queries/stepQueries';
+
 const TYPE = 'TODOS';
 const failAction = { type: `FAIL_${TYPE}` };
 const loadingAction = { type: `LOADING_${TYPE}` };
@@ -62,16 +63,18 @@ export function addTodoAttachment(attachment) {
   return action;
 }
 
+export function completeTodo(todo) {
 
-export function completeTodo(id) {
   const action = (dispatch) => {
-    const variables = { id };
-    return apolloFetch({ query: getTodoQuery, variables })
+    const variables = {...todo, is_completed: true };
+    return apolloFetch({ query: updateTodoMutation, variables })
     .then(res => {
-      dispatch({ type: `FETCH_${TYPE}`, payload: res.data.todo });
+      dispatch({ type: `UPDATE_${TYPE}_ITEM`, payload: res.data.updateTodo });
       return res;
     });
   }
+
+  return action;
 }
 
 export function cleanTodo() {
