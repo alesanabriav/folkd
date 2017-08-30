@@ -20,7 +20,10 @@ module.exports = function(sequelize, Sequelize) {
                 next();
             });
           }
-         }
+        }
+      },
+      domain: {
+        type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING
@@ -62,7 +65,11 @@ module.exports = function(sequelize, Sequelize) {
               .then(() => {
                 return bcrypt.hash(user.password, 10);
               })
-              .then(hash => user.password = hash);
+              .then(hash => {
+                user.password = hash;
+                user.domain = user.email ? user.email.split('@')[1] : '';
+                return user;
+              });
           }
         }
       },
