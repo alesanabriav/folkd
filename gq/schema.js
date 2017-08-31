@@ -10,6 +10,7 @@ const todosQuery = require('./queries/todosQuery');
 const todoQuery = require('./queries/todoQuery');
 const usersQuery = require('./queries/usersQuery');
 const userQuery = require('./queries/userQuery');
+const notificationsQuery = require('./queries/notificationsQuery');
 
 //mutations
 const { createCompany, updateCompany } = require('./mutations/companyMutations');
@@ -28,7 +29,8 @@ const Query = new GraphQLObjectType({
     todos: todosQuery,
     todo: todoQuery,
     users: usersQuery,
-    user: userQuery
+    user: userQuery,
+    notifications: notificationsQuery
   })
 });
 

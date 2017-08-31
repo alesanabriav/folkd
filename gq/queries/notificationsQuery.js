@@ -11,7 +11,7 @@ const Notification = require("../types/notificationType");
 const models = require("../../models");
 
 const notifications = {
-  type: new GraphQLList(Client),
+  type: new GraphQLList(Notification),
   args: {
     limit: { type: GraphQLInt },
     order: { type: GraphQLJSON }

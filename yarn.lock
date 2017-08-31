@@ -4360,6 +4360,10 @@ pkg-up@2.0.0:
   dependencies:
     find-up "^2.1.0"
 
+popper.js:
+  version "1.12.5"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.5.tgz#229e4dea01629e1f1a1e26991ffade5024220fa6"
+
 popper.js@^1.10.8:
   version "1.12.3"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.12.3.tgz#e46a99c52e74e310411df505d820b61bdbe7eaee"

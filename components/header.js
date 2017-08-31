@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import request from 'axios';
+import Popper from 'popper.js';
 import Link from 'next/link';
 
 class Header extends Component {
@@ -9,8 +11,12 @@ class Header extends Component {
 		window.location = '/login';
 	}
 
+	componentDidMount() {
+
+	}
+
 	render() {
-		const { user = {} } = this.props;
+		const { user } = this.props;
 
 		return (
 			<header>
@@ -25,7 +31,7 @@ class Header extends Component {
 					    <ul className="navbar-nav mr-auto">
 					      <li className="nav-item active">
 					        <Link href="/">
-										<a className="nav-link">Profile <span className="sr-only">(current)</span></a>
+										<a className="nav-link">Profile {user.name} <span className="sr-only">(current)</span></a>
 									</Link>
 					      </li>
 					      <li className="nav-item">
@@ -38,6 +44,17 @@ class Header extends Component {
 					      </li>
 					    </ul>
 							: ''}
+							<span class="navbar-text notifications-container">
+					      <button className="btn btn-warning"><i className="ion-android-notifications"></i></button>
+								<div className="notifications">
+									<ul>
+										<li>localStorage message 1</li>
+										<li>localStorage message 2</li>
+										<li>localStorage message 3</li>
+									</ul>
+
+								</div>
+					    </span>
 					  </div>
 					</nav>
 				<style jsx>{`
@@ -63,10 +80,31 @@ class Header extends Component {
 						margin-top: 10px;
 						color: #333;
 					}
+
+					.notifications-container {
+						position: relative;
+					}
+
+					.notifications {
+						display: none;
+						background: #fff;
+						width: 300px;
+						height: 300px;
+						overflow: auto;
+						position: absolute;
+						z-index: 99;
+						right: 0;
+					}
 				`}</style>
 			</header>
 		)
 	}
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+	return {
+		user: state.users.current
+	}
+}
+
+export default connect(mapStateToProps)(Header);

@@ -1,4 +1,5 @@
 module.exports =  function(sequelize, Sequelize) {
+
   const Notification = sequelize.define(
     "notification",
     {
@@ -24,5 +25,5 @@ module.exports =  function(sequelize, Sequelize) {
     Notification.belongsTo(models.User);
   }
 
-  return Client;
+  return Notification;
 }
