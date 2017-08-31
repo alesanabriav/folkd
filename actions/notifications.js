@@ -7,7 +7,7 @@ const TYPE = 'NOTIFICATIONS';
 const failAction = { type: `FAIL_${TYPE}` };
 const loadingAction = { type: `LOADING_${TYPE}` };
 
-export function getNotications(variables) {
+export function getNotifications(variables) {
   const action = (dispatch) => {
     dispatch(loadingAction);
 

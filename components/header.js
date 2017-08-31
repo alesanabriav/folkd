@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import request from 'axios';
+import { getNotifications } from '../actions/notifications';
 import Popper from 'popper.js';
 import Link from 'next/link';
 
 class Header extends Component {
+	state = {
+		showNotifications: false
+	}
+
 	logout = (e) => {
 		e.preventDefault();
 		localStorage.removeItem('folk-token');
@@ -12,11 +16,17 @@ class Header extends Component {
 	}
 
 	componentDidMount() {
+		this.props.getNotifications(this.props.variables);
+	}
 
+	toggleNotifications = (e) => {
+		e.preventDefault();
+		this.setState({showNotifications: !this.state.showNotifications});
 	}
 
 	render() {
-		const { user } = this.props;
+		const { user, notifications } = this.props;
+		const { showNotifications } = this.state;
 
 		return (
 			<header>
@@ -45,12 +55,19 @@ class Header extends Component {
 					    </ul>
 							: ''}
 							<span class="navbar-text notifications-container">
-					      <button className="btn btn-warning"><i className="ion-android-notifications"></i></button>
-								<div className="notifications">
+					      <button className="btn btn-warning" onClick={this.toggleNotifications}>
+									<i className={showNotifications ? "ion-android-notifications-none" : "ion-android-notifications"}></i>
+								</button>
+								<div className={ showNotifications ? "notifications notifications--show" : "notifications"}>
 									<ul>
-										<li>localStorage message 1</li>
-										<li>localStorage message 2</li>
-										<li>localStorage message 3</li>
+										{notifications.map(notification =>
+											<li>
+												<Link href={notification.url}><a>{notification.message}</a></Link>
+												<span>
+													<button className="btn btn-sm"><i className="ion-close"></i></button>
+												</span>
+											</li>
+										)}
 									</ul>
 
 								</div>
@@ -93,7 +110,28 @@ class Header extends Component {
 						overflow: auto;
 						position: absolute;
 						z-index: 99;
-						right: 0;
+						right: 15px;
+						top: 56px;
+						box-shadow: 0 2px 10px rgba(0,0,0,.2);
+					}
+
+					.notifications--show {
+						display: block;
+					}
+
+					.notifications ul li {
+						display: flex;
+						min-height: 30px;
+						width: 100%;
+						background: #f1f1f1;
+						margin-bottom: 2px;
+						padding: 10px;
+					}
+
+					.notifications ul li a {
+						color: #333;
+						display: block;
+						width: 80%;
 					}
 				`}</style>
 			</header>
@@ -103,8 +141,14 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.users.current
+		user: state.users.current,
+		notifications: state.notifications.items,
+		variables: state.notifications.variables
 	}
 }
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = {
+	getNotifications
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
