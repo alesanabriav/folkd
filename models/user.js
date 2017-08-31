@@ -81,6 +81,7 @@ module.exports = function(sequelize, Sequelize) {
     User.belongsTo(models.Company);
     User.hasMany(models.Todo);
     User.hasMany(models.Step);
+    User.hasMany(models.Notification);
   }
 
   User.checkPassword = (user, plainPass) => {

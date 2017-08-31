@@ -20,6 +20,7 @@ const createNotification = {
     }
   },
   resolve(root, args) {
+    console.log(args);
     return models.Notification.create(args);
   }
 };

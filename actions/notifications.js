@@ -1,5 +1,6 @@
 import {
   getNotificationsQuery,
+  addNotificationQuery
 } from '../queries/notificationQueries';
 import apolloFetch from '../lib/apollo_fetch';
 
@@ -22,14 +23,11 @@ export function getNotifications(variables) {
   return action;
 }
 
-
-export function addNotification() {
+export function addNotification(variables) {
   const action = (dispatch) => {
-    dispatch(loadingAction);
-
-    return apolloFetch({ query: getNotificationsQuery, variables })
+    return apolloFetch({ query: addNotificationQuery, variables })
     .then(res => {
-      dispatch({ type: `ADD_${TYPE}_ITEM`, payload: res.data.notifications });
+      dispatch({ type: `ADD_${TYPE}_ITEM`, payload: res.data.createNotification });
       return res;
     })
     .catch(err => dispatch( failAction ));

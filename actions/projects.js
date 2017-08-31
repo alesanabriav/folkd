@@ -44,7 +44,7 @@ export function addProjectTodo(todo) {
   const action = (dispatch) => {
     return new Promise((resolve) => {
       dispatch({ type: `ADD_${TYPE}_TODO`, payload: todo });
-      return resolve();
+      return resolve(todo);
     })
   }
   return action;

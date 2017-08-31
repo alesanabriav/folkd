@@ -10,6 +10,7 @@ import {
   uploadingTodoAttachment
 } from '../../actions/todos';
 import { addProjectTodo } from '../../actions/projects';
+import { addNotification } from '../../actions/notifications';
 
 const mapStateToProps = state => {
   // I need selectors to make this memoized
@@ -40,7 +41,8 @@ const mapDispatchToProps = {
   addTodoStep,
   addTodoAttachment,
   addStepAttachment,
-  uploadingTodoAttachment
+  uploadingTodoAttachment,
+  addNotification
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);

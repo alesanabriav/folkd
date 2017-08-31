@@ -61,7 +61,7 @@ class Header extends Component {
 							: ''}
 							<span class="navbar-text notifications-container">
 					      <button className="btn btn-warning" onClick={this.toggleNotifications}>
-									<i className={showNotifications ? "ion-android-notifications-none" : "ion-android-notifications"}></i>
+									<i className={showNotifications ? "ion-android-notifications-none" : "ion-android-notifications"}></i> {notifications.length}
 								</button>
 								<div className={ showNotifications ? "notifications notifications--show" : "notifications"}>
 									<ul>

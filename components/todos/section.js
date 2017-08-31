@@ -13,15 +13,30 @@ class Todos extends Component {
   }
 
   handleSubmit = (variables) => {
-    this.props.addTodo(variables).then((todo) => {
-      this.props.addProjectTodo(todo);
+    this.props.addTodo(variables)
+    .then((todo) => {
+      return this.props.addProjectTodo(todo);
+    })
+    .then((todo) => {
+      const { project } = this.props;
+      const notification = {
+        user_id: todo.assigned.id,
+        message: `you were assigned to ${todo.title} on the project ${project.name}`,
+        url: `?client=${project.client_id}&project=${project.id}&todo=${todo.id}`
+      };
+
+      this.props.addNotification(notification);
+      console.log('after todo created', todo);
     })
   }
 
   handleSubmitStep = (variables) => {
     const { todo, steps } = this.props;
     variables = {...variables, todo_id: todo.id, position: steps.length + 1};
-    return this.props.addTodoStep(variables);
+    return this.props.addTodoStep(variables)
+    .then((step) => {
+      console.log('after step created', step);
+    })
   }
 
   toggleTodoForm = () => {
