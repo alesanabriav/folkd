@@ -65,6 +65,7 @@ class Login extends React.Component {
 								placeholder="email"
 								className="form-control"
 								onChange={this.handleChange.bind(null, 'email')}
+								autoComplete={false}
 								value={this.state.email}
 							/>
 						</div>
@@ -75,6 +76,7 @@ class Login extends React.Component {
 								placeholder="password"
 								className="form-control"
 								onChange={this.handleChange.bind(null, 'password')}
+								autoComplete={false}
 								value={this.state.password}
 							/>
 						</div>
