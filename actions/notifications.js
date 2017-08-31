@@ -21,3 +21,19 @@ export function getNotifications(variables) {
 
   return action;
 }
+
+
+export function addNotification() {
+  const action = (dispatch) => {
+    dispatch(loadingAction);
+
+    return apolloFetch({ query: getNotificationsQuery, variables })
+    .then(res => {
+      dispatch({ type: `ADD_${TYPE}_ITEM`, payload: res.data.notifications });
+      return res;
+    })
+    .catch(err => dispatch( failAction ));
+  }
+
+  return action;
+}

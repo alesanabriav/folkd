@@ -9,12 +9,6 @@ class Header extends Component {
 		showNotifications: false
 	}
 
-	logout = (e) => {
-		e.preventDefault();
-		localStorage.removeItem('folk-token');
-		window.location = '/login';
-	}
-
 	componentDidMount() {
 		this.props.getNotifications(this.props.variables);
 	}
@@ -22,6 +16,17 @@ class Header extends Component {
 	toggleNotifications = (e) => {
 		e.preventDefault();
 		this.setState({showNotifications: !this.state.showNotifications});
+	}
+
+	dismissNotification = (e) => {
+		e.preventDefault();
+		console.log('dismiss');
+	}
+
+	logout = (e) => {
+		e.preventDefault();
+		localStorage.removeItem('folk-token');
+		window.location = '/login';
 	}
 
 	render() {
@@ -60,14 +65,15 @@ class Header extends Component {
 								</button>
 								<div className={ showNotifications ? "notifications notifications--show" : "notifications"}>
 									<ul>
-										{notifications.map(notification =>
+										{notifications.length > 0 ?
+											notifications.map(notification =>
 											<li>
 												<Link href={notification.url}><a>{notification.message}</a></Link>
 												<span>
-													<button className="btn btn-sm"><i className="ion-close"></i></button>
+													<button className="btn btn-sm" onClick={this.dismissNotification}><i className="ion-close"></i></button>
 												</span>
 											</li>
-										)}
+										) : `you don't have any notification`}
 									</ul>
 
 								</div>

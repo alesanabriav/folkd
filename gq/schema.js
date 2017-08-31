@@ -19,6 +19,7 @@ const { createProject, updateProject } = require('./mutations/projectMutations')
 const { loginUser, registerUser } = require('./mutations/userMutations');
 const { createTodo, updateTodo } = require('./mutations/todoMutations');
 const { createStep } = require('./mutations/stepMutations');
+const { createNotification } = require('./mutations/notificationMutations');
 
 const Query = new GraphQLObjectType({
   name: "folkderAppQueries",
@@ -45,7 +46,8 @@ const Mutation = new GraphQLObjectType({
     updateProject,
     createTodo,
     updateTodo,
-    createStep
+    createStep,
+    createNotification
   })
 });
 
