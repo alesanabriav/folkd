@@ -1,6 +1,7 @@
 const {
   GraphQLString,
   GraphQLInt,
+  GraphQLBoolean,
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
@@ -28,6 +29,27 @@ const createNotification = {
   }
 };
 
+const updateNotification = {
+	type: Notification,
+  args: {
+    id: {
+      type: new GraphQLNonNull(GraphQLInt)
+    },
+    url: {
+      type: GraphQLString
+    },
+    is_read: {
+      type: GraphQLBoolean
+    }
+  },
+  resolve(root, args) {
+    return models.Notification.update(args, { where: { id: args.id } }).then(() => {
+      return models.Notification.findById(args.id);
+    });
+  }
+};
+
 module.exports = {
-  createNotification
+  createNotification,
+  updateNotification
 }

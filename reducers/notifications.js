@@ -19,6 +19,11 @@ export default function notifications(state = initialState, action) {
       };
     case `ADD_${TYPE}`:
       return { ...state, items: [action.payload].concat(state.items) };
+    case `REMOVE_${TYPE}_ITEM`:
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== action.payload.id)
+      };
     case `FAIL_${TYPE}`:
       return { ...state, fail: true };
     default:

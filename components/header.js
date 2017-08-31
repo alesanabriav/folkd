@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getNotifications } from '../actions/notifications';
+import { getNotifications, removeNotification } from '../actions/notifications';
 import Popper from 'popper.js';
 import Link from 'next/link';
 
@@ -10,20 +10,25 @@ class Header extends Component {
 	}
 
 	componentDidMount() {
-		this.props.getNotifications(this.props.variables);
+		this.getNotifications();
 		setInterval(() => {
-			this.props.getNotifications(this.props.variables);
+			this.getNotifications();
 		}, 300000);
+	}
+
+	getNotifications = () => {
+		this.props.getNotifications(this.props.variables);
 	}
 
 	toggleNotifications = (e) => {
 		e.preventDefault();
+		this.getNotifications();
 		this.setState({showNotifications: !this.state.showNotifications});
 	}
 
-	dismissNotification = (e) => {
+	dismissNotification = (notification, e) => {
 		e.preventDefault();
-		console.log('dismiss');
+		this.props.removeNotification(notification);
 	}
 
 	logout = (e) => {
@@ -73,7 +78,7 @@ class Header extends Component {
 											<li>
 												<Link href={notification.url}><a>{notification.message}</a></Link>
 												<span>
-													<button className="btn btn-sm" onClick={this.dismissNotification}><i className="ion-close"></i></button>
+													<button className="btn btn-sm" onClick={this.dismissNotification.bind(null, notification)}><i className="ion-close"></i></button>
 												</span>
 											</li>
 										) : `you don't have any notification`}
@@ -157,7 +162,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	getNotifications
+	getNotifications,
+	removeNotification
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

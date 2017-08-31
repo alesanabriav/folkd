@@ -1,6 +1,7 @@
 import {
   getNotificationsQuery,
-  addNotificationQuery
+  addNotificationQuery,
+  updateNotificationQuery
 } from '../queries/notificationQueries';
 import apolloFetch from '../lib/apollo_fetch';
 
@@ -28,6 +29,21 @@ export function addNotification(variables) {
     return apolloFetch({ query: addNotificationQuery, variables })
     .then(res => {
       dispatch({ type: `ADD_${TYPE}_ITEM`, payload: res.data.createNotification });
+      return res;
+    })
+    .catch(err => dispatch( failAction ));
+  }
+
+  return action;
+}
+
+export function removeNotification(variables) {
+  variables = {...variables, is_read: true};
+
+  const action = (dispatch) => {
+    return apolloFetch({ query: updateNotificationQuery, variables })
+    .then(res => {
+      dispatch({ type: `REMOVE_${TYPE}_ITEM`, payload: res.data.updateNotification });
       return res;
     })
     .catch(err => dispatch( failAction ));

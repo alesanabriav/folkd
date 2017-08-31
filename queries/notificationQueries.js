@@ -2,12 +2,13 @@
 export const getNotificationsQuery = `
   query getNotifications($order: JSON) {
     notifications(order: $order) {
+      id
+      message
+      url
       user {
         id
         name
       }
-      message
-      url
     }
   }
 `;
@@ -19,8 +20,17 @@ export const addNotificationQuery = `
         id
         name
       }
+      id
       message
       url
+    }
+  }
+`;
+
+export const updateNotificationQuery = `
+  mutation updateNotification($id: Int!, $is_read: Boolean) {
+    updateNotification(id: $id, is_read: $is_read) {
+      id
     }
   }
 `;
