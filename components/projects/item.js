@@ -53,6 +53,7 @@ export class Project extends Component {
           .projects__item > a {
             color: #fff;
             width: 100%;
+            height: 40px;
             display: block;
             background: rgba(0,0,0,.2);
             padding: 10px 20px;
@@ -70,10 +71,10 @@ export class Project extends Component {
 
           .projects__item ul li a {
             margin-bottom: 2px;
-            background: rgba(0,0,0, .2);
+            background: rgba(0,0,0, .1);
             padding: 10px 40px;
             display: block;
-            transition: all .3s ease-in-out;  
+            transition: all .3s ease-in-out;
           }
 
           .projects__item ul li a i {
