@@ -69,14 +69,19 @@ export class Project extends Component {
           }
 
           .projects__item ul li a {
-            background: rgba(0,0,0,.01);
+            margin-bottom: 2px;
+            background: rgba(0,0,0, .2);
             padding: 10px 40px;
             display: block;
+            transition: all .3s ease-in-out;  
+          }
+
+          .projects__item ul li a i {
+            margin-right: 10px;
           }
 
           .projects__todos {
             display: none;
-            background: rgba(0,0,0,.1);
           }
 
           .projects__todos--open {
@@ -91,7 +96,7 @@ export class Project extends Component {
           .projects__todos li a {
             color: #fff;
             font-size: 14px;
-            margin-bottom: 1px;
+
           }
 
         `}</style>
