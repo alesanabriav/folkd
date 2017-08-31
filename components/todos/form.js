@@ -124,10 +124,8 @@ class TodoForm extends Component {
 						width: 100%;
 						float: left;
 						padding: 20px;
-						background: rgba(255,255,255,.1)
+						background: rgba(0,0,0,.2)
 					}
-
-
 
 					.btn {
 						float: right;

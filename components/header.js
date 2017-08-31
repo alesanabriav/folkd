@@ -11,6 +11,9 @@ class Header extends Component {
 
 	componentDidMount() {
 		this.props.getNotifications(this.props.variables);
+		setInterval(() => {
+			this.props.getNotifications(this.props.variables);
+		}, 300000);
 	}
 
 	toggleNotifications = (e) => {

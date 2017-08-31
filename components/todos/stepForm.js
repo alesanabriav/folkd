@@ -45,7 +45,10 @@ export class StepForm extends Component {
 						float: left;
 						width: 100%;
 						margin-bottom: 40px;
+						background: rgba(0,0,0,.2);
+						padding: 20px;
 					}
+					
 					button {
 						float: right;
 						width: 200px;
