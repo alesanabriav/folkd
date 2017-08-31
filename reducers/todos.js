@@ -45,6 +45,19 @@ export default function todos(state = initialState, action) {
         uploading: false,
         attachments: [action.payload].concat(state.attachments)
       };
+    case `ADD_${TYPE}_STEP_ATTACHMENT`:
+      const steps = state.steps.map(step => {
+        if(step.id == action.payload.step_id) {
+          return {...step, attachments: [action.payload].concat(step.attachments)};
+        }
+        return step;
+      });
+
+      return {
+        ...state,
+        uploading: false,
+        steps
+      };
     case `CLEAN_${TYPE}_ITEM`:
       return { ...state, item: {}, steps: [], attachments: [] };
     default:

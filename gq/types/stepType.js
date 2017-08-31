@@ -25,7 +25,7 @@ const Step = new GraphQLObjectType({
         return step.getUser();
       }
     },
-    attachment: {
+    attachments: {
       type: new GraphQLList(Attachment),
       resolve(step) {
         //  console.log(`---------step: attachment call-----------`);

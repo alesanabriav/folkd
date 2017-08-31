@@ -55,6 +55,14 @@ export function addTodoStep(variables) {
   return action;
 }
 
+export function addStepAttachment(attachment) {
+  const action = (dispatch) => {
+    return dispatch({ type: `ADD_${TYPE}_STEP_ATTACHMENT`, payload: attachment });
+  }
+
+  return action;
+}
+
 export function addTodoAttachment(attachment) {
   const action = (dispatch) => {
     return dispatch({ type: `ADD_${TYPE}_ATTACHMENT`, payload: attachment });

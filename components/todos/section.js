@@ -34,15 +34,8 @@ class Todos extends Component {
 		return md.render(content);
   }
 
-  handleUpload = (e) => {
-    const { todo, user } = this.props;
+  handleUpload = (data, action, e) => {
     const token = localStorage.getItem('folk-token');
-    const data = new FormData();
-
-    data.append('user_id', user.id);
-    data.append('todo_id', todo.id);
-    data.append('file', e.target.files[0]);
-
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -52,8 +45,28 @@ class Todos extends Component {
     this.props.uploadingTodoAttachment()
     .then(() => request.post('/upload', data, config))
     .then((res) => {
-      this.props.addTodoAttachment(res.data);
+      this.props[action](res.data);
     })
+  }
+
+  handleTodoUpload = (e) => {
+    const { todo, user } = this.props;
+    const data = new FormData();
+
+    data.append('user_id', user.id);
+    data.append('todo_id', todo.id);
+    data.append('file', e.target.files[0]);
+    this.handleUpload(data, 'addTodoAttachment', e);
+  }
+
+  handleStepUpload = (step, e) => {
+    const { todo, user } = this.props;
+    const data = new FormData();
+
+    data.append('user_id', user.id);
+    data.append('step_id', step.id);
+    data.append('file', e.target.files[0]);
+    this.handleUpload(data, 'addStepAttachment', e);
   }
 
   getDriveUrl = (e) => {
@@ -156,9 +169,9 @@ class Todos extends Component {
 
                 {uploading ? 'uploading...' : ''}
 
-                {user.has_drive ?
+                {user.has_drive && !uploading ?
                   <form encType="multipart/form-data">
-                    <input type="file" name="file" onChange={this.handleUpload} />
+                    <input type="file" name="file" onChange={this.handleTodoUpload} />
                   </form>
                 : ''}
 
@@ -188,6 +201,29 @@ class Todos extends Component {
             </header>
              <div className="todo__item__content">
                <div dangerouslySetInnerHTML={{__html: this.renderMD(subtodo.content)}}/>
+            </div>
+
+            <div className="todo__item__upload">
+
+              {uploading ? 'uploading...' : ''}
+
+              {user.has_drive && !uploading ?
+                <form encType="multipart/form-data">
+                  <input type="file" name="file" onChange={this.handleStepUpload.bind(null, subtodo)} />
+                </form>
+              : ''}
+
+              {!user.has_drive ?
+                <a href="#" onClick={this.getDriveUrl}>Upload files</a>
+              : ''}
+
+              <ul className="todo__item__uploads">
+                {subtodo.attachments.map(attachment =>
+                  <li>
+                    <a target="blank" href={attachment.url}>{attachment.name}</a>
+                  </li>
+                )}
+              </ul>
             </div>
           </section>
         )}

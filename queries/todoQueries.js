@@ -26,6 +26,10 @@ export const getTodoQuery = `
           id
           name
         }
+        attachments {
+          name
+          url
+        }
 			}
       attachments {
         name
