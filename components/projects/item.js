@@ -72,6 +72,7 @@ export class Project extends Component {
           .projects__item ul li a {
             margin-bottom: 2px;
             background: rgba(0,0,0, .1);
+            height: 40px;
             padding: 10px 40px;
             display: block;
             transition: all .3s ease-in-out;
