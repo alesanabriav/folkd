@@ -10,7 +10,7 @@ module.exports = {
         type:  Sequelize.INTEGER
       },
       message: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       url: {
         type: Sequelize.STRING
