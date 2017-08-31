@@ -12,7 +12,7 @@ export class Project extends Component {
   }
 
   render() {
-    const { project, selected, todos, todoSelected } = this.props;
+    const { project, selected, todos, todoSelected, currentUser } = this.props;
 
     return (
       <li className={`projects__item ${project.id == selected.id ? 'projects__item--active' : ''}`}>
@@ -26,7 +26,10 @@ export class Project extends Component {
           <ul className={project.id == selected.id ? "projects__todos projects__todos--open" :"projects__todos" }>
             {todos.map(todo =>
               <li key={todo.id} className={todo.id == todoSelected.id ? 'projects__todo--active' : '' }>
-                <a href="#" onClick={this.changeTodo.bind(null, todo.id)}>{todo.title}</a>
+                <a href="#" onClick={this.changeTodo.bind(null, todo.id)}>
+                  {todo.assigned.id == currentUser.id
+                    ? <i className="ion-android-radio-button-on"></i>
+                    : <i className="ion-android-radio-button-off"></i>}  {todo.title}</a>
               </li>
             )}
           </ul>
@@ -79,6 +82,7 @@ export class Project extends Component {
           .projects__todos--open {
             display: block;
           }
+
 
           .projects__todo--active {
               background: rgba(0,0,0,.3);

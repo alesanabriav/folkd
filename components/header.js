@@ -70,6 +70,7 @@ class Header extends Component {
 					      </li>
 					    </ul>
 							: ''}
+
 							{user.hasOwnProperty('id') ?
 							<span class="navbar-text notifications-container">
 					      <button className="btn btn-warning" onClick={this.toggleNotifications}>

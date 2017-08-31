@@ -34,7 +34,7 @@ class Projects extends Component {
 
   render() {
     const { items, selected, todos, loading } = this.props.projects;
-    const { client, todo } = this.props;
+    const { client, todo, currentUser } = this.props;
     const { showForm } = this.state;
 
     if(loading) return this.renderLoading();
@@ -58,6 +58,7 @@ class Projects extends Component {
             {items.map(project =>
               <Project
                 key={project.id}
+                currentUser={currentUser}
                 project={project}
                 selected={selected}
                 todos={todos}

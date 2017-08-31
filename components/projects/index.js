@@ -6,7 +6,8 @@ import { getTodo, cleanTodo } from '../../actions/todos';
 const mapStateToProps = state => ({
   client: state.clients.selected,
 	projects: state.projects,
-  todo: state.todos.item
+  todo: state.todos.item,
+  currentUser: state.users.current
 });
 
 const mapDispatchToProps = {

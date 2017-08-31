@@ -8,7 +8,12 @@ export const getClientProjectsQuery = `
       todos(order: [["id", "desc"]]) {
         id,
         title
+        assigned {
+  				id
+  				name
+  			}
       }
+
     }
 }
 `;
