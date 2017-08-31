@@ -75,7 +75,17 @@ export function setClientId(id) {
   const action = (dispatch) => {
     return new Promise((resolve) => {
       dispatch({ type: `SET_${TYPE}_CLIENT_ID`, payload: id });
-      return resolve({ type: `SET_${TYPE}_CLIENT_ID`, payload: id });
+      return resolve({ id });
+    })
+  }
+  return action;
+}
+
+export function showCompleted(is_completed = true) {
+  const action = (dispatch) => {
+    return new Promise((resolve) => {
+      dispatch({ type: `SHOW_${TYPE}_COMPLETED`, payload: is_completed });
+      return resolve({});
     })
   }
   return action;

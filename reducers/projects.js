@@ -8,6 +8,9 @@ const initialState = {
     clientId: null,
     order: [['id', 'DESC']]
   },
+  filters: {
+    isCompleted: false
+  },
   loading: false,
   fail: false
 };
@@ -30,7 +33,10 @@ export default function projects(state = initialState, action) {
         ...state,
         selected: action.payload,
         todos: action.payload.todos,
-        loading: false
+        loading: false,
+        filters: {
+          isCompleted: false
+        }
       };
     case `SET_${TYPE}_CLIENT_ID`:
       const variables = { ...state.variables, clientId: action.payload };
@@ -48,6 +54,8 @@ export default function projects(state = initialState, action) {
         ...state,
         todos: [action.payload].concat(state.todos)
       };
+    case `SHOW_${TYPE}_COMPLETED`:
+      return {...state, filters: {...state.filters, isCompleted: action.payload }}
     default:
       return state
   }

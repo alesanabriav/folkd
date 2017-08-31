@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 export class Project extends Component {
+
   selectProject = (e) => {
     e.preventDefault();
     this.props.onSelectProject(this.props.project);
@@ -11,27 +12,44 @@ export class Project extends Component {
     this.props.onChangeTodo(todoId);
   }
 
+  toggleCompleted = (e) => {
+    e.preventDefault();
+    this.props.onToggleCompleted();
+  }
+
   render() {
-    const { project, selected, todos, todoSelected, currentUser } = this.props;
+    const {
+      project,
+      selected,
+      todos,
+      todoSelected,
+      currentUser,
+      filters
+    } = this.props;
 
     return (
       <li className={`projects__item ${project.id == selected.id ? 'projects__item--active' : ''}`}>
         <a href="#" onClick={this.selectProject}>
           <span className="projects__item__name">{project.name}</span>
+
           <span className={project.id == selected.id ? "projects__item__icon ion-chevron-down" : "projects__item__icon ion-chevron-right"}></span>
           <span className="projects__item__todos-count">{project.todosCount}</span>
         </a>
 
         {todos.length > 0 ?
           <ul className={project.id == selected.id ? "projects__todos projects__todos--open" :"projects__todos" }>
-            {todos.map(todo =>
-              <li key={todo.id} className={todo.id == todoSelected.id ? 'projects__todo--active' : '' }>
-                <a href="#" onClick={this.changeTodo.bind(null, todo.id)}>
-                  {todo.assigned.id == currentUser.id
-                    ? <i className="ion-android-radio-button-on"></i>
-                    : <i className="ion-android-radio-button-off"></i>}  {todo.title}</a>
-              </li>
-            )}
+            {todos.map(todo => {
+              if(todo.is_completed == filters.isCompleted) {
+                return (
+                  <li key={todo.id} className={todo.id == todoSelected.id ? 'projects__todo--active' : '' }>
+                    <a href="#" onClick={this.changeTodo.bind(null, todo.id)}>
+                      {todo.assigned.id == currentUser.id
+                        ? <i className="ion-android-radio-button-on"></i>
+                        : <i className="ion-android-radio-button-off"></i>}  {todo.title}</a>
+                  </li>
+                )
+              }
+            })}
           </ul>
         : ''}
 
@@ -92,7 +110,7 @@ export class Project extends Component {
 
 
           .projects__todo--active {
-              background: rgba(0,0,0,.3);
+              background: rgba(0,0,0, .2);
           }
 
           .projects__todos li a {

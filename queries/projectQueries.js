@@ -8,9 +8,9 @@ export const getClientProjectsQuery = `
       todos(order: [["id", "desc"]]) {
         id,
         title
+        is_completed
         assigned {
   				id
-  				name
   			}
       }
 

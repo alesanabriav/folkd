@@ -24,6 +24,10 @@ class Projects extends Component {
     this.setState({ showForm: !this.state.showForm });
   }
 
+  toggleCompleted = () => {
+    this.props.showCompleted(!this.props.projects.filters.isCompleted);
+  }
+
   addProject = (variables) => {
     this.props.addProject(variables);
   }
@@ -33,8 +37,8 @@ class Projects extends Component {
   }
 
   render() {
-    const { items, selected, todos, loading } = this.props.projects;
-    const { client, todo, currentUser } = this.props;
+    const { items, selected, todos, filters, loading } = this.props.projects;
+    const { client, todo, currentUser, showCompleted } = this.props;
     const { showForm } = this.state;
 
     if(loading) return this.renderLoading();
@@ -46,6 +50,7 @@ class Projects extends Component {
            <div className="btns">
             <button onClick={this.toggleForm} className="btn btn-outline-light btn-sm"><i className="ion-plus"></i></button>
             <button className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>
+            <button className="btn btn-outline-light btn-sm" onClick={this.toggleCompleted}>{ filters.isCompleted ? 'Show open' : 'Show completed'}</button>
           </div>
         </header>
 
@@ -63,9 +68,11 @@ class Projects extends Component {
                 selected={selected}
                 todos={todos}
                 todoSelected={todo}
+                filters={filters}
                 onSelectProject={this.selectProject}
                 onChangeTodo={this.changeTodo}
-                />
+                onToggleCompleted={this.toggleCompleted}
+              />
             )}
           </ul>
 
