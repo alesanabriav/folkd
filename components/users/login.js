@@ -18,7 +18,7 @@ class Login extends React.Component {
 	componentDidMount() {
 		const query = qs.parse(window.location.search.replace('?', ''));
 		if(query.verified == '1') {
-			this.setState({verified: true});
+			this.setState({...this.state, verified: true});
 		}
 	}
 
