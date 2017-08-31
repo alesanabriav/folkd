@@ -60,11 +60,23 @@ class Login extends React.Component {
 					</div>
 					<form>
 						<div className="input-group">
-							<input type="text" placeholder="email" className="form-control" onChange={this.handleChange.bind(null, 'email')}/>
+							<input
+								type="text"
+								placeholder="email"
+								className="form-control"
+								onChange={this.handleChange.bind(null, 'email')}
+								value={this.state.email}
+							/>
 						</div>
 
 						<div className="input-group" style={{marginTop: "20px"}}>
-							<input type="password" placeholder="password" className="form-control" onChange={this.handleChange.bind(null, 'password')}/>
+							<input
+								type="password"
+								placeholder="password"
+								className="form-control"
+								onChange={this.handleChange.bind(null, 'password')}
+								value={this.state.password}
+							/>
 						</div>
 						<div className="row" style={{marginTop: "20px"}}>
 						<div className="input-group col-lg-6 col-sm-6 col-xs-6">
