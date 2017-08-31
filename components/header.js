@@ -10,10 +10,13 @@ class Header extends Component {
 	}
 
 	componentDidMount() {
-		this.getNotifications();
-		setInterval(() => {
+		if(this.props.user.hasOwnProperty('id')) {
 			this.getNotifications();
-		}, 300000);
+			setInterval(() => {
+				this.getNotifications();
+			}, 300000);
+		}
+
 	}
 
 	getNotifications = () => {
@@ -67,6 +70,7 @@ class Header extends Component {
 					      </li>
 					    </ul>
 							: ''}
+							{user.hasOwnProperty('id') ?
 							<span class="navbar-text notifications-container">
 					      <button className="btn btn-warning" onClick={this.toggleNotifications}>
 									<i className={showNotifications ? "ion-android-notifications-none" : "ion-android-notifications"}></i> {notifications.length}
@@ -86,6 +90,7 @@ class Header extends Component {
 
 								</div>
 					    </span>
+							: ''}
 					  </div>
 					</nav>
 				<style jsx>{`
