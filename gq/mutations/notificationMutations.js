@@ -17,6 +17,9 @@ const createNotification = {
     },
     message: {
       type: new GraphQLNonNull(GraphQLString)
+    },
+    url: {
+      type: GraphQLString
     }
   },
   resolve(root, args) {

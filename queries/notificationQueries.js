@@ -13,8 +13,8 @@ export const getNotificationsQuery = `
 `;
 
 export const addNotificationQuery = `
-  mutation createNotification($message: String!, $user_id: Int!) {
-    createNotification(message: $message, user_id: $user_id) {
+  mutation createNotification($message: String!, $user_id: Int!, $url: String) {
+    createNotification(message: $message, user_id: $user_id, url: $url) {
       user {
         id
         name
