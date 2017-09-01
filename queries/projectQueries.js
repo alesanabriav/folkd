@@ -4,6 +4,8 @@ export const getClientProjectsQuery = `
     projects(where: {client_id: $clientId, name: $name}, order: [["id", "desc"]]) {
       id
       name
+      todosCount
+      todosAssignedCount
       todos(order: [["id", "desc"]]) {
         id
         title

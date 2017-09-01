@@ -15,6 +15,21 @@ const Project = new GraphQLObjectType({
     id: { type: GraphQLInt },
     client_id: { type: GraphQLInt },
     name: { type: GraphQLString },
+    todosCount: {
+      type: GraphQLInt,
+      resolve(project, args, ctx) {
+        return project.getTodos({ attributes: ['id'] })
+          .then(todos => todos.length);
+      }
+    },
+    todosAssignedCount: {
+      type: GraphQLInt,
+      resolve(project, args, ctx) {
+        const user = ctx.user;
+        return project.getTodos({ attributes: ['id', 'assign_id'] })
+          .then(todos => todos.filter(todo => todo.assign_id == user.id).length );
+      }
+    },
     todos: {
       type: new GraphQLList(Todo),
         args: {
@@ -24,7 +39,7 @@ const Project = new GraphQLObjectType({
         },
       resolve(project, args) {
         // console.log(`$---------projects query todos-----------`);
-        return project.getTodos(args);
+        return project.findOne({ include: [{model: models.Todo, ...args}] });
       }
     }
   })

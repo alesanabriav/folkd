@@ -72,7 +72,7 @@ class Header extends Component {
 							: ''}
 
 							{user.hasOwnProperty('id') ?
-							<span class="navbar-text notifications-container">
+							<span className="navbar-text notifications-container">
 					      <button className="btn btn-warning" onClick={this.toggleNotifications}>
 									<i className={showNotifications ? "ion-android-notifications-none" : "ion-android-notifications"}></i> {notifications.length}
 								</button>

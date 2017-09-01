@@ -34,7 +34,7 @@ export class Project extends Component {
         <a href="#" onClick={this.selectProject}>
           <span className="projects__item__name">{project.name}</span>
           <span className={project.id == selected.id ? "projects__item__icon ion-chevron-down" : "projects__item__icon ion-chevron-right"}></span>
-          <span className="projects__item__todos-count">{todosAssignedCount} / {todosCount}</span>
+          <span className="projects__item__todos-count"></span>
       </a>
 
         {todos.length > 0 ?

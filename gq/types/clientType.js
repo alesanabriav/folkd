@@ -25,7 +25,11 @@ const Client = new GraphQLObjectType({
       },
       resolve(client, args) {
         console.log(`---------client: projects call-----------`);
-        return client.getProjects(args);
+        return client.findOne({include: [{
+            model: models.Project,
+            ...args
+          }]
+        });
       }
     }
   })
