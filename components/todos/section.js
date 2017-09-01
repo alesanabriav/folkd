@@ -9,7 +9,8 @@ import StepForm from './stepForm';
 class Todos extends Component {
   state = {
     showTodoForm: false,
-    showMainTodo: false
+    showMainTodo: false,
+    uploadProgress: 0
   }
 
   handleSubmit = (variables) => {
@@ -51,9 +52,14 @@ class Todos extends Component {
 
   handleUpload = (data, action, e) => {
     const token = localStorage.getItem('folk-token');
+    const _this = this;
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`
+      },
+      onUploadProgress(progressEvent) {
+        const uploadProgress = Math.round(progressEvent.loaded / progressEvent.total * 100);
+        _this.setState({ uploadProgress });
       }
     };
 
@@ -119,7 +125,7 @@ class Todos extends Component {
       loading,
       uploading
     } = this.props;
-    const { showTodoForm } = this.state;
+    const { showTodoForm, uploadProgress } = this.state;
     if(loading) return this.renderLoading();
 
     return (
@@ -182,7 +188,7 @@ class Todos extends Component {
               </div>
               <div className="todo__item__upload">
 
-                {uploading ? 'uploading...' : ''}
+                {uploading ? `${uploadProgress}% uploaded...` : ''}
 
                 {user.has_drive && !uploading ?
                   <form encType="multipart/form-data">
@@ -245,7 +251,7 @@ class Todos extends Component {
         </div>
 
         { todo.hasOwnProperty('id') && (user.id == todo.author.id || user.id == todo.assigned.id)
-          ? <StepForm onSubmit={this.handleSubmitStep} project={project} />
+          ? <StepForm className="step-form" onSubmit={this.handleSubmitStep} project={project} />
           : <div/> }
 
         <style jsx>{`
@@ -265,6 +271,11 @@ class Todos extends Component {
 
           }
 
+          .step-form {
+            position: absolute;
+            bottom: 0;
+          }
+
           .todos h5 {
             color: #fff;
             margin-bottom: 20px
@@ -272,6 +283,9 @@ class Todos extends Component {
 
           .todos-items {
             margin-top: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 60vh;
           }
 
           .todos-items__header {

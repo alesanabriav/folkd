@@ -20,10 +20,10 @@ class Dashboard extends Component {
       }
     })
     .then(() => {
-      return this.props.getProjects(this.props.projects.variables);
+      return this.props.getUser();
     })
     .then(() => {
-      return this.props.getUser();
+      return this.props.getProjects(this.props.projects.variables);
     })
     .then(() => {
       return this.props.getUsers();
@@ -52,13 +52,11 @@ class Dashboard extends Component {
   render() {
 
     return (
-      <section className="row">
-        <Clients
-          onChangeClient={this.changeClient}
-        />
+      <div className="row">
+        <Clients onChangeClient={this.changeClient} />
         <Projects />
         <Todos />
-      </section>
+      </div>
     )
   }
 }

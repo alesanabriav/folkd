@@ -48,7 +48,23 @@ export class ClientForm extends Component {
               placeholder="Shortname"
             />
           </div>
-        <button style={{display: 'none'}}></button>
+
+        <button className="btn btn-outline-light btn-sm">Save</button>
+
+        <style jsx>{`
+          form {
+            padding: 20px;
+            background: rgba(0,0,0,.1);
+            float: left;
+            width: 100%;
+            margin-bottom: 20px;
+          }
+
+          button {
+            float: right
+          }
+
+        `}</style>
       </form>
     );
   }

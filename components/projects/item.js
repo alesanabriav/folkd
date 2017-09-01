@@ -24,17 +24,18 @@ export class Project extends Component {
       todos,
       todoSelected,
       currentUser,
-      filters
+      filters,
+      todosAssignedCount,
+      todosCount
     } = this.props;
 
     return (
       <li className={`projects__item ${project.id == selected.id ? 'projects__item--active' : ''}`}>
         <a href="#" onClick={this.selectProject}>
           <span className="projects__item__name">{project.name}</span>
-
           <span className={project.id == selected.id ? "projects__item__icon ion-chevron-down" : "projects__item__icon ion-chevron-right"}></span>
-          <span className="projects__item__todos-count">{project.todosCount}</span>
-        </a>
+          <span className="projects__item__todos-count">{todosAssignedCount} / {todosCount}</span>
+      </a>
 
         {todos.length > 0 ?
           <ul className={project.id == selected.id ? "projects__todos projects__todos--open" :"projects__todos" }>

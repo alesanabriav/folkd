@@ -15,12 +15,6 @@ const Project = new GraphQLObjectType({
     id: { type: GraphQLInt },
     client_id: { type: GraphQLInt },
     name: { type: GraphQLString },
-    todosCount: {
-      type: GraphQLInt,
-      resolve(project) {
-        return project.getTodos({ attributes: ['id'] }).then(todos => todos.length);
-      }
-    },
     todos: {
       type: new GraphQLList(Todo),
         args: {

@@ -107,14 +107,6 @@ class TodoForm extends Component {
 						onChange={this.handleDescription}
 						value={this.state.content}
 						></textarea>
-						{/* {this.state.description.length > 0 ?
-						<div className="todo-result">
-							<div
-								className="result__container"
-								dangerouslySetInnerHTML={{__html: this.state.description}}
-							/>
-						</div>
-						: ''} */}
 				</div>
 				<div className="form-group">
 					<button className="btn btn-outline-light" onClick={this.handleSubmit}>Create</button>

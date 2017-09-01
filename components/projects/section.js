@@ -5,7 +5,8 @@ import ProjectForm from "./form";
 
 class Projects extends Component {
   state = {
-    showForm: false
+    showForm: false,
+    showSearch: false
   }
 
   selectProject = (project) => {
@@ -24,6 +25,11 @@ class Projects extends Component {
     this.setState({ showForm: !this.state.showForm });
   }
 
+  toggleSearch = (e) => {
+    if(e) e.preventDefault();
+    this.setState({ showSearch: !this.state.showSearch });
+  }
+
   toggleCompleted = () => {
     this.props.showCompleted(!this.props.projects.filters.isCompleted);
   }
@@ -33,12 +39,23 @@ class Projects extends Component {
   }
 
   renderLoading = () => {
-    return (<section className="col-lg-4 col-md-3 projects"><h1>loading...</h1></section>);
+    return (
+      <section className="col-lg-4 col-md-3 projects">
+        <h3 style={{color: '#fff', textAlign: 'center', marginTop: '20px'}}>loading...</h3>
+      </section>
+    );
   }
 
   render() {
     const { items, selected, todos, filters, loading } = this.props.projects;
-    const { client, todo, currentUser, showCompleted } = this.props;
+    const {
+      client,
+      todo,
+      currentUser,
+      showCompleted,
+      todosAssignedCount,
+      todosCount
+    } = this.props;
     const { showForm } = this.state;
 
     if(loading) return this.renderLoading();
@@ -56,7 +73,7 @@ class Projects extends Component {
 
         {showForm || !selected.hasOwnProperty('id') && client.hasOwnProperty('id')
           ? <ProjectForm client={client} onSubmit={this.addProject} />
-          : ''
+          : <div/>
         }
 
           <ul>
@@ -64,6 +81,8 @@ class Projects extends Component {
               <Project
                 key={project.id}
                 currentUser={currentUser}
+                todosAssignedCount={todosAssignedCount}
+                todosCount={todosCount}
                 project={project}
                 selected={selected}
                 todos={todos}

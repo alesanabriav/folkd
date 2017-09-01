@@ -29,11 +29,16 @@ class Clients extends Component {
   }
 
   renderLoading = () => {
-    return (<section className="col-lg-3 clients"><h1>loading...</h1></section>)
+    return (
+      <section className="col-lg-2 col-md-3 clients">
+        <h3 style={{color: '#fff', textAlign: 'center', marginTop: '20px'}}>loading...</h3>
+      </section>
+    )
   }
 
   render() {
     const { items = [], selected, loading } = this.props.clients;
+    const { showSearch, showForm } = this.state;
     if(loading) return this.renderLoading();
 
     return (
@@ -41,12 +46,25 @@ class Clients extends Component {
         <header>
           <h5>Clients</h5>
           <div className="btns">
-            <button onClick={this.toggleForm} className="btn btn-outline-light btn-sm"><i className="ion-plus"></i></button>
-            <button onClick={this.toggleSearch} className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>
+            <button
+              onClick={this.toggleForm}
+              className="btn btn-outline-light btn-sm"
+            >
+              <i className="ion-plus"></i>
+            </button>
+            <button
+              onClick={this.toggleSearch}
+              className="btn btn-outline-light btn-sm"
+            >
+              <i className="ion-search"></i>
+            </button>
           </div>
         </header>
-        {this.state.showForm ? <ClientForm onSubmit={this.addClient} /> : <div/>}
-        {this.state.showSearch ? <SearchClient /> : <div/>}
+
+        {showForm ? <ClientForm onSubmit={this.addClient} /> : <div/>}
+
+        {showSearch ? <SearchClient /> : <div/>}
+
         <ul className="clients__list">
           {items.map(client =>
             <Client
@@ -57,6 +75,7 @@ class Clients extends Component {
             />
           )}
         </ul>
+
         <style jsx>{`
           .clients {
             background: rgba(0,0,0,.2);

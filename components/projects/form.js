@@ -23,7 +23,7 @@ class ProjectForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="input-group">
+        <div className="form-group">
           <input
             type="text"
             name="name"
@@ -33,6 +33,22 @@ class ProjectForm extends Component {
             placeholder="Project Name"
           />
         </div>
+        <button className="btn btn-outline-light btn-sm">Save</button>
+
+        <style jsx>{`
+          form {
+            padding: 20px;
+            background: rgba(0,0,0,.1);
+
+            width: 100%;
+            margin-bottom: 20px;
+          }
+
+          button {
+
+          }
+
+        `}</style>
 
       </form>
     );
