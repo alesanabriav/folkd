@@ -39,7 +39,7 @@ const Project = new GraphQLObjectType({
         },
       resolve(project, args) {
         // console.log(`$---------projects query todos-----------`);
-        return project.findOne({ include: [{model: models.Todo, ...args}] });
+        return project.getTodos(args);
       }
     }
   })
