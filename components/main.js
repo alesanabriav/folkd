@@ -17,6 +17,8 @@ class Main extends Component {
           <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" />
           <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
           <link rel="stylesheet" href="react-datepicker/dist/react-datepicker.css" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.11.0/trix.css" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.11.0/trix.js" />
         </Head>
         <Header user={users.current} />
 

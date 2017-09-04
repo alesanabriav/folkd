@@ -76,7 +76,6 @@ class Projects extends Component {
                 currentUser={currentUser}
                 project={project}
                 selected={selected}
-                todos={todos}
                 todoSelected={todo}
                 filters={filters}
                 onSelectProject={this.selectProject}

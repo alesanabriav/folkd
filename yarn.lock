@@ -2317,6 +2317,10 @@ find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
+flatpickr:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-3.0.7.tgz#2aa980c0bd83884c0299ee9fba3b7809bea16a29"
+
 follow-redirects@^1.2.3:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.2.4.tgz#355e8f4d16876b43f577b0d5ce2668b9723214ea"
@@ -5381,6 +5385,10 @@ tr46@~0.0.3:
 trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
+
+trix:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-0.11.0.tgz#74e3b6a38fa0e14e3e8a426adca558433775a673"
 
 tsscmp@~1.0.0:
   version "1.0.5"

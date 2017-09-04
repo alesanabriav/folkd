@@ -21,13 +21,14 @@ export class Project extends Component {
     const {
       project,
       selected,
-      todos,
       todoSelected,
       currentUser,
       filters,
       todosAssignedCount,
       todosCount
     } = this.props;
+
+    console.log(project.todos);
 
     return (
       <li className={`projects__item ${project.id == selected.id ? 'projects__item--active' : ''}`}>
@@ -37,9 +38,9 @@ export class Project extends Component {
           <span className="projects__item__todos-count"></span>
       </a>
 
-        {todos.length > 0 ?
-          <ul className={project.id == selected.id ? "projects__todos projects__todos--open" :"projects__todos" }>
-            {todos.map(todo => {
+        {project.todos.length > 0 ?
+          <ul className={"projects__todos--open" }>
+            {project.todos.map(todo => {
               if(todo.is_completed == filters.isCompleted) {
                 return (
                   <li key={todo.id} className={todo.id == todoSelected.id ? 'projects__todo--active' : '' }>

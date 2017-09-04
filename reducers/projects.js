@@ -3,7 +3,6 @@ const TYPE = 'PROJECTS';
 const initialState = {
   items: [],
   selected: {},
-  todos: [],
   variables: {
     clientId: null,
     order: [['id', 'DESC']]
@@ -32,7 +31,6 @@ export default function projects(state = initialState, action) {
       return {
         ...state,
         selected: action.payload,
-        todos: action.payload.todos,
         loading: false,
         filters: {
           isCompleted: false
