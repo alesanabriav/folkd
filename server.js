@@ -1,17 +1,16 @@
-const path = require('path');
 const express = require('express');
 const next = require('next');
 const graphqlHTTP = require('express-graphql');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const multer  = require('multer')
-const uid = require('uid');
 const schema = require('./gq/schema');
 const { sendMail } = require('./lib/mail');
 const HttpBearer = require('./lib/http_bearer');
 const { login, getToken } = require('./lib/login');
 const ga = require('./lib/ga');
 const gaStorageEngine = require('./lib/ga_storage_engine');
+
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
