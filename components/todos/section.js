@@ -140,6 +140,7 @@ class Todos extends Component {
               editTodo={showTodoForm}
               selectTodo={this.selectTodo}
               users={users}
+              user={user}
               todo={todo}
               project={project}
               onSubmit={this.handleSubmit}
