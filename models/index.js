@@ -5,7 +5,8 @@ const capitalize = require('js-capitalize');
 const config = require('../config');
 
 const sequelize = new Sequelize(config.seq.database, config.seq.username, config.seq.password, {
-   dialect: 'mysql'
+   dialect: 'mysql',
+   logging: false
 });
 
 sequelize
