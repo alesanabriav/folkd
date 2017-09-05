@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from './header';
 import Head from 'next/head';
-import Router from 'next/router';
 
 class Main extends Component {
   render() {
@@ -23,7 +22,7 @@ class Main extends Component {
         <Header user={users.current} />
 
         <div className="container-fluid">
-          {React.cloneElement(this.props.children, { url } )}
+          {this.props.children}
         </div>
 
         <style global jsx>{`
@@ -32,7 +31,7 @@ class Main extends Component {
             font-size: 14px;
             font-family: 'Source Sans Pro', sans-serif;
           }
-          
+
           ul {
             padding: 0;
           }

@@ -4,6 +4,7 @@ const {
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
+   GraphQLBoolean,
   GraphQLInputObjectType
 } = require("graphql");
 const GraphQLJSON = require("graphql-type-json");
@@ -33,9 +34,18 @@ const Project = new GraphQLObjectType({
     todos: {
       type: new GraphQLList(Todo),
         args: {
-          where: { type: GraphQLJSON },
-          order: { type: GraphQLJSON },
-          limit: { type: GraphQLInt }
+          where: {
+            type: GraphQLJSON
+          },
+          order: {
+            type: GraphQLJSON
+          },
+          limit: {
+            type: GraphQLInt
+          },
+          is_completed: {
+            type: GraphQLBoolean
+          }
         },
       resolve(project, args) {
         // console.log(`$---------projects query todos-----------`);

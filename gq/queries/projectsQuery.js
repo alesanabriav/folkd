@@ -4,6 +4,7 @@ const {
   GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
+  GraphQLBoolean,
   GraphQLInputObjectType
 } =  require("graphql");
 const GraphQLJSON =  require("graphql-type-json");
@@ -14,12 +15,17 @@ const models =  require("../../models");
 const projects = {
   type: new GraphQLList(Project),
   args: {
-    where: { type: projectsFilter },
-    limit: { type: GraphQLInt },
-    order: { type: GraphQLJSON }
+    where: {
+      type: projectsFilter
+    },
+    limit: {
+      type: GraphQLInt
+    },
+    order: {
+      type: GraphQLJSON
+    }
   },
-  resolve(r, args, ctx, info) {
-    console.log('----projects args:', args);
+  resolve(_, args, ctx) {
     return models.Project.findAll(args);
   }
 };

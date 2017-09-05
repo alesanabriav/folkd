@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import { connect } from 'react-redux';
 import actions from '../actions';
 import Clients from './clients';
@@ -30,12 +31,12 @@ class Dashboard extends Component {
       return this.props.getUsers();
     })
     .then(() => {
-      const { url } = this.props;
-      if(url.query.hasOwnProperty('client')) {
-        this.props.selectClientById(url.query.client);
-        this.props.setClientId(url.query.client).then(() => {
+      console.log(Router.query);
+      if(Router.query.hasOwnProperty('client')) {
+        this.props.selectClientById(Router.query.client);
+        this.props.setClientId(Router.query.client).then(() => {
           this.props.getProjects(this.props.projects.variables).then(() =>{
-            this.props.getTodo(url.query.todo);
+            this.props.getTodo(Router.query.todo);
           })
         });
       }

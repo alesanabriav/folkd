@@ -20,6 +20,7 @@
     "axios": "^0.16.2",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
+    "color": "^2.0.0",
     "date-fns": "^1.28.5",
     "express": "^4.15.4",
     "express-graphql": "^0.6.7",

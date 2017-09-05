@@ -3,6 +3,9 @@ const TYPE = 'USERS';
 
 const initialState = {
   items: [],
+  options: {
+    baseColor: '#4A32D2'
+  },
   current: {},
   loading: false,
   fail: false

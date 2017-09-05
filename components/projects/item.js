@@ -28,8 +28,6 @@ export class Project extends Component {
       todosCount
     } = this.props;
 
-    console.log(project.todos);
-
     return (
       <li className={`projects__item ${project.id == selected.id ? 'projects__item--active' : ''}`}>
         <a href="#" onClick={this.selectProject}>

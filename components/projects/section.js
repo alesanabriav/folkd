@@ -66,6 +66,7 @@ class Projects extends Component {
             <button onClick={this.toggleForm} className="btn btn-outline-light btn-sm"><i className="ion-plus"></i></button>
             <button className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>
             <button className="btn btn-outline-light btn-sm" onClick={this.toggleCompleted}>{ filters.isCompleted ? 'Show open' : 'Show completed'}</button>
+            <button className="btn btn-outline-light btn-sm" onClick={this.toggleCompleted}>{ filters.isCompleted ? 'All' : 'Assigned'}</button>
           </div>
         </header>
 

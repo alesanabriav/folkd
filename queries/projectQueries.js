@@ -1,12 +1,12 @@
 
 export const getClientProjectsQuery = `
-  query getClientProjects($clientId: Int!, $name: JSON) {
-    projects(where: {client_id: $clientId, name: $name}, order: [["id", "desc"]]) {
+  query getClientProjects($clientId: Int!, $name: JSON, $is_completed: Boolean, $order: JSON) {
+    projects(where: {client_id: $clientId, name: $name}, order: $order) {
       id
       name
       todosCount
       todosAssignedCount
-      todos(order: [["id", "desc"]]) {
+      todos(order: [["id", "desc"]], is_completed: $is_completed) {
         project_id
         id
         title

@@ -5,9 +5,11 @@ const initialState = {
   selected: {},
   variables: {
     clientId: null,
-    order: [['id', 'DESC']]
+    order: [['id', 'DESC']],
+    is_completed: false
   },
   filters: {
+    assign_id: null,
     isCompleted: false
   },
   loading: false,
