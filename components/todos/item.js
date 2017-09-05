@@ -14,7 +14,6 @@ class Todo extends Component {
 
   handleUploaded(files) {
     files.forEach(file => {
-      console.log(this.props.addTodoAttachment, file);
       this.props.addTodoAttachment(file);
     })
   }
@@ -40,6 +39,7 @@ class Todo extends Component {
             )}
           </ul>
         </div>
+
         <style jsx>{`
           .todo__item {
             background: rgba(255,255,255, .1);

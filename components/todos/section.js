@@ -149,7 +149,8 @@ class Todos extends Component {
 
         { todo.hasOwnProperty('id') && (user.id == todo.author.id || user.id == todo.assigned.id)
           ? <StepForm className="step-form" onSubmit={this.handleSubmitStep} project={project} />
-          : <div/> }
+          : <div/>
+        }
 
         <style jsx>{`
           .todos {

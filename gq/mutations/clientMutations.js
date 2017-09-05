@@ -28,7 +28,7 @@ const updateClient = {
     id: { type: new GraphQLNonNull(GraphQLInt) },
     data: { type: new GraphQLNonNull(GraphQLJSON) }
   },
-  resolve(root, args) {
+  resolve(_, args) {
     return models.Client.update(args.data, { where: { id: args.id } })
       .then(company => models.Client.findOne({ where: args.id }));
   }

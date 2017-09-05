@@ -5,13 +5,16 @@ class DatePicker extends Component {
 
   componentDidMount() {
     const _this = this;
-
-    this.flatpickr = new Flatpickr(this.node, {
+    let options = {
       altInput: true,
       onChange(selectedDates, dateStr, instance) {
         return _this.props.onChange(dateStr, selectedDates);
       }
-    });
+    };
+
+    options = {...options, ...this.props.options};
+
+    this.flatpickr = new Flatpickr(this.node, options);
 
     if (this.props.hasOwnProperty('value')) {
       this.flatpickr.setDate(this.props.value, false)

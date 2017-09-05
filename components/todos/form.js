@@ -30,7 +30,6 @@ class TodoForm extends Component {
 	}
 
 	handleDeadline = (type, e) => {
-		console.log(e);
 		this.setState({ [`deadline_${type}`]: e });
 	}
 
@@ -49,6 +48,10 @@ class TodoForm extends Component {
 		};
 
 		this.props.onSubmit(variables);
+	}
+
+	handleUploaded = (files) => {
+		console.log(files);
 	}
 
 	render() {
@@ -84,6 +87,7 @@ class TodoForm extends Component {
 				<div className="row">
 					<div className="form-group datepicker-container col-lg-6">
 						<DatePicker
+							options={{minDate: "today"}}
 							className="form-control"
 							placeholderText="deadline start"
 							onChange={this.handleDeadline.bind(null, 'start')}
@@ -92,6 +96,7 @@ class TodoForm extends Component {
 
 					<div className="form-group datepicker-container col-lg-6">
 						<DatePicker
+							options={{minDate: "today"}}
 							className="form-control"
 							placeholderText="deadline end"
 							onChange={this.handleDeadline.bind(null, 'end')}
@@ -108,8 +113,13 @@ class TodoForm extends Component {
 						value={this.state.content}
 						></textarea>
 				</div>
+
 				<div className="form-group">
-					<Upload data={uploadData} user={user} />
+					<Upload
+						data={uploadData}
+						user={user}
+						onUploaded={this.handleUploaded.bind(this)}
+					/>
 				</div>
 				<div className="form-group">
 					<button className="btn btn-outline-light" onClick={this.handleSubmit}>Create</button>

@@ -4,27 +4,61 @@ const {
   GraphQLList,
   GraphQLNonNull,
   GraphQLInputObjectType
-} = "graphql";
-const GraphQLJSON = "graphql-type-json";
-const AWS = 'aws-sdk';
-const models = "../../models";
-const s3 = new AWS.S3();
+} = require("graphql");
 
-// var params = {Bucket: 'bucket', Key: 'key', Body: stream};
+const GraphQLJSON = require("graphql-type-json");
+const models = require("../../models");
+const Attachment = require('../types/attachmentType');
 
-// s3.upload(params, function(err, data) {
-//   console.log(err, data);
-// });
-
-
-export const createAttachement = {
-	type: Client,
+const createAttachement = {
+	type: Attachment,
 	args: {
-		name: { type: new GraphQLNonNull(GraphQLString) },
-    abbreviation: { type: GraphQLString },
+		todo_id: {
+      type: GraphQLInt
+    },
+		step_id: {
+      type: GraphQLInt
+    },
+    name: {
+      type: GraphQLString
+    },
+    url: {
+      type: GraphQLString
+    },
+    drive_id: {
+      type: GraphQLString
+    }
 	},
 	resolve(root, args, ctx) {
-    let data = {...args, company_id: ctx.user.company_id};
-		return models.Client.create(data);
+    let data = {...args, user_id: ctx.user.id};
+		return models.Attachment.create(data);
 	}
+}
+
+const updateAttachement = {
+	type: Attachment,
+	args: {
+		id: {
+      type: GraphQLInt
+    },
+		todo_id: {
+      type: GraphQLInt
+    },
+		step_id: {
+      type: GraphQLInt
+    },
+    name: {
+      type: GraphQLString
+    }
+	},
+	resolve(_, args, ctx) {
+    let data = {...args, user_id: user.id};
+    return models.Attachment.update(args.data, { where: { id: args.id } })
+      .then(company => models.Attachment.findOne({ where: args.id }));
+	}
+}
+
+module.exports = {
+  createAttachement,
+  updateAttachement
 }

@@ -3,9 +3,8 @@ const next = require('next');
 const graphqlHTTP = require('express-graphql');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const multer  = require('multer')
+const multer  = require('multer');
 const schema = require('./gq/schema');
-const { sendMail } = require('./lib/mail');
 const HttpBearer = require('./lib/http_bearer');
 const { login, getToken } = require('./lib/login');
 const register = require('./lib/register');
@@ -51,7 +50,6 @@ app.prepare()
       })
       .catch(err => res.status(401).redirect('/login?verified=0'));
   });
-
 
   server.get('/profile/:id', (req, res) => {
     const params = Object.assign({}, req.query, req.params);
