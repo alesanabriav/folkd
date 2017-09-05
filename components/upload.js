@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 class Upload extends Component {
 
   state = {
-    message: 'Drop files or select',
+    message: 'Drop files or select it.',
     uploadProgress: '',
     files: []
   }
@@ -56,10 +56,13 @@ class Upload extends Component {
         if(typeof this.props.onUploaded == 'function') {
           this.props.onUploaded(files);
         }
+
         this.setState({ message: 'Drop files or select', files });
       })
-      .catch(err => {
-        this.getDriveUrl();
+      .catch(error => {
+        if(error.indexOf('google auth problem') !== -1 ) {
+          this.getDriveUrl();
+        }
       });
   }
 
@@ -68,6 +71,7 @@ class Upload extends Component {
 
     return (
       <Dropzone
+        style={{textAlign: 'center', paddingTop: '20px'}}
         onDrop={this.handleDrop}
         className="form-control"
         activeClassName="form-control--drop"

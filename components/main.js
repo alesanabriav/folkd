@@ -6,7 +6,7 @@ import Router from 'next/router';
 class Main extends Component {
   render() {
     const { url = {}, users = {} } = this.props;
-    
+
     return (
       <div>
         <Head>
@@ -28,10 +28,11 @@ class Main extends Component {
 
         <style global jsx>{`
           body {
-            background:  #4A32D2;
+            background: #4A32D2;
             font-size: 14px;
             font-family: 'Source Sans Pro', sans-serif;
           }
+          
           ul {
             padding: 0;
           }
@@ -53,7 +54,8 @@ class Main extends Component {
           }
 
           .form-control--drop {
-            opacity: .7;
+            opacity: .5;
+            border: 2px solid rgba(255,255,255,.8) !important;
           }
 
           .todo-result {

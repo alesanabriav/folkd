@@ -12,8 +12,16 @@ class Todo extends Component {
 		return md.render(content);
   }
 
+  handleUploaded(files) {
+    files.forEach(file => {
+      console.log(this.props.addTodoAttachment, file);
+      this.props.addTodoAttachment(file);
+    })
+  }
+
   render() {
-    const { todo, attachments } = this.props;
+    const { todo, user, attachments } = this.props;
+    const uploadData = { todo_id: todo.id, user_id: user.id };
 
     return (
       <section className="todo__item">
@@ -22,7 +30,7 @@ class Todo extends Component {
         </div>
         <div className="todo__item__upload">
 
-          <Upload />
+          <Upload data={uploadData} user={user} onUploaded={this.handleUploaded.bind(this)} />
 
           <ul className="todo__item__uploads">
             {attachments.map(attachment =>

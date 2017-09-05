@@ -12,8 +12,15 @@ class Step extends Component {
 		return md.render(content);
   }
 
+  handleUploaded(files) {
+    files.forEach(file => {
+      this.props.addStepAttachment(file);
+    })
+  }
+
   render() {
-    const { subtodo } = this.props;
+    const { subtodo, user } = this.props;
+    const uploadData = {user_id: user.id, step_id: subtodo.id};
 
    return (
      <section  className="todo__item">
@@ -28,7 +35,7 @@ class Step extends Component {
 
        <div className="todo__item__upload">
 
-         <Upload />
+         <Upload data={uploadData} user={user} onUploaded={this.handleUploaded.bind(this)} />
 
          <ul className="todo__item__uploads">
            {subtodo.attachments.map(attachment =>

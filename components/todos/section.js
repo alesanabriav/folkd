@@ -43,63 +43,6 @@ class Todos extends Component {
     this.setState({ showTodoForm: !this.state.showTodoForm });
   }
 
-  handleUpload = (data, action, e) => {
-    const token = localStorage.getItem('folk-token');
-    const _this = this;
-    const config = {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      onUploadProgress(progressEvent) {
-        const uploadProgress = Math.round(progressEvent.loaded / progressEvent.total * 100);
-        _this.setState({ uploadProgress });
-      }
-    };
-
-    this.props.uploadingTodoAttachment()
-    .then(() => request.post('/upload', data, config))
-    .then((res) => {
-      this.props[action](res.data);
-    })
-    .catch(err => {
-      this.getDriveUrl();
-    });
-  }
-
-  handleTodoUpload = (e) => {
-    const { todo, user } = this.props;
-    const data = new FormData();
-
-    data.append('user_id', user.id);
-    data.append('todo_id', todo.id);
-    data.append('file', e.target.files[0]);
-    this.handleUpload(data, 'addTodoAttachment', e);
-  }
-
-  handleStepUpload = (step, e) => {
-    const { todo, user } = this.props;
-    const data = new FormData();
-
-    data.append('user_id', user.id);
-    data.append('step_id', step.id);
-    data.append('file', e.target.files[0]);
-    this.handleUpload(data, 'addStepAttachment', e);
-  }
-
-  getDriveUrl = (e) => {
-    if(e) e.preventDefault();
-    const token = localStorage.getItem('folk-token');
-    const { user } = this.props;
-    const state = encodeURIComponent(JSON.stringify({id: user.id}));
-    const config = {
-      headers: {'Authorization': `Bearer ${token}`}
-    };
-
-    request
-    .post('/gaoauth-url', {state}, config)
-    .then(res => window.location = res.data.url);
-  }
-
   completeTodo = (e) => {
     e.preventDefault();
     const { todo } = this.props;
@@ -119,10 +62,12 @@ class Todos extends Component {
       users,
       user,
       loading,
-      uploading
+      uploading,
+      addTodoAttachment,
+      addStepAttachment
     } = this.props;
 
-    const { showTodoForm, uploadProgress } = this.state;
+    const { showTodoForm } = this.state;
 
     if(loading) return this.renderLoading();
 
@@ -181,14 +126,24 @@ class Todos extends Component {
               </div>
             </div>
 
-            <Todo key={todo.id} attachments={attachments} todo={todo} />
+            <Todo
+              attachments={attachments}
+              todo={todo}
+              user={user}
+              addTodoAttachment={addTodoAttachment}
+            />
 
           </div>
           : <div/>
         }
 
         {steps && steps.map(subtodo =>
-          <Step key={subtodo.id} subtodo={subtodo} />
+          <Step
+            key={subtodo.id}
+            user={user}
+            subtodo={subtodo}
+            addStepAttachment={addStepAttachment}
+          />
         )}
         </div>
 
@@ -289,8 +244,6 @@ class Todos extends Component {
             right: 0;
             font-size: 12px;
           }
-
-
 
         `}</style>
       </section>
