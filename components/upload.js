@@ -53,15 +53,22 @@ class Upload extends Component {
 		request.all(requests)
 			.then(res => {
         const files = res.map(file => file.data);
+
         if(typeof this.props.onUploaded == 'function') {
-          this.props.onUploaded(files);
+          this.props.onUploaded(files.concat(this.state.files));
         }
 
-        this.setState({ message: 'Drop files or select', files });
+        this.setState({
+          message: 'Drop files or select',
+          files: this.state.files.concat(files)
+        });
+
       })
       .catch(error => {
-        if(error.indexOf('google auth problem') !== -1 ) {
+        if(error.hasOwnProperty('response') && error.response.status == 500) {
           this.getDriveUrl();
+        } else {
+          console.log(error);
         }
       });
   }

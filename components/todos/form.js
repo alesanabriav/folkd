@@ -14,7 +14,8 @@ class TodoForm extends Component {
 		deadline_start: "",
 		deadline_end: "",
 		focused: false,
-		date: null
+		date: null,
+		files: []
 	}
 
 	handleChange = e => {
@@ -51,12 +52,13 @@ class TodoForm extends Component {
 	}
 
 	handleUploaded = (files) => {
-		console.log(files);
+		this.props.onUploaded(files);
+		this.setState({ files });
 	}
 
 	render() {
 		const { users, user } = this.props;
-
+		const { files } = this.state;
 		const uploadData = {'user_id': user.id};
 
 		return (
@@ -120,6 +122,9 @@ class TodoForm extends Component {
 						user={user}
 						onUploaded={this.handleUploaded.bind(this)}
 					/>
+					<ul>
+						{files.map(file => <li>{file.name}</li>)}
+					</ul>
 				</div>
 				<div className="form-group">
 					<button className="btn btn-outline-light" onClick={this.handleSubmit}>Create</button>

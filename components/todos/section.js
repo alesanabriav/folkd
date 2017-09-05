@@ -10,7 +10,11 @@ class Todos extends Component {
   state = {
     showTodoForm: false,
     showMainTodo: false,
-    uploadProgress: 0
+    files: []
+  }
+
+  handleUploaded = (files) => {
+    this.setState({ files });
   }
 
   handleSubmit = (variables) => {
@@ -19,14 +23,21 @@ class Todos extends Component {
       return this.props.addProjectTodo(todo);
     })
     .then((todo) => {
-      const { project } = this.props;
+      const { project, client } = this.props;
+
       const notification = {
         user_id: todo.assigned.id,
         message: `you were assigned to ${todo.title} on the project ${project.name}`,
-        url: `?client=${project.client_id}&project=${project.id}&todo=${todo.id}`
+        url: `?client=${client.id}&project=${project.id}&todo=${todo.id}`
       };
 
       this.props.addNotification(notification);
+      return todo;
+    })
+    .then(todo => {
+      this.state.files.forEach(attachment => {
+        this.props.updateTodoAttachment({...attachment, todo_id: todo.id});
+      });
     })
   }
 
@@ -87,6 +98,7 @@ class Todos extends Component {
               todo={todo}
               project={project}
               onSubmit={this.handleSubmit}
+              onUploaded={this.handleUploaded}
             />
             : <div/>
           }

@@ -1,5 +1,12 @@
 import apolloFetch from '../lib/apollo_fetch';
-import { getTodoQuery, addTodoMutation, updateTodoMutation  } from '../queries/todoQueries';
+import {
+  getTodoQuery,
+  addTodoMutation,
+  updateTodoMutation
+} from '../queries/todoQueries';
+import {
+  updateAttachmentMutation
+} from '../queries/attachmentQueries';
 import { addStepMutation } from '../queries/stepQueries';
 
 const TYPE = 'TODOS';
@@ -66,6 +73,18 @@ export function addStepAttachment(attachment) {
 export function addTodoAttachment(attachment) {
   const action = (dispatch) => {
     return dispatch({ type: `ADD_${TYPE}_ATTACHMENT`, payload: attachment });
+  }
+
+  return action;
+}
+
+export function updateTodoAttachment(variables) {
+  const action = dispatch => {
+    return apolloFetch({query: updateAttachmentMutation, variables})
+      .then(res => {
+        dispatch({ type: `ADD_${TYPE}_ATTACHMENT`, payload: res.data.updateAttachment });
+        return res.data.updateAttachement;
+      })
   }
 
   return action;

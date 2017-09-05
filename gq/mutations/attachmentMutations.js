@@ -10,7 +10,7 @@ const GraphQLJSON = require("graphql-type-json");
 const models = require("../../models");
 const Attachment = require('../types/attachmentType');
 
-const createAttachement = {
+const createAttachment = {
 	type: Attachment,
 	args: {
 		todo_id: {
@@ -35,7 +35,7 @@ const createAttachement = {
 	}
 }
 
-const updateAttachement = {
+const updateAttachment = {
 	type: Attachment,
 	args: {
 		id: {
@@ -52,13 +52,13 @@ const updateAttachement = {
     }
 	},
 	resolve(_, args, ctx) {
-    let data = {...args, user_id: user.id};
-    return models.Attachment.update(args.data, { where: { id: args.id } })
+    let data = {...args, user_id: ctx.user.id};
+    return models.Attachment.update(data, { where: { id: args.id } })
       .then(company => models.Attachment.findOne({ where: args.id }));
 	}
 }
 
 module.exports = {
-  createAttachement,
-  updateAttachement
+  createAttachment,
+  updateAttachment
 }

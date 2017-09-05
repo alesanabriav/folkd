@@ -10,7 +10,8 @@ import {
   addTodoStep,
   addTodoAttachment,
   addStepAttachment,
-  uploadingTodoAttachment
+  uploadingTodoAttachment,
+  updateTodoAttachment
 } from '../../actions/todos';
 
 import { addProjectTodo } from '../../actions/projects';
@@ -50,6 +51,7 @@ const mapDispatchToProps = {
   addTodoStep,
   addTodoAttachment,
   addStepAttachment,
+  updateTodoAttachment,
   uploadingTodoAttachment,
   addNotification
 };

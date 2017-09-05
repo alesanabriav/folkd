@@ -19,7 +19,7 @@ const { createProject, updateProject } = require('./mutations/projectMutations')
 const { loginUser, registerUser } = require('./mutations/userMutations');
 const { createTodo, updateTodo } = require('./mutations/todoMutations');
 const { createStep } = require('./mutations/stepMutations');
-const { createAttachement, updateAttachement } = require('./mutations/attachmentMutations');
+const { createAttachment, updateAttachment } = require('./mutations/attachmentMutations');
 const { createNotification, updateNotification } = require('./mutations/notificationMutations');
 
 const Query = new GraphQLObjectType({
@@ -48,8 +48,8 @@ const Mutation = new GraphQLObjectType({
     createTodo,
     updateTodo,
     createStep,
-    createAttachement,
-    updateAttachement,
+    createAttachment,
+    updateAttachment,
     createNotification,
     updateNotification
   })
