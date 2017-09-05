@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import differenceInDays from 'date-fns/difference_in_days';
 import differenceInHours from 'date-fns/difference_in_hours';
+
 import Todos from './section';
+
 import {
   addTodo,
   completeTodo,
@@ -10,14 +12,20 @@ import {
   addStepAttachment,
   uploadingTodoAttachment
 } from '../../actions/todos';
+
 import { addProjectTodo } from '../../actions/projects';
 import { addNotification } from '../../actions/notifications';
 
 const mapStateToProps = state => {
   // I need selectors to make this memoized
+
   const now = new Date();
-  const start = state.todos.item.deadline_start;
-  const end = state.todos.item.deadline_end;
+  const start = state.todos.item.hasOwnProperty('deadline_start')
+    ? state.todos.item.deadline_start
+    : now;
+  const end = state.todos.item.hasOwnProperty('deadline_end')
+    ? state.todos.item.deadline_end
+    : now;
   const deadline_days = differenceInDays(end, start);
   const deadline_current = differenceInDays(end, now) == 0 && differenceInHours(end, now) > 0
     ? 1

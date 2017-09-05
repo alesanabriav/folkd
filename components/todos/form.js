@@ -3,7 +3,7 @@ import request from 'axios';
 import MarkdownIt from 'markdown-it';
 import taskLists from 'markdown-it-task-lists';
 import DatePicker from '../date-picker';
-import Dropzone from 'react-dropzone';
+import Upload from '../upload';
 
 class TodoForm extends Component {
 	state = {
@@ -34,42 +34,6 @@ class TodoForm extends Component {
 		this.setState({ [`deadline_${type}`]: e });
 	}
 
-	getDriveUrl = (e) => {
-		e.preventDefault();
-		const token = localStorage.getItem('folk-token');
-		const { user } = this.props;
-		const state = encodeURIComponent(JSON.stringify({id: user.id}));
-		const config = {
-			headers: {'Authorization': `Bearer ${token}`}
-		};
-
-		request
-		.post('/gaoauth-url', {state}, config)
-		.then(res => window.location = res.data.url);
-	}
-
-	handleDrop = (acceptedFiles, rejectedFiles) => {
-		const {user} = this.props;
-		const token = localStorage.getItem('folk-token');
-		const config = {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-		};
-
-		const requests = acceptedFiles.map(file => {
-			const data = new FormData();
-			data.append('user_id', user.id);
-			data.append('file', file);
-			return request.post('/upload', data, config);
-		});
-
-		request.all(requests)
-			.then(request.spread(function (acct, perms) {
-				console.log(acct, perms);
-  		}))
-	}
-
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const { title, content, assign_id, deadline_start, deadline_end } = this.state;
@@ -89,6 +53,8 @@ class TodoForm extends Component {
 
 	render() {
 		const { users, user } = this.props;
+
+		const uploadData = {'user_id': user.id};
 
 		return (
 			<form onSubmit={this.handleSubmit} className="todos-form">
@@ -143,11 +109,7 @@ class TodoForm extends Component {
 						></textarea>
 				</div>
 				<div className="form-group">
-					{user.has_drive ?
-					<Dropzone onDrop={this.handleDrop} className="form-control" activeClassName="form-control--drop">
-						<p>Drop files or select</p>
-					</Dropzone>
-					: <a href="#" onClick={this.getDriveUrl}>add google drive</a>}
+					<Upload data={uploadData} user={user} />
 				</div>
 				<div className="form-group">
 					<button className="btn btn-outline-light" onClick={this.handleSubmit}>Create</button>

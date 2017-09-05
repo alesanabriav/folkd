@@ -32,14 +32,12 @@ class DatePicker extends Component {
     const { placeholderText } = this.props;
 
     return (
-      <div className="form-group">
         <input
           ref={node => this.node = node}
           type="text"
           placeholder={placeholderText}
           className="form-control"
         />
-      </div>
 
     )
   }
