@@ -131,7 +131,6 @@ app.prepare()
     upload.single('file'),
     (req, res) => {
       const { body, user, file } = req;
-      console.log(file);
       ga.uploadFile(body, user, file)
         .then(attachment => res.json(attachment));
   });

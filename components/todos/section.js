@@ -68,6 +68,9 @@ class Todos extends Component {
     .then((res) => {
       this.props[action](res.data);
     })
+    .catch(err => {
+      this.getDriveUrl();
+    });
   }
 
   handleTodoUpload = (e) => {
@@ -91,7 +94,7 @@ class Todos extends Component {
   }
 
   getDriveUrl = (e) => {
-    e.preventDefault();
+    if(e) e.preventDefault();
     const token = localStorage.getItem('folk-token');
     const { user } = this.props;
     const state = encodeURIComponent(JSON.stringify({id: user.id}));
