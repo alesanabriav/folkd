@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import moment from 'moment';
+import dateFns from 'date-fns';
 import request from 'axios';
 import MarkdownIt from 'markdown-it';
 import taskLists from 'markdown-it-task-lists';
@@ -128,7 +128,9 @@ class Todos extends Component {
       loading,
       uploading
     } = this.props;
+
     const { showTodoForm, uploadProgress } = this.state;
+
     if(loading) return this.renderLoading();
 
     return (
@@ -175,12 +177,12 @@ class Todos extends Component {
               </span>
 
               <span>
-                Created: <i>{moment(todo.created_at).format('dddd DD MMM YY HH:mm')}</i>
+                Created: <i>{dateFns.format(todo.created_at, 'dddd DD MMM YY HH:mm')}</i>
               </span>
 
               <div className="deadline">
-                <span className="deadline__start">{moment(todo.deadline_start).format('DD MMM')}</span>
-                <span className="deadline__end">{moment(todo.deadline_end).format('DD MMM')}</span>
+                <span className="deadline__start">{dateFns.format(todo.deadline_start, 'DD MMM')}</span>
+                <span className="deadline__end">{dateFns.format(todo.deadline_end, 'DD MMM')}</span>
                 <span className="deadline__line"></span>
                 <span className="deadline__line--fill" style={{width: `${100 - (100 / (todo.deadline_days / todo.deadline_current))}%`}}></span>
               </div>
@@ -222,7 +224,7 @@ class Todos extends Component {
             <header>
               <span><h4>Step: {subtodo.position}</h4></span>
               <span>By: {subtodo.author.name}</span>
-              <span>Date: {moment(subtodo.created_at).format('dddd DD MMM YY HH:mm')}</span>
+              <span>Date: {dateFns.format(subtodo.created_at, 'dddd DD MMM YY HH:mm')}</span>
             </header>
              <div className="todo__item__content">
                <div dangerouslySetInnerHTML={{__html: this.renderMD(subtodo.content)}}/>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getNotifications, removeNotification } from '../actions/notifications';
-import Popper from 'popper.js';
 import Link from 'next/link';
 
 class Header extends Component {
