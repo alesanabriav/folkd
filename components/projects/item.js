@@ -7,9 +7,9 @@ export class Project extends Component {
     this.props.onSelectProject(this.props.project);
   }
 
-  changeTodo = (todoId, e) => {
+  changeTodo = (todo, e) => {
     e.preventDefault();
-    this.props.onChangeTodo(todoId);
+    this.props.onChangeTodo(todo);
   }
 
   toggleCompleted = (e) => {
@@ -44,7 +44,7 @@ export class Project extends Component {
               if(todo.is_completed == filters.isCompleted) {
                 return (
                   <li key={todo.id} className={todo.id == todoSelected.id ? 'projects__todo--active' : '' }>
-                    <a href="#" onClick={this.changeTodo.bind(null, todo.id)}>
+                    <a href="#" onClick={this.changeTodo.bind(null, todo)}>
                       {todo.assigned.id == currentUser.id
                         ? <i className="ion-android-radio-button-on"></i>
                         : <i className="ion-android-radio-button-off"></i>}  {todo.title}</a>

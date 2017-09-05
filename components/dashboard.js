@@ -12,6 +12,7 @@ class Dashboard extends Component {
   }
 
   fetchInitialData = () => {
+
     this.props.getClients(this.props.clients.variables)
     .then(action => {
       const { clients } = action.data;
@@ -31,9 +32,15 @@ class Dashboard extends Component {
     .then(() => {
       const { url } = this.props;
       if(url.query.hasOwnProperty('client')) {
-        this.props.selectClientById(url.query.client)
+        this.props.selectClientById(url.query.client);
+        this.props.setClientId(url.query.client).then(() => {
+          this.props.getProjects(this.props.projects.variables).then(() =>{
+            this.props.getTodo(url.query.todo);
+          })
+        });
       }
     })
+
   }
 
   changeClient = (client) => {
@@ -69,6 +76,7 @@ const mapDispatchToProps = {
   setClientId: actions.projects.setClientId,
   getUsers: actions.users.getUsers,
   getUser: actions.users.getUser,
+  getTodo: actions.todos.getTodo,
   cleanTodo: actions.todos.cleanTodo
 }
 

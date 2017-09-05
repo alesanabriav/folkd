@@ -7,6 +7,7 @@ export const getClientProjectsQuery = `
       todosCount
       todosAssignedCount
       todos(order: [["id", "desc"]]) {
+        project_id
         id
         title
         is_completed

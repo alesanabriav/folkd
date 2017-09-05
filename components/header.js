@@ -11,11 +11,7 @@ class Header extends Component {
 	componentDidMount() {
 		if(this.props.user.hasOwnProperty('id')) {
 			this.getNotifications();
-			setInterval(() => {
-				this.getNotifications();
-			}, 300000);
 		}
-
 	}
 
 	getNotifications = () => {
@@ -71,25 +67,25 @@ class Header extends Component {
 							: ''}
 
 							{user.hasOwnProperty('id') ?
-							<span className="navbar-text notifications-container">
-					      <button className="btn" style={{background: '#4A32D2', color: '#fff'}} onClick={this.toggleNotifications}>
-									<i className={showNotifications ? "ion-android-notifications-none" : "ion-android-notifications"}></i> {notifications.length}
-								</button>
-								<div className={ showNotifications ? "notifications notifications--show" : "notifications"}>
-									<ul>
-										{notifications.length > 0 ?
-											notifications.map(notification =>
-											<li>
-												<Link href={notification.url}><a>{notification.message}</a></Link>
-												<span>
-													<button className="btn btn-sm" onClick={this.dismissNotification.bind(null, notification)}><i className="ion-close"></i></button>
-												</span>
-											</li>
-										) : `you don't have any notification`}
-									</ul>
+								<span className="navbar-text notifications-container">
+						      <button className="btn" style={{background: '#4A32D2', color: '#fff'}} onClick={this.toggleNotifications}>
+										<i className={showNotifications ? "ion-android-notifications-none" : "ion-android-notifications"}></i> {notifications.length}
+									</button>
+									<div className={ showNotifications ? "notifications notifications--show" : "notifications"}>
+										<ul>
+											{notifications.length > 0 ?
+												notifications.map(notification =>
+												<li>
+													<Link href={notification.url}><a>{notification.message}</a></Link>
+													<span>
+														<button className="btn btn-sm" onClick={this.dismissNotification.bind(null, notification)}><i className="ion-close"></i></button>
+													</span>
+												</li>
+											) : `you don't have any notification`}
+										</ul>
 
-								</div>
-					    </span>
+									</div>
+						    </span>
 							: ''}
 					  </div>
 					</nav>

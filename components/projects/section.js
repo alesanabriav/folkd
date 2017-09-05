@@ -16,8 +16,13 @@ class Projects extends Component {
     })
   }
 
-  changeTodo = (todoId) => {
-    this.props.getTodo(todoId);
+  changeTodo = (todo) => {
+    const { client } = this.props;
+    const { selected } = this.props.projects;
+    const href = `/?client=${client.id}&project=${todo.project_id}&todo=${todo.id}`
+    const as = href;
+    Router.push(href, as, { shallow: true });
+    this.props.getTodo(todo.id);
   }
 
   toggleForm = (e) => {
