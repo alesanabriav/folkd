@@ -133,6 +133,8 @@ class Todos extends Component {
 
     if(loading) return this.renderLoading();
 
+    console.log(todo.deadline_days, todo.deadline_current);
+
     return (
       <section className="col-lg-6 col-md-6 todos">
         <header>

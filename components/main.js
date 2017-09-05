@@ -6,6 +6,7 @@ import Router from 'next/router';
 class Main extends Component {
   render() {
     const { url = {}, users = {} } = this.props;
+    
     return (
       <div>
         <Head>
@@ -49,6 +50,10 @@ class Main extends Component {
 
           .btn-outline-light:hover, .btn-light:hover {
             color: #333;
+          }
+
+          .form-control--drop {
+            opacity: .7;
           }
 
           .todo-result {

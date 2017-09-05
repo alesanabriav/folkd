@@ -144,7 +144,7 @@ class TodoForm extends Component {
 				</div>
 				<div className="form-group">
 					{user.has_drive ?
-					<Dropzone onDrop={this.handleDrop}>
+					<Dropzone onDrop={this.handleDrop} className="form-control" activeClassName="form-control--drop">
 						<p>Drop files or select</p>
 					</Dropzone>
 					: <a href="#" onClick={this.getDriveUrl}>add google drive</a>}
@@ -163,6 +163,10 @@ class TodoForm extends Component {
 					.btn {
 						float: right;
 						cursor: pointer;
+					}
+
+					.on-drop {
+						background: green;
 					}
 				`}</style>
 		</form>
