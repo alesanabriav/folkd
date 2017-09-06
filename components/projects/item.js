@@ -32,7 +32,7 @@ export class Project extends Component {
       <li className={`projects__item ${project.id == selected.id ? 'projects__item--active' : ''}`}>
         <a href="#" onClick={this.selectProject}>
           <span className="projects__item__name">{project.name}</span>
-          {/* <span className={project.id == selected.id ? "projects__item__icon ion-chevron-down" : "projects__item__icon ion-chevron-right"}></span> */}
+          <span className={project.id == selected.id ? "projects__item__icon ion-chevron-right" : "projects__item__icon ion-plus"}></span>
           <span className="projects__item__todos-count"></span>
       </a>
 
