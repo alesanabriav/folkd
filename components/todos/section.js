@@ -117,7 +117,7 @@ class Todos extends Component {
         <div className="todos-items" style={this.showStepForm(steps, todo, user) ? {height: '60vh'} : {height: '100vh'}}>
         {
           todo.hasOwnProperty('id') ?
-          <div>
+          <div style={{background: '#4A59D8'}}>
             <div className="todos-items__header">
               <h2>
                 {todo.title}
@@ -130,17 +130,14 @@ class Todos extends Component {
                 </div>
                 : ''}
 
-              <span className="badge badge-light">
-                By: <i>{todo.author.id == user.id ? 'me' : todo.author.name}</i>
+              <span>
+                {dateFns.format(todo.created_at, 'dddd DD MMM YY HH:mm')} by <i>{todo.author.id == user.id ? 'me' : todo.author.name}</i>
               </span>
 
-              <span className="badge badge-light">
+              <span>
                 Assigned to: <i>{todo.assigned.id == user.id ? 'me' : todo.assigned.name}</i>
               </span>
 
-              <span className="badge badge-light">
-                Created: <i>{dateFns.format(todo.created_at, 'dddd DD MMM YY HH:mm')}</i>
-              </span>
 
               <div className="deadline">
                 <span className="deadline__start">{dateFns.format(todo.deadline_start, 'DD MMM')}</span>
@@ -183,12 +180,13 @@ class Todos extends Component {
 
         <style jsx>{`
           .todos {
-            background: rgba(0,0,0,.6);
+            background: rgba(0,0,0,.55);
             padding-top: 20px;
             height: calc(100vh - 60px);
             color: #fff;
             overflow: hidden;
             position: relative;
+            padding: 0;
           }
 
           @media (max-width: 700px) {
@@ -196,6 +194,17 @@ class Todos extends Component {
               height: calc(60vh - 60px);
             }
 
+          }
+
+          .todos header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            box-shadow: 3px 3px 3px 0 rgba(0,0,0, .10);
+            height: 80px;
+            position: relative;
+            z-index: 10;
           }
 
           .step-form {
@@ -209,7 +218,7 @@ class Todos extends Component {
           }
 
           .todos-items {
-            margin-top: 20px;
+            padding: 0 30px;
             overflow-y: auto;
             overflow-x: hidden;
 
@@ -217,6 +226,7 @@ class Todos extends Component {
 
           .todos-items__header {
             margin-bottom: 10px;
+            padding: 20px;
           }
 
           .todos-items__header span {
@@ -238,8 +248,8 @@ class Todos extends Component {
           .deadline__line {
             position: absolute;
             width: 100%;
-            height: 10px;
-            background: rgba(255,255, 255, .1);
+            height: 5px;
+            background: rgba(0,0, 0, .16);
             z-index: 1;
             left: 0;
           }
@@ -247,8 +257,8 @@ class Todos extends Component {
           .deadline__line--fill {
             position: absolute;
             width: 50%;
-            height: 10px;
-            background: rgba(0,0, 0, .5);
+            height: 5px;
+            background: #fff;
             z-index: 2;
             left: 0;
           }

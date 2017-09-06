@@ -22,7 +22,6 @@ class Client extends Component {
             width: 100%;
             height: 40px;
             display: block;
-            background: rgba(0,0,0,.1);
             padding: 10px 20px;
             margin-bottom: 2px;
             transition: all .3s ease-in-out;
@@ -34,8 +33,10 @@ class Client extends Component {
           }
 
           .clients__item__name {
-            color: rgba(255,255,255, .4);
+            color: #fff;
             margin-left: 10px;
+            font-weight: 100;
+            font-size: 11px;
           }
 
           .clients__item a:hover {
@@ -43,7 +44,7 @@ class Client extends Component {
           }
 
           .clients__item--active a{
-            background: rgba(0,0,0,.2);
+            background: rgba(0,0,0,0.2);
           }
 
         `}</style>

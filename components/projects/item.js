@@ -56,6 +56,8 @@ export class Project extends Component {
         <style jsx>{`
           .projects__item {
             list-style: none;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,.18);
           }
 
           .projects__item__todos-count {
@@ -73,23 +75,18 @@ export class Project extends Component {
             width: 100%;
             height: 40px;
             display: block;
-            background: rgba(0,0,0,.2);
             padding: 10px 20px;
-            margin-bottom: 2px;
             transition: all .3s ease-in-out;
           }
 
           .projects__item a:hover {
-            background: rgba(0,0,0,.4);
           }
 
           .projects__item--active > a {
-            background: rgba(0,0,0,.4);
+
           }
 
           .projects__item ul li a {
-            margin-bottom: 2px;
-            background: rgba(0,0,0, .1);
             height: 40px;
             padding: 10px 40px;
             display: block;
@@ -110,7 +107,7 @@ export class Project extends Component {
 
 
           .projects__todo--active {
-            background: rgba(0,0,0, .2);
+            background: rgba(0,0,0, .37);
           }
 
           .projects__todos li a, .projects__todos--open li a {

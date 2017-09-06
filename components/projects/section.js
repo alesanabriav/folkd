@@ -61,12 +61,10 @@ class Projects extends Component {
     return (
       <section className="col-lg-4 col-md-3 projects">
         <header>
-          <h5>Projects {client.abbreviation}</h5>
+          <h5>Projects for {client.abbreviation}</h5>
            <div className="btns">
             <button onClick={this.toggleForm} className="btn btn-outline-light btn-sm"><i className="ion-plus"></i></button>
             <button className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>
-            <button className="btn btn-outline-light btn-sm" onClick={this.toggleCompleted}>{ filters.isCompleted ? 'Show open' : 'Show completed'}</button>
-            <button className="btn btn-outline-light btn-sm" onClick={this.toggleCompleted}>{ filters.isCompleted ? 'All' : 'Assigned'}</button>
           </div>
         </header>
 
@@ -93,11 +91,12 @@ class Projects extends Component {
 
           <style jsx>{`
             .projects {
-              background: rgba(0,0,0,.4);
+              background: rgba(0,0,0,.18);
               padding-top: 20px;
               height: calc(100vh - 60px);
               box-shadow: 0 3px 6px rgba(0,0,0,0.16);
               overflow-y: auto;
+              padding: 0;
             }
 
             @media (max-width: 700px) {
@@ -111,6 +110,9 @@ class Projects extends Component {
               display: flex;
               justify-content: space-between;
               margin-bottom: 20px;
+              padding: 20px;
+              box-shadow: 3px 3px 3px 0 rgba(0,0,0,.10);
+              height: 80px;
             }
 
             .btns {
@@ -124,7 +126,7 @@ class Projects extends Component {
             }
 
             .projects ul {
-              margin: 20px -15px;
+              margin: 20px 0;
             }
 
             .projects h5 {

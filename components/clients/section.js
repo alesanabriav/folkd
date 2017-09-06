@@ -78,11 +78,10 @@ class Clients extends Component {
 
         <style jsx>{`
           .clients {
-            background: rgba(0,0,0,.2);
-            padding-top: 20px;
             height: calc(100vh - 60px);
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            box-shadow: 0 0 15px rgba(0,0,0, 0.20);
             overflow-y: auto;
+            padding: 0;
           }
 
           @media (max-width: 700px) {
@@ -95,7 +94,10 @@ class Clients extends Component {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 3px 3px 3px 0 rgba(0,0,0,.10);
+            height: 80px;
           }
 
           .btns {
@@ -113,7 +115,7 @@ class Clients extends Component {
           }
 
           .clients__list {
-            margin: 20px -15px;
+            margin: 20px 0;
           }
         `}</style>
       </section>

@@ -14,7 +14,7 @@ class Main extends Component {
           <meta http-equiv="X-UA-Compatible" content="ie=edge" />
           <title>Folkders</title>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
-          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
           <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
           <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css" />
 
@@ -27,9 +27,9 @@ class Main extends Component {
 
         <style global jsx>{`
           body {
-            background: #4A32D2;
+            background: #4A59D8;
             font-size: 14px;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Roboto', sans-serif;
           }
 
           ul {

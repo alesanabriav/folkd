@@ -70,7 +70,7 @@ class Todo extends Component {
           }
 
           .todo__item__content {
-            background: rgba(255,255,255,.8);
+            background: #F7F7F7;
             padding: 20px;
             color: #1F293B;
           }

@@ -78,9 +78,9 @@ class Upload extends Component {
 
     return (
       <Dropzone
-        style={{textAlign: 'center', paddingTop: '20px', background: 'rgba(0,0,0,.1)', color: '#fff'}}
+        style={{textAlign: 'center', paddingTop: '20px', background: 'transparent', color: '#fff'}}
         onDrop={this.handleDrop}
-        className="form-control"
+        className=""
         activeClassName="form-control--drop"
       >
          <p>{message}</p>

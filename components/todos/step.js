@@ -48,17 +48,18 @@ class Step extends Component {
        </div>
        <style jsx>{`
          .todo__item {
-           background: rgba(255,255,255, .1);
+           background: #F7F7F7;
            margin-bottom: 4px;
            margin-bottom: 20px;
          }
 
          .todo__item header {
            font-size: 13px;
-           margin-bottom: 10px;
+           color: #3D3D3D;
            padding: 10px 20px 0 20px;
            display: flex;
            align-items: center;
+           background: #fff;
          }
 
          .todo__item header span {
@@ -76,7 +77,7 @@ class Step extends Component {
          }
 
          .todo__item__content {
-           background: rgba(255,255,255,.8);
+           background: #F7F7F7;
            padding: 20px;
            color: #1F293B;
          }
