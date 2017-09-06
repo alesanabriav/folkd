@@ -64,6 +64,16 @@ class Todos extends Component {
     return (<section className="col-lg-6 todos"><h1>loading...</h1></section>);
   }
 
+  showStepForm = (steps, todo, user) => {
+    if(steps.length > 0 && user.id == steps[0].assigned.id) {
+      return true
+    } else if(steps.length == 0 && todo.hasOwnProperty('assigned') && user.id == todo.assigned.id ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     const {
       project,
@@ -104,7 +114,7 @@ class Todos extends Component {
           }
         </section>
 
-        <div className="todos-items">
+        <div className="todos-items" style={this.showStepForm(steps, todo, user) ? {height: '60vh'} : {height: '100vh'}}>
         {
           todo.hasOwnProperty('id') ?
           <div>
@@ -151,7 +161,7 @@ class Todos extends Component {
           : <div/>
         }
 
-        {steps && steps.map(subtodo =>
+        {steps.length > 0 && steps.map(subtodo =>
           <Step
             key={subtodo.id}
             user={user}
@@ -161,7 +171,7 @@ class Todos extends Component {
         )}
         </div>
 
-        { todo.hasOwnProperty('id') && (user.id == todo.author.id || user.id == todo.assigned.id)
+        { this.showStepForm(steps, todo, user)
           ? <StepForm
               className="step-form"
               onSubmit={this.handleSubmitStep}
@@ -202,7 +212,7 @@ class Todos extends Component {
             margin-top: 20px;
             overflow-y: auto;
             overflow-x: hidden;
-            height: 60vh;
+
           }
 
           .todos-items__header {
