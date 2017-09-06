@@ -14,21 +14,33 @@ const Attachment = require('./attachmentType');
 const Step = new GraphQLObjectType({
   name: "step",
   fields: () => ({
-    id: { type: GraphQLInt },
-    content: { type: GraphQLString },
-    position: { type: GraphQLInt },
-    created_at: { type: GraphQLString },
+    id: {
+      type: GraphQLInt
+    },
+    content: {
+      type: GraphQLString
+    },
+    position: {
+      type: GraphQLInt
+    },
+    created_at: {
+      type: GraphQLString
+    },
     author: {
       type: User,
       resolve(step) {
-        // console.log('-----------step author=-------------');
         return step.getUser();
+      }
+    },
+    assigned: {
+      type: User,
+      resolve(todo) {
+        return todo.getAssign();
       }
     },
     attachments: {
       type: new GraphQLList(Attachment),
       resolve(step) {
-        //  console.log(`---------step: attachment call-----------`);
         return step.getAttachments();
       }
     }

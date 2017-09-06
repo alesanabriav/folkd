@@ -1,6 +1,6 @@
 import ProjectsSection from './section';
 import { connect } from 'react-redux';
-import { selectProject, addProject, showCompleted } from '../../actions/projects';
+import { selectProject, addProject, selectProjectById, showCompleted } from '../../actions/projects';
 import { getTodo, cleanTodo } from '../../actions/todos';
 
 const mapStateToProps = state => {
@@ -19,7 +19,8 @@ const mapDispatchToProps = {
   cleanTodo,
   selectProject,
   addProject,
-  showCompleted
+  showCompleted,
+  selectProjectById
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsSection);

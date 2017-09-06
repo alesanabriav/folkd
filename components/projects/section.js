@@ -11,9 +11,7 @@ class Projects extends Component {
 
   selectProject = (project) => {
     this.props.cleanTodo()
-    .then(() => {
-      this.props.selectProject(project);
-    })
+      .then(() => this.props.selectProject(project))
   }
 
   changeTodo = (todo) => {
@@ -22,7 +20,9 @@ class Projects extends Component {
     const href = `/?client=${client.id}&project=${todo.project_id}&todo=${todo.id}`
     const as = href;
     Router.push(href, as, { shallow: true });
-    this.props.getTodo(todo.id);
+
+    this.props.selectProjectById(todo.project_id)
+      .then(() => this.props.getTodo(todo.id));
   }
 
   toggleForm = (e) => {

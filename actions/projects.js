@@ -14,7 +14,7 @@ export function getProjects(variables) {
     return apolloFetch({ query: getClientProjectsQuery, variables })
     .then(res => {
       dispatch({ type: `FETCH_${TYPE}`, payload: res.data.projects });
-      return res;
+      return res.data;
     })
     .catch(err => {
       dispatch( failAction );
@@ -54,7 +54,7 @@ export function selectProject(project = {}) {
   const action = (dispatch) => {
     return new Promise((resolve) => {
       dispatch({ type: `SELECT_${TYPE}`, payload: project });
-      return resolve({ type: `SELECT_${TYPE}`, payload: project });
+      return resolve(project);
     })
   }
   return action;
@@ -64,7 +64,7 @@ export function selectProjectById(id) {
   const action = (dispatch) => {
     return new Promise((resolve) => {
       dispatch({ type: `SELECT_${TYPE}_BY_ID`, payload: id });
-      return resolve();
+      return resolve({ id });
     })
   }
 

@@ -38,6 +38,9 @@ export default function projects(state = initialState, action) {
           isCompleted: false
         }
       };
+    case `SELECT_${TYPE}_BY_ID`:
+      const selectedById = state.items.filter(item => item.id == action.payload);
+      return {...state, selected: selectedById[0] };
     case `SET_${TYPE}_CLIENT_ID`:
       const variables = { ...state.variables, clientId: action.payload };
       return {

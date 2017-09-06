@@ -18,6 +18,7 @@ class Dashboard extends Component {
       this.props.selectClientById(query.client)
         .then(() => this.props.setClientId(query.client))
         .then(() => this.props.getProjects(this.props.projects.variables))
+        .then(() => this.props.selectProjectById(query.project))
         .then(() => this.props.getTodo(query.todo))
         .catch(err => console.log('setStateByUrlQuery', err));
     }
@@ -65,6 +66,7 @@ const mapDispatchToProps = {
   selectClientById: actions.clients.selectClientById,
   getProjects: actions.projects.getProjects,
   setClientId: actions.projects.setClientId,
+  selectProjectById: actions.projects.selectProjectById,
   getUsers: actions.users.getUsers,
   getUser: actions.users.getUser,
   getTodo: actions.todos.getTodo,

@@ -11,8 +11,12 @@ const Project = require('../types/projectType');
 const createProject = {
 	type: Project,
 	args: {
-		name: { type: new GraphQLNonNull(GraphQLString) },
-    client_id: { type: new GraphQLNonNull(GraphQLInt) }
+		name: {
+      type: new GraphQLNonNull(GraphQLString)
+    },
+    client_id: {
+      type: new GraphQLNonNull(GraphQLInt) 
+    }
 	},
 	resolve(root, args) {
 		return models.Project.create(args);

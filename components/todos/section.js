@@ -110,23 +110,25 @@ class Todos extends Component {
           <div>
             <div className="todos-items__header">
               <h2>
-                {todo.title}  {todo.author.id == user.id ?
-                  <div>
-                  <button className="btn btn-outline-light btn-sm" onClick={this.toggleTodoForm}>Edit</button>
-                  <button className="btn btn-outline-light btn-sm" onClick={this.completeTodo}>Close</button>
-                  </div>
-                  : ''}
+                {todo.title}
               </h2>
 
-              <span>
+              {todo.author.id == user.id ?
+                <div style={{float: 'right'}}>
+                  <button className="btn btn-outline-light btn-sm" onClick={this.toggleTodoForm}>Edit</button> {'  '}
+                  <button className="btn btn-outline-light btn-sm" onClick={this.completeTodo}>Close</button>
+                </div>
+                : ''}
+
+              <span className="badge badge-light">
                 By: <i>{todo.author.id == user.id ? 'me' : todo.author.name}</i>
               </span>
 
-              <span>
-                Assigned: <i>{todo.assigned.id == user.id ? 'me' : todo.assigned.name}</i>
+              <span className="badge badge-light">
+                Assigned to: <i>{todo.assigned.id == user.id ? 'me' : todo.assigned.name}</i>
               </span>
 
-              <span>
+              <span className="badge badge-light">
                 Created: <i>{dateFns.format(todo.created_at, 'dddd DD MMM YY HH:mm')}</i>
               </span>
 
@@ -160,7 +162,12 @@ class Todos extends Component {
         </div>
 
         { todo.hasOwnProperty('id') && (user.id == todo.author.id || user.id == todo.assigned.id)
-          ? <StepForm className="step-form" onSubmit={this.handleSubmitStep} project={project} />
+          ? <StepForm
+              className="step-form"
+              onSubmit={this.handleSubmitStep}
+              project={project}
+              users={users}
+            />
           : <div/>
         }
 
@@ -170,7 +177,7 @@ class Todos extends Component {
             padding-top: 20px;
             height: calc(100vh - 60px);
             color: #fff;
-            overflow-y: auto;
+            overflow: hidden;
             position: relative;
           }
 

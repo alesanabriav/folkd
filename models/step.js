@@ -2,6 +2,9 @@ module.exports =  function(sequelize, Sequelize) {
   const Step = sequelize.define(
     "step",
     {
+      assign_id: {
+        type: Sequelize.INTEGER
+      },
 			content: {
 				type: Sequelize.TEXT,
          validate: {
@@ -28,6 +31,7 @@ module.exports =  function(sequelize, Sequelize) {
 
   Step.associate = (models) => {
     Step.belongsTo(models.User);
+    Step.belongsTo(models.User, {as: 'Assign', foreignKey: 'assign_id' });
     Step.belongsTo(models.Todo);
     Step.hasMany(models.Attachment);
   }

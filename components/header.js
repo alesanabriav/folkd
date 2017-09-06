@@ -41,7 +41,7 @@ class Header extends Component {
 
 		return (
 			<header>
-				<nav className="navbar navbar-expand-lg navbar-light bg-light">
+				<nav className="navbar navbar-expand-lg navbar-light bg-light" >
 					  <Link href="/"><a className="navbar-brand" >Folkders</a></Link>
 					  <button className="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
 					    <span className="navbar-toggler-icon"></span>
@@ -111,6 +111,10 @@ class Header extends Component {
 						float: right;
 						margin-top: 10px;
 						color: #333;
+					}
+
+					.navbar {
+						height: 60px;
 					}
 
 					.notifications-container {

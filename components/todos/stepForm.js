@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 export class StepForm extends Component {
 	state = {
-		content: ''
+		content: '',
+		assign_id: ''
 	}
 
 	handleChange = e => {
@@ -11,19 +12,32 @@ export class StepForm extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		const { content } = this.state;
-		const variables = { content };
-		this.props.onSubmit(variables).then(() => {
-			this.setState({content: ''});
-		})
+		const variables = this.state;
+		this.props.onSubmit(variables)
+			.then(() => {
+				this.setState({content: '', assign_id: ''});
+			});
 	}
 
 	render() {
-		const { getUsers = {} } = this.props;
-		const { users = [], loading } = getUsers;
+		const { users } = this.props;
 
 		return (
 			<form onSubmit={this.handleSubmit}>
+				<div className="form-group">
+					<select
+						name="assign_id"
+						className="form-control"
+						onChange={this.handleChange}
+						value={this.state.assign_id}
+					>
+						<option value="">Assign to</option>
+						{users.map(user =>
+							<option key={user.id} value={user.id}>{user.email}</option>
+						)}
+					</select>
+				</div>
+
 				<div className="form-group">
 					<textarea
 						name="content"
@@ -48,7 +62,7 @@ export class StepForm extends Component {
 						background: rgba(0,0,0,.2);
 						padding: 20px;
 					}
-					
+
 					button {
 						float: right;
 						width: 200px;

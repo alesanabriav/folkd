@@ -1,13 +1,18 @@
 import apolloFetch from '../lib/apollo_fetch';
+
 import {
   getTodoQuery,
   addTodoMutation,
   updateTodoMutation
 } from '../queries/todoQueries';
+
 import {
   updateAttachmentMutation
 } from '../queries/attachmentQueries';
-import { addStepMutation } from '../queries/stepQueries';
+
+import {
+  addStepMutation
+} from '../queries/stepQueries';
 
 const TYPE = 'TODOS';
 const failAction = { type: `FAIL_${TYPE}` };
