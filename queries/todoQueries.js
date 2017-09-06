@@ -32,6 +32,7 @@ export const getTodoQuery = `
         }
 			}
       attachments {
+        id
         name
         url
       }

@@ -12,53 +12,43 @@ class Dashboard extends Component {
     this.fetchInitialData();
   }
 
+  setStateByUrlQuery = () => {
+    const { query } = Router;
+    if(query.hasOwnProperty('client') && query.hasOwnProperty('todo')) {
+      this.props.selectClientById(query.client)
+        .then(() => this.props.setClientId(query.client))
+        .then(() => this.props.getProjects(this.props.projects.variables))
+        .then(() => this.props.getTodo(query.todo))
+        .catch(err => console.log('setStateByUrlQuery', err));
+    }
+
+  }
+
   fetchInitialData = () => {
+    const { clients, projects } = this.props;
 
-    this.props.getClients(this.props.clients.variables)
-    .then(action => {
-      const { clients } = action.data;
-      if(clients.length > 0) {
-        return this.props.setClientId(this.props.clients.selected.id);
-      }
-    })
-    .then(() => {
-      return this.props.getUser();
-    })
-    .then(() => {
-      return this.props.getProjects(this.props.projects.variables);
-    })
-    .then(() => {
-      return this.props.getUsers();
-    })
-    .then(() => {
-      console.log(Router.query);
-      if(Router.query.hasOwnProperty('client')) {
-        this.props.selectClientById(Router.query.client);
-        this.props.setClientId(Router.query.client).then(() => {
-          this.props.getProjects(this.props.projects.variables).then(() =>{
-            this.props.getTodo(Router.query.todo);
-          })
-        });
-      }
-    })
-
+    this.props.getClients(clients.variables)
+      .then(clients => {
+        if(clients.length > 0) {
+          return this.props.setClientId(clients.selected.id);
+        }
+      })
+      .then(() => this.props.getUser())
+      .then(() => this.props.getProjects(projects.variables))
+      .then(() => this.props.getUsers())
+      .then(() => this.setStateByUrlQuery())
+      .catch(err => console.log('fetchInitialData', err))
   }
 
   changeClient = (client) => {
     this.props.selectClient(client)
-    .then(() => {
-      return this.props.setClientId(client.id);
-    })
-    .then(() => {
-      return this.props.cleanTodo();
-    })
-    .then(() => {
-      this.props.getProjects(this.props.projects.variables)
-    })
+      .then(() => this.props.setClientId(client.id))
+      .then(() => this.props.cleanTodo())
+      .then(() => this.props.getProjects(this.props.projects.variables))
+      .catch(err => console.log('changeClient', err));
   }
 
   render() {
-
     return (
       <div className="row">
         <Clients onChangeClient={this.changeClient} />
