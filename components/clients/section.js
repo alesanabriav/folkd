@@ -19,7 +19,7 @@ class Clients extends Component {
   }
 
   toggleForm = (e) => {
-    e.preventDefault();
+    if(e) e.preventDefault();
     this.setState({showForm: !this.state.showForm});
   }
 
@@ -46,12 +46,12 @@ class Clients extends Component {
         <header>
           <h5>Clients</h5>
           <div className="btns">
-            <a href="#" onClick={this.toggleForm}><i className="ion-plus"></i></a>
+            <a href="#" onClick={this.toggleForm}><i className={showForm ? "ion-close" : "ion-plus"}></i></a>
             <a href="#" onClick={this.toggleSearch}><i className="ion-search"></i></a>
           </div>
         </header>
 
-        {showForm ? <ClientForm onSubmit={this.addClient} /> : <div/>}
+        {showForm ? <ClientForm onSubmit={this.addClient} onCancel={this.toggleForm} /> : <div/>}
 
         {showSearch ? <SearchClient /> : <div/>}
 
@@ -88,6 +88,10 @@ class Clients extends Component {
             padding: 15px 20px;
             box-shadow: 3px 3px 3px 0 rgba(0,0,0,.10);
             height: 70px;
+          }
+
+          .clients header h5 {
+            font-weight: 300;
           }
 
           .btns a {

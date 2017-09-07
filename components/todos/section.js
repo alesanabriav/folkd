@@ -207,6 +207,10 @@ class Todos extends Component {
             z-index: 10;
           }
 
+          .todos header h5 {
+            font-weight: 300;
+          }
+
           .step-form {
             position: absolute;
             bottom: 0;

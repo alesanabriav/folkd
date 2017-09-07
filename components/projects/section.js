@@ -116,10 +116,9 @@ class Projects extends Component {
               height: 70px;
             }
 
-              .projects header h5 {
-                font-weight: 300;
-              }
-
+            .projects header h5 {
+              font-weight: 300;
+            }
 
             .btns a {
               font-size: 18px;
@@ -128,6 +127,7 @@ class Projects extends Component {
             }
 
             .projects ul {
+              padding-left: 20px;
               margin: 20px 0;
             }
 

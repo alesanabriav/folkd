@@ -12,13 +12,19 @@ export class ClientForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  handleShortName = (e) => {
+    if(e.target.value.length <= 4) {
+      this.setState({ [e.target.name]: e.target.value });
+    }
+  }
+
   cleanState = () => {
     this.setState({name: '', abbreviation: ''});
   }
 
-  onCancel = (e) => {
+  handleCancel = (e) => {
     if(e) e.preventDefault();
-
+    this.props.onCancel();
   }
 
   handleSubmit = e => {
@@ -48,14 +54,14 @@ export class ClientForm extends Component {
               type="text"
               name="abbreviation"
               className="form-control"
-              onChange={this.handleChange}
+              onChange={this.handleShortName}
               value={this.state.abbreviation}
               placeholder="Shortname"
             />
           </div>
 
         <button className="btn btn-primary">Save</button>
-        <button className="btn btn-secondary" onClick={this.onCancel}>Cancel</button>
+        <button className="btn btn-secondary" onClick={this.handleCancel}>Cancel</button>
 
         <style jsx>{`
           form {
