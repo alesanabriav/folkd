@@ -77,6 +77,8 @@ export class Project extends Component {
             display: block;
             padding: 10px 20px;
             transition: all .3s ease-in-out;
+            box-shadow: 0 5px 5px rgba(0,0,0, 0.050);
+            height: 50px;
           }
 
           .projects__item a:hover {
