@@ -160,6 +160,7 @@ class TodoForm extends Component {
 					.attachments {
 						padding: 20px;
 					}
+
 					.attachments li {
 						color: #333;
 					}
