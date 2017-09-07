@@ -67,7 +67,7 @@ class Main extends Component {
             background: rgba(0,0,0, .30);
           }
 
-          input.form-control {
+          input.form-control, textarea.form-control {
             border: none;
             border-radius: 0;
           }

@@ -82,6 +82,11 @@ class Todo extends Component {
           .todo__item__uploads {
             margin-top: 20px;
           }
+
+          .todo__item__uploads a {
+						color: #333;
+					}
+
         `}</style>
       </section>
     )

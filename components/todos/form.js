@@ -63,78 +63,105 @@ class TodoForm extends Component {
 
 		return (
 			<form onSubmit={this.handleSubmit} className="todos-form">
-				<div className="form-group">
-					<input
-						placeholder="Title"
-						type="text"
-						name="title"
-						className="form-control"
-						onChange={this.handleChange}
-						value={this.state.title}
-					/>
+				<div className="form-header">
+					<div className="row">
+						<div className="col-lg-9">
+
+							<div className="form-group">
+								<input
+									placeholder="Title"
+									type="text"
+									name="title"
+									className="form-control"
+									onChange={this.handleChange}
+									value={this.state.title}
+								/>
+							</div>
+							<div className="form-group">
+								<select
+									name="assign_id"
+									className="form-control"
+									onChange={this.handleChange}
+									value={this.state.assign_id}
+									>
+									<option value="">Assign to</option>
+									{users.map(user =>
+										<option key={user.id} value={user.id}>{user.email}</option>
+									)}
+								</select>
+							</div>
+
+							<div className="row">
+								<div className="form-group datepicker-container col-lg-6">
+									<DatePicker
+										options={{minDate: "today"}}
+										className="form-control"
+										placeholderText="deadline start"
+										onChange={this.handleDeadline.bind(null, 'start')}
+									/>
+								</div>
+
+								<div className="form-group datepicker-container col-lg-6">
+									<DatePicker
+										options={{minDate: "today"}}
+										className="form-control"
+										placeholderText="deadline end"
+										onChange={this.handleDeadline.bind(null, 'end')}
+									/>
+								</div>
+							</div>
+
+						</div>
+						<div className="col-lg-3">
+							<button className="btn btn-primary" onClick={this.handleSubmit}>Send</button>
+							<button className="btn btn-secondary" onClick={this.handleSubmit}>Cancel</button>
+						</div>
+					</div>
 				</div>
-				<div className="form-group">
-					<select
-						name="assign_id"
-						className="form-control"
-						onChange={this.handleChange}
-						value={this.state.assign_id}
-						>
-						<option value="">Assign to</option>
-						{users.map(user =>
-							<option key={user.id} value={user.id}>{user.email}</option>
-						)}
-					</select>
-				</div>
-				<div className="row">
-					<div className="form-group datepicker-container col-lg-6">
-						<DatePicker
-							options={{minDate: "today"}}
+				<div className="form-body">
+					<div className="form-group">
+						<textarea
+							name="content"
 							className="form-control"
-							placeholderText="deadline start"
-							onChange={this.handleDeadline.bind(null, 'start')}
-						/>
+							placeholder="Task details"
+							rows="5"
+							onChange={this.handleDescription}
+							value={this.state.content}
+							></textarea>
 					</div>
 
-					<div className="form-group datepicker-container col-lg-6">
-						<DatePicker
-							options={{minDate: "today"}}
-							className="form-control"
-							placeholderText="deadline end"
-							onChange={this.handleDeadline.bind(null, 'end')}
+					<div className="form-group">
+						<Upload
+							data={uploadData}
+							user={user}
+							onUploaded={this.handleUploaded.bind(this)}
 						/>
+						<ul className="attachments">
+							{files.map(file => <li>{file.name}</li>)}
+						</ul>
 					</div>
 				</div>
-				<div className="form-group">
-					<textarea
-						name="content"
-						className="form-control"
-						placeholder="Todo description"
-						rows="5"
-						onChange={this.handleDescription}
-						value={this.state.content}
-						></textarea>
-				</div>
 
-				<div className="form-group">
-					<Upload
-						data={uploadData}
-						user={user}
-						onUploaded={this.handleUploaded.bind(this)}
-					/>
-					<ul>
-						{files.map(file => <li>{file.name}</li>)}
-					</ul>
-				</div>
-				<div className="form-group">
-					<button className="btn btn-outline-light" onClick={this.handleSubmit}>Create</button>
-				</div>
 				<style jsx>{`
 					form {
 						width: 100%;
 						float: left;
 						padding: 20px;
-						background: rgba(0,0,0,.2)
+					}
+
+					.form-header {
+						background: #4A59D8;
+						padding: 20px;
+					}
+
+					.form-body {
+						background: #f1f1f1;
+					}
+					.attachments {
+						padding: 20px;
+					}
+					.attachments li {
+						color: #333;
 					}
 
 					.btn {
