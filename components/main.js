@@ -46,6 +46,30 @@ class Main extends Component {
 
           .btn {
             cursor: pointer;
+            border-radius: 0;
+          }
+
+          .btn-primary {
+            background: rgba(0,0,0, .50);
+            border: none
+          }
+
+          .btn-primary:hover {
+            background: rgba(0,0,0, .60);
+          }
+
+          .btn-secondary {
+            background: rgba(0,0,0, .20);
+            border: none
+          }
+
+          .btn-secondary:hover {
+            background: rgba(0,0,0, .30);
+          }
+
+          input.form-control {
+            border: none;
+            border-radius: 0;
           }
 
           .btn-outline-light:hover, .btn-light:hover {

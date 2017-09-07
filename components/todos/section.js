@@ -202,7 +202,7 @@ class Todos extends Component {
             justify-content: space-between;
             padding: 20px;
             box-shadow: 3px 3px 3px 0 rgba(0,0,0, .10);
-            height: 80px;
+            height: 70px;
             position: relative;
             z-index: 10;
           }

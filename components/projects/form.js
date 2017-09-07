@@ -20,6 +20,11 @@ class ProjectForm extends Component {
     this.props.onSubmit(variables);
   }
 
+  handleCancel = e => {
+    if(e) e.preventDefault();
+    this.props.onCancel();
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -33,19 +38,24 @@ class ProjectForm extends Component {
             placeholder="Project Name"
           />
         </div>
-        <button className="btn btn-outline-light btn-sm">Save</button>
+
+        <button className="btn btn-primary btn-sm">Save</button>
+        <button onClick={this.handleCancel} className="btn btn-secondary btn-sm">Cancel</button>
 
         <style jsx>{`
           form {
-            padding: 20px;
-            background: rgba(0,0,0,.1);
-
+            padding: 0 20px;
             width: 100%;
             margin-bottom: 20px;
           }
 
           button {
+            padding: 7px 15px;
+            font-size: 14px;
+          }
 
+          .btn-primary {
+            margin-right: 10px;
           }
 
         `}</style>

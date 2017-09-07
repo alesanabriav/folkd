@@ -16,6 +16,11 @@ export class ClientForm extends Component {
     this.setState({name: '', abbreviation: ''});
   }
 
+  onCancel = (e) => {
+    if(e) e.preventDefault();
+
+  }
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -49,7 +54,8 @@ export class ClientForm extends Component {
             />
           </div>
 
-        <button className="btn btn-outline-light btn-sm">Save</button>
+        <button className="btn btn-primary">Save</button>
+        <button className="btn btn-secondary" onClick={this.onCancel}>Cancel</button>
 
         <style jsx>{`
           form {
@@ -60,8 +66,8 @@ export class ClientForm extends Component {
             margin-bottom: 20px;
           }
 
-          button {
-            float: right
+          .btn-primary {
+            margin-right: 10px;
           }
 
         `}</style>

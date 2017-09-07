@@ -62,14 +62,15 @@ class Projects extends Component {
       <section className="col-lg-4 col-md-3 projects">
         <header>
           <h5>Projects for {client.abbreviation}</h5>
+
            <div className="btns">
-            <button onClick={this.toggleForm} className="btn btn-outline-light btn-sm"><i className="ion-plus"></i></button>
-            <button className="btn btn-outline-light btn-sm"><i className="ion-search"></i></button>
+            <a href="" onClick={this.toggleForm}><i className="ion-plus"></i></a>
+            <a href=""><i className="ion-search"></i></a>
           </div>
         </header>
 
         {showForm || !selected.hasOwnProperty('id') && client.hasOwnProperty('id')
-          ? <ProjectForm client={client} onSubmit={this.addProject} />
+          ? <ProjectForm client={client} onSubmit={this.addProject} onCancel={this.toggleForm} />
           : <div/>
         }
 
@@ -112,17 +113,18 @@ class Projects extends Component {
               margin-bottom: 20px;
               padding: 20px;
               box-shadow: 3px 3px 3px 0 rgba(0,0,0,.10);
-              height: 80px;
+              height: 70px;
             }
 
-            .btns {
-              display: flex;
-              align-self: flex-end;
-            }
+              .projects header h5 {
+                font-weight: 300;
+              }
 
-            .btns button {
-              margin-left: 10px;
-              cursor: pointer;
+
+            .btns a {
+              font-size: 18px;
+              color: #fff;
+              margin-right: 10px;
             }
 
             .projects ul {

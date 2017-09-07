@@ -46,18 +46,8 @@ class Clients extends Component {
         <header>
           <h5>Clients</h5>
           <div className="btns">
-            <button
-              onClick={this.toggleForm}
-              className="btn btn-outline-light btn-sm"
-            >
-              <i className="ion-plus"></i>
-            </button>
-            <button
-              onClick={this.toggleSearch}
-              className="btn btn-outline-light btn-sm"
-            >
-              <i className="ion-search"></i>
-            </button>
+            <a href="#" onClick={this.toggleForm}><i className="ion-plus"></i></a>
+            <a href="#" onClick={this.toggleSearch}><i className="ion-search"></i></a>
           </div>
         </header>
 
@@ -97,12 +87,13 @@ class Clients extends Component {
             align-items: center;
             padding: 15px 20px;
             box-shadow: 3px 3px 3px 0 rgba(0,0,0,.10);
-            height: 80px;
+            height: 70px;
           }
 
-          .btns {
-            display: flex;
-            align-self: flex-end;
+          .btns a {
+            font-size: 18px;
+            color: #fff;
+            margin-right: 10px;
           }
 
           .btns button {
