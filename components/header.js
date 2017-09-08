@@ -76,7 +76,7 @@ class Header extends Component {
 											{notifications.length > 0 ?
 												notifications.map(notification =>
 												<li>
-													<Link href={notification.url}><a>{notification.message}</a></Link>
+													<a href={notification.url}>{notification.message}</a>
 													<span>
 														<button className="btn btn-sm" onClick={this.dismissNotification.bind(null, notification)}><i className="ion-close"></i></button>
 													</span>
