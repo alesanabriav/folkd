@@ -155,6 +155,12 @@ class TodoForm extends Component {
 						padding: 20px;
 					}
 
+					.btn-primary, .btn-secondary {
+						float: right;
+						width: 200px;
+						margin-bottom: 10px;
+					}
+
 					.form-body {
 						background: #f1f1f1;
 					}
@@ -162,7 +168,7 @@ class TodoForm extends Component {
 					.form__uploads {
 						padding: 10px 20px;
 					}
-				
+
 					.attachments li {
 						color: #333;
 					}

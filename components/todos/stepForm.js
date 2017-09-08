@@ -14,10 +14,13 @@ export class StepForm extends Component {
 		e.preventDefault();
 		const variables = this.state;
 
-		this.props.onSubmit(variables)
-			.then(() => {
-				this.setState({content: '', assign_id: ''});
-			});
+		this.props.onSubmit(variables);
+	}
+
+	handleCancel = (e) => {
+		if(e) e.preventDefault();
+		this.setState({content: '', assign_id: ''});
+		this.props.onCancel();
 	}
 
 	render() {
@@ -27,7 +30,7 @@ export class StepForm extends Component {
 			<form onSubmit={this.handleSubmit}>
 				<div className="form-header">
 					<div className="row">
-						<div className="col-lg-6">
+						<div className="col-lg-8">
 							<div className="form-group">
 								<select
 									name="assign_id"
@@ -42,8 +45,10 @@ export class StepForm extends Component {
 								</select>
 							</div>
 						</div>
-						<div className="col-lg-6">
-							<button className="btn btn-light" onClick={this.handleSubmit}>Send</button>
+
+						<div className="col-lg-4">
+							<button className="btn btn-primary" onClick={this.handleSubmit}>Send</button>
+							<button className="btn btn-secondary" onClick={this.handleCancel}>Cancel</button>
 						</div>
 					</div>
 
@@ -65,9 +70,8 @@ export class StepForm extends Component {
 				<style jsx>{`
 					form {
 						bottom: 0;
-						float: left;
 						width: 100%;
-						margin-bottom: 40px;
+						margin-bottom: 20px;
 					}
 
 					.form-header {
@@ -78,6 +82,7 @@ export class StepForm extends Component {
 					button {
 						float: right;
 						width: 200px;
+						margin-bottom: 10px;
 						cursor: pointer;
 					}
 				`}</style>

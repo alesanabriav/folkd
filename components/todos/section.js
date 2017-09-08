@@ -34,6 +34,7 @@ class Todos extends Component {
 
       this.props.addNotification(notification);
       return todo;
+
     })
     .then(todo => {
       this.state.files.forEach(attachment => {
@@ -44,11 +45,13 @@ class Todos extends Component {
 
   handleSubmitStep = (variables) => {
     const { todo, steps } = this.props;
+
     variables = {...variables, todo_id: todo.id, position: steps.length + 1};
+
     return this.props.addTodoStep(variables)
-    .then((step) => {
-      console.log('after step created', step);
-    })
+      .then(() => this.props.getTodo(todo.id))
+      .then(() => this.setState({showStepForm: false}))
+      .catch(err => console.log('addTodoStep', err));
   }
 
   toggleTodoForm = () => {
@@ -148,7 +151,9 @@ class Todos extends Component {
                   </div>
                 </div>
                 <div className="col-lg-3">
-                  <button className="btn btn-primary" onClick={this.toggleStepForm}>Replay</button>
+                  {assigned.id == user.id && steps.length == 0 ?
+                    <button className="btn btn-primary" onClick={this.toggleStepForm}>Replay</button>
+                    : ''}
                 </div>
               </div>
 
@@ -169,18 +174,21 @@ class Todos extends Component {
           ? <StepForm
               className="step-form"
               onSubmit={this.handleSubmitStep}
+              onCancel={this.toggleStepForm}
               project={project}
               users={users}
             />
           : <div/>
         }
 
-
-        {steps.length > 0 && steps.map(subtodo =>
+        {steps.length > 0 && steps.map((subtodo, i) =>
           <Step
+            main={i == 0}
             key={subtodo.id}
             user={user}
+            assigned={assigned}
             subtodo={subtodo}
+            onOpenForm={this.toggleStepForm}
             addStepAttachment={addStepAttachment}
           />
         )}
@@ -235,7 +243,7 @@ class Todos extends Component {
 
           .todos-items__header {
             margin-bottom: 10px;
-            padding: 20px;
+            padding: 10px 20px;
           }
 
           .todos-items__header span {

@@ -18,12 +18,17 @@ class Step extends Component {
     })
   }
 
+  handleReplay = (e) => {
+    e.preventDefault();
+    this.props.onOpenForm();
+  }
+
   render() {
-    const { subtodo, user } = this.props;
+    const { subtodo, user, assigned, main } = this.props;
     const uploadData = {user_id: user.id, step_id: subtodo.id};
 
    return (
-     <section  className="todo__item">
+     <section className="todo__item">
        <header>
          <div className="row">
            <div className="col-lg-9">
@@ -32,7 +37,9 @@ class Step extends Component {
              <span>Date: {dateFns.format(subtodo.created_at, 'dddd DD MMM YY HH:mm')}</span>
            </div>
            <div className="col-lg-3">
-             <button className="btn btn-main">Replay</button>
+             {main && assigned.id == user.id ?
+               <button className="btn btn-main" onClick={this.handleReplay}>Replay</button>
+             : ''}
            </div>
          </div>
        </header>
@@ -42,7 +49,12 @@ class Step extends Component {
 
        <div className="todo__item__upload">
 
-         <Upload data={uploadData} user={user} onUploaded={this.handleUploaded.bind(this)} />
+         <Upload
+          customStyle={{color: '#3D3D3D'}}
+          data={uploadData}
+          user={user}
+          onUploaded={this.handleUploaded.bind(this)}
+        />
 
          <ul className="todo__item__uploads">
            {subtodo.attachments.map(attachment =>
@@ -62,7 +74,7 @@ class Step extends Component {
          .todo__item header {
            font-size: 13px;
            color: #3D3D3D;
-           padding: 10px 20px 0 20px;
+           padding: 10px 20px;
            background: #fff;
          }
 

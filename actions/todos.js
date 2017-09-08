@@ -19,17 +19,6 @@ const failAction = { type: `FAIL_${TYPE}` };
 const loadingAction = { type: `LOADING_${TYPE}` };
 const uploadingAction = { type: `UPLOADING_${TYPE}_ATTACHMENT` };
 
-export function uploadingTodoAttachment() {
-  const action = (dispatch) => {
-    return new Promise((resolve, reject) => {
-      dispatch(uploadingAction);
-      return resolve();
-    });
-  }
-
-  return action;
-}
-
 export function getTodo(id) {
   const action = (dispatch) => {
     const variables = { id };
@@ -113,6 +102,17 @@ export function cleanTodo() {
   const action = (dispatch) => {
     return new Promise((resolve) => {
       dispatch({ type: `CLEAN_${TYPE}_ITEM`});
+      return resolve();
+    });
+  }
+
+  return action;
+}
+
+export function uploadingTodoAttachment() {
+  const action = (dispatch) => {
+    return new Promise((resolve, reject) => {
+      dispatch(uploadingAction);
       return resolve();
     });
   }

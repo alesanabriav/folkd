@@ -6,6 +6,7 @@ import differenceInHours from 'date-fns/difference_in_hours';
 import Todos from './section';
 
 import {
+  getTodo,
   addTodo,
   completeTodo,
   addTodoStep,
@@ -69,6 +70,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
+  getTodo,
   addTodo,
   completeTodo,
   addProjectTodo,

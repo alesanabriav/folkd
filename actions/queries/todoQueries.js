@@ -71,9 +71,15 @@ export const addTodoMutation = `
       id
       name
     }
-    assigned {
+    attachments {
+      id
+      name
+      url
+    }
+    assigned(limit: 1, order: [["id", "desc"]]) {
       user {
         id
+        name
       }
     }
   }
