@@ -25,9 +25,16 @@ class Step extends Component {
    return (
      <section  className="todo__item">
        <header>
-         <span><h4>Step: {subtodo.position}</h4></span>
-         <span>By: {subtodo.author.name}</span>
-         <span>Date: {dateFns.format(subtodo.created_at, 'dddd DD MMM YY HH:mm')}</span>
+         <div className="row">
+           <div className="col-lg-9">
+             <span><h4>Step: {subtodo.position}</h4></span>
+             <span>By: {subtodo.author.name}</span>
+             <span>Date: {dateFns.format(subtodo.created_at, 'dddd DD MMM YY HH:mm')}</span>
+           </div>
+           <div className="col-lg-3">
+             <button className="btn btn-main">Replay</button>
+           </div>
+         </div>
        </header>
         <div className="todo__item__content">
           <div dangerouslySetInnerHTML={{__html: this.renderMD(subtodo.content)}}/>
@@ -56,8 +63,6 @@ class Step extends Component {
            font-size: 13px;
            color: #3D3D3D;
            padding: 10px 20px 0 20px;
-           display: flex;
-           align-items: center;
            background: #fff;
          }
 

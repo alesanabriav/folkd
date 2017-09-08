@@ -10,10 +10,6 @@ export const addStepMutation = `
 				id
       	name
     	}
-			assigned {
-				id
-				name
-			}
 			attachments {
 				id
 			}

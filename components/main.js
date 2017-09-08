@@ -67,6 +67,11 @@ class Main extends Component {
             background: rgba(0,0,0, .30);
           }
 
+          .btn-main {
+            background: #4A59D8;
+            color: #fff;
+          }
+
           input.form-control, textarea.form-control {
             border: none;
             border-radius: 0;

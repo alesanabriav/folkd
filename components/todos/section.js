@@ -9,6 +9,7 @@ import Step from './step';
 class Todos extends Component {
   state = {
     showTodoForm: false,
+    showStepForm: false,
     showMainTodo: false,
     files: []
   }
@@ -23,10 +24,10 @@ class Todos extends Component {
       return this.props.addProjectTodo(todo);
     })
     .then((todo) => {
-      const { project, client } = this.props;
+      const { project, client, assigned } = this.props;
 
       const notification = {
-        // user_id: todo.assigned.id,
+        user_id: assigned.id,
         message: `you were assigned to ${todo.title} on the project ${project.name}`,
         url: `?client=${client.id}&project=${project.id}&todo=${todo.id}`
       };
@@ -64,14 +65,20 @@ class Todos extends Component {
     return (<section className="col-lg-6 todos"><h1>loading...</h1></section>);
   }
 
-  showStepForm = (steps, todo, user) => {
-    if(steps.length > 0) {
-      return true
-    } else if(steps.length == 0 && todo.hasOwnProperty('assigned') && user.id == todo.assigned.id ) {
+  showStepForm = () => {
+    const { user, assigned } = this.props;
+
+    return true;
+    if(assigned.hasOwnProperty('user') && user.id == assigned.id ) {
       return true;
     } else {
       return false;
     }
+  }
+
+  toggleStepForm = (e) => {
+    if(e) e.preventDefault();
+    this.setState({ showStepForm: !this.state.showStepForm });
   }
 
   render() {
@@ -80,17 +87,19 @@ class Todos extends Component {
       todo,
       steps,
       attachments,
+      assigned,
       users,
       user,
       loading,
       uploading,
       addTodoAttachment,
-      addStepAttachment
+      addStepAttachment,
+      deadline_days,
+      deadline_current
     } = this.props;
 
-    const { showTodoForm } = this.state;
-
-    if(loading) return this.renderLoading();
+    const { showTodoForm, showStepForm } = this.state;
+    const deadline = 100 - Math.ceil(100 / (parseInt(deadline_days) / parseInt(deadline_current)));
 
     return (
       <section className="col-lg-6 col-md-6 todos">
@@ -114,36 +123,35 @@ class Todos extends Component {
           }
         </section>
 
-        <div className="todos-items" style={this.showStepForm(steps, todo, user) ? {height: '60vh'} : {height: '100vh'}}>
+        <div className="todos-items">
         {
           todo.hasOwnProperty('id') ?
           <div style={{background: '#4A59D8'}}>
             <div className="todos-items__header">
-              <h2>
-                {todo.title}
-              </h2>
+              <div className="row">
+                <div className="col-lg-6">
+                  <h2> {todo.title} </h2>
+                  <span>
+                    {dateFns.format(todo.created_at, 'dddd DD MMM YY HH:mm')} by <i>{todo.author.id == user.id ? 'me' : todo.author.name}</i>
+                  </span>
 
-              {todo.author.id == user.id ?
-                <div style={{float: 'right'}}>
-                  <button className="btn btn-outline-light btn-sm" onClick={this.toggleTodoForm}>Edit</button> {'  '}
-                  <button className="btn btn-outline-light btn-sm" onClick={this.completeTodo}>Close</button>
+                  <span>
+                    Assigned to: <i>{assigned.id == user.id ? 'me' : assigned.name}</i>
+                  </span>
                 </div>
-                : ''}
-
-              <span>
-                {dateFns.format(todo.created_at, 'dddd DD MMM YY HH:mm')} by <i>{todo.author.id == user.id ? 'me' : todo.author.name}</i>
-              </span>
-
-              <span>
-                {/* Assigned to: <i>{todo.assigned.id == user.id ? 'me' : todo.assigned.name}</i> */}
-              </span>
-
-              <div className="deadline">
-                <span className="deadline__start">{dateFns.format(todo.deadline_start, 'DD MMM')}</span>
-                <span className="deadline__end">{dateFns.format(todo.deadline_end, 'DD MMM')}</span>
-                <span className="deadline__line"></span>
-                <span className="deadline__line--fill" style={{width: `${100 - (100 / (todo.deadline_days / todo.deadline_current))}%`}}></span>
+                <div className="col-lg-3">
+                  <div className="deadline">
+                    <span className="deadline__start">{dateFns.format(todo.deadline_start, 'DD MMM')}</span>
+                    <span className="deadline__end">{dateFns.format(todo.deadline_end, 'DD MMM')}</span>
+                    <span className="deadline__line"></span>
+                    <span className="deadline__line--fill" style={{width: `${deadline == 0 ? 100 : deadline}%`}}></span>
+                  </div>
+                </div>
+                <div className="col-lg-3">
+                  <button className="btn btn-primary" onClick={this.toggleStepForm}>Replay</button>
+                </div>
               </div>
+
             </div>
 
             <Todo
@@ -157,6 +165,17 @@ class Todos extends Component {
           : <div/>
         }
 
+        { showStepForm
+          ? <StepForm
+              className="step-form"
+              onSubmit={this.handleSubmitStep}
+              project={project}
+              users={users}
+            />
+          : <div/>
+        }
+
+
         {steps.length > 0 && steps.map(subtodo =>
           <Step
             key={subtodo.id}
@@ -167,23 +186,13 @@ class Todos extends Component {
         )}
         </div>
 
-        { this.showStepForm(steps, todo, user)
-          ? <StepForm
-              className="step-form"
-              onSubmit={this.handleSubmitStep}
-              project={project}
-              users={users}
-            />
-          : <div/>
-        }
-
         <style jsx>{`
           .todos {
             background: rgba(0,0,0,.55);
             padding-top: 20px;
             height: calc(100vh - 60px);
             color: #fff;
-            overflow: hidden;
+            overflow-y: auto;
             position: relative;
             padding: 0;
           }
@@ -222,9 +231,6 @@ class Todos extends Component {
 
           .todos-items {
             padding: 0 30px;
-            overflow-y: auto;
-            overflow-x: hidden;
-
           }
 
           .todos-items__header {

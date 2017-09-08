@@ -21,10 +21,14 @@ const createTodo = {
     assign_id: { type: GraphQLInt },
     todo_id: { type: GraphQLInt }
 	},
-	resolve(root, args, ctx) {
-    args = {...args, user_id: ctx.user.id};
-
-		return models.Todo.create(args);
+	resolve: async function(root, args, ctx) {
+    try {
+      const todo = await models.Todo.create({...args, user_id: ctx.user.id});
+      const assign = await models.Assign.create({user_id: args.assign_id, todo_id: todo.id});
+  		return models.Todo.findOne({where: {id: todo.id}});
+    } catch(err) {
+      console.log(err);
+    }
 	}
 }
 

@@ -75,15 +75,24 @@ class Upload extends Component {
 
   render() {
     const { message, uploadProgress } = this.state;
+    const { customStyle = {} } = this.props;
 
     return (
       <Dropzone
-        style={{textAlign: 'center', paddingTop: '20px', background: 'transparent', color: '#fff'}}
+        style={customStyle}
         onDrop={this.handleDrop}
-        className=""
+        className="upload"
         activeClassName="form-control--drop"
       >
-         <p>{message}</p>
+         <p><i className="ion-paperclip"></i> {message}</p>
+      <style jsx>{`
+        .upload {
+          text-align: left;
+          padding-top: 10px;
+          background: transparent;
+          color: #fff;
+        }
+      `}</style>
      </Dropzone>
     )
   }

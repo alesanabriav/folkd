@@ -43,6 +43,14 @@ const Todo = new GraphQLObjectType({
     },
     assigned: {
       type: new GraphQLList(Assign),
+      args: {
+        limit: {
+          type: GraphQLInt
+        },
+        order: {
+          type: GraphQLJSON
+        }
+      },
       resolve(todo, args) {
         return todo.getAssigns(args);
       }

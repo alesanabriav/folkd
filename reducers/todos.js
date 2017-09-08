@@ -4,6 +4,7 @@ const initialState = {
   item: {},
   steps: [],
   attachments: [],
+  assigned: {},
   id: null,
   loading: false,
   uploading: false,
@@ -22,6 +23,7 @@ export default function todos(state = initialState, action) {
         item: action.payload,
         steps: action.payload.steps,
         attachments: action.payload.attachments,
+        assigned: action.payload.assigned.length > 0 ? action.payload.assigned[0].user : {},
         loading: false
       };
     case `ADD_${TYPE}`:

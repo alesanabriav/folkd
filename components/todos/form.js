@@ -130,8 +130,9 @@ class TodoForm extends Component {
 							></textarea>
 					</div>
 
-					<div className="form-group">
+					<div className="form__uploads">
 						<Upload
+							customStyle={{color: '#222'}}
 							data={uploadData}
 							user={user}
 							onUploaded={this.handleUploaded.bind(this)}
@@ -157,10 +158,11 @@ class TodoForm extends Component {
 					.form-body {
 						background: #f1f1f1;
 					}
-					.attachments {
-						padding: 20px;
-					}
 
+					.form__uploads {
+						padding: 10px 20px;
+					}
+				
 					.attachments li {
 						color: #333;
 					}

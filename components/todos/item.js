@@ -76,7 +76,7 @@ class Todo extends Component {
           }
 
           .todo__item__upload {
-            padding: 20px;
+            padding: 10px 20px;
           }
 
           .todo__item__uploads {

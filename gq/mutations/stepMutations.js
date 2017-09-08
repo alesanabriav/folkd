@@ -26,14 +26,13 @@ const createStep = {
       type: GraphQLInt
     }
 	},
-	resolve(root, args, ctx) {
+	resolve: async function(root, args, ctx) {
     const user_id = ctx.user.id;
     args = {...args, user_id };
-    return models.Todo.findOne( { where: { id: args.todo_id } } )
-      .then( todo => {
-        //check the last step assigend person to allow that person to crete a new step
-        return models.Step.create(args);
-      });
+    const todo = await models.Todo.findOne( { where: { id: args.todo_id } } );
+    const assign = await models.Assign.create({user_id: args.assign_id, todo_id: args.todo_id});
+    const step = models.Step.create(args);
+    return step;
 	}
 }
 

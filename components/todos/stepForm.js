@@ -13,6 +13,7 @@ export class StepForm extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const variables = this.state;
+
 		this.props.onSubmit(variables)
 			.then(() => {
 				this.setState({content: '', assign_id: ''});
@@ -24,33 +25,41 @@ export class StepForm extends Component {
 
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<div className="form-group">
-					<select
-						name="assign_id"
-						className="form-control"
-						onChange={this.handleChange}
-						value={this.state.assign_id}
-					>
-						<option value="">Assign to</option>
-						{users.map(user =>
-							<option key={user.id} value={user.id}>{user.email}</option>
-						)}
-					</select>
+				<div className="form-header">
+					<div className="row">
+						<div className="col-lg-6">
+							<div className="form-group">
+								<select
+									name="assign_id"
+									className="form-control"
+									onChange={this.handleChange}
+									value={this.state.assign_id}
+								>
+									<option value="">Assign to</option>
+									{users.map(user =>
+										<option key={user.id} value={user.id}>{user.email}</option>
+									)}
+								</select>
+							</div>
+						</div>
+						<div className="col-lg-6">
+							<button className="btn btn-light" onClick={this.handleSubmit}>Send</button>
+						</div>
+					</div>
+
 				</div>
 
-				<div className="form-group">
-					<textarea
-						name="content"
-						className="form-control"
-						rows="5"
-						onChange={this.handleChange}
-						value={this.state.content}
-						placeholder="Description"
-						></textarea>
-				</div>
-
-				<div className="form-group">
-					<button className="btn btn-light" onClick={this.handleSubmit}>Add step</button>
+				<div className="form-content">
+					<div className="form-group">
+						<textarea
+							name="content"
+							className="form-control"
+							rows="5"
+							onChange={this.handleChange}
+							value={this.state.content}
+							placeholder="Task detail"
+							></textarea>
+					</div>
 				</div>
 
 				<style jsx>{`
@@ -59,7 +68,10 @@ export class StepForm extends Component {
 						float: left;
 						width: 100%;
 						margin-bottom: 40px;
-						background: rgba(0,0,0,.2);
+					}
+
+					.form-header {
+						background: #4A59D8;
 						padding: 20px;
 					}
 

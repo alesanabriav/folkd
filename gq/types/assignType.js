@@ -24,7 +24,6 @@ const Assign = new GraphQLObjectType({
     user: {
       type: User,
       resolve(assign, args) {
-        console.log(assign);
         return assign.getUser(args);
       }
     }

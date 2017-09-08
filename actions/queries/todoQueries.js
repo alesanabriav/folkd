@@ -13,9 +13,9 @@ export const getTodoQuery = `
 				id
 				name
 			}
-			assigned {
-				id
+			assigned(limit: 1, order: [["id", "desc"]]) {
 				user {
+          id
           name
         }
 			}
@@ -72,8 +72,9 @@ export const addTodoMutation = `
       name
     }
     assigned {
-      id
-      name
+      user {
+        id
+      }
     }
   }
   }
