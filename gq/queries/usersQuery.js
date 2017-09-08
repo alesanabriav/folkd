@@ -26,7 +26,6 @@ const users = {
   },
   resolve(root, args, ctx) {
     let where = {...args.where, company_id: ctx.user.company_id};
-    console.log(`---------users query-----------`);
     return models.User.findAll({...args, where });
   }
 };

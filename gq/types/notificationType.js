@@ -29,9 +29,8 @@ const Notification = new GraphQLObjectType({
     },
     user: {
       type: User,
-      resolve(notification) {
-        // console.log('-----------step author=-------------');
-        return notification.getUser();
+      resolve(notification, args) {
+        return notification.getUser(args);
       }
     }
   })

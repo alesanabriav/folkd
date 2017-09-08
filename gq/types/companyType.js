@@ -30,7 +30,7 @@ const Company = new GraphQLObjectType({
     clients: {
       type: new GraphQLList(Client),
       resolve(company, args) {
-        return company.getClients();
+        return company.getClients(args);
       }
     }
   })

@@ -20,7 +20,6 @@ const todos = {
     order: { type: GraphQLJSON }
   },
   resolve(_, args) {
-    console.log(`---------todos query-----------`);
     return models.Todo.findAll(args);
   }
 };

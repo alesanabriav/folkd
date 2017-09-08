@@ -5,7 +5,6 @@ export const getClientProjectsQuery = `
       id
       name
       todosCount
-      todosAssignedCount
       todos(order: [["id", "desc"]], is_completed: $is_completed) {
         project_id
         id

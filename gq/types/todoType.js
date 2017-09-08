@@ -8,6 +8,7 @@ const {
   GraphQLInputObjectType
 } = require("graphql");
 const GraphQLJSON = require("graphql-type-json");
+const Assign = require('./assignType');
 const User = require('./userType');
 const Step = require('./stepType');
 const Attachment = require('./attachmentType');
@@ -31,26 +32,25 @@ const Todo = new GraphQLObjectType({
         limit: { type: GraphQLInt }
       },
       resolve(todo, args) {
-        // console.log(`---------steps call-----------`);
         return todo.getSteps(args);
       }
     },
     author: {
       type: User,
-      resolve(todo) {
-        return todo.getUser();
+      resolve(todo, args) {
+        return todo.getUser(args);
       }
     },
     assigned: {
-      type: new GraphQLList(User),
-      resolve(todo) {
-        return todo.getAssigns();
+      type: new GraphQLList(Assign),
+      resolve(todo, args) {
+        return todo.getAssigns(args);
       }
     },
     attachments: {
       type: new GraphQLList(Attachment),
-      resolve(todo) {
-        return todo.getAttachments();
+      resolve(todo, args) {
+        return todo.getAttachments(args);
       }
     }
   })

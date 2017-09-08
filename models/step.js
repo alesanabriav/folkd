@@ -15,13 +15,6 @@ module.exports =  function(sequelize, Sequelize) {
       }
     },
     {
-      validate: {
-        isAssigned(models, e) {
-          if (this.client_id === null) {
-            throw new Error('Not permit')
-          }
-        }
-      },
       underscored: true
     }
   );

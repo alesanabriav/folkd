@@ -23,14 +23,6 @@ const Project = new GraphQLObjectType({
           .then(todos => todos.length);
       }
     },
-    todosAssignedCount: {
-      type: GraphQLInt,
-      resolve(project, args, ctx) {
-        const user = ctx.user;
-        return project.getTodos({ attributes: ['id', 'assign_id'] })
-          .then(todos => todos.filter(todo => todo.assign_id == user.id).length );
-      }
-    },
     todos: {
       type: new GraphQLList(Todo),
         args: {
@@ -48,7 +40,6 @@ const Project = new GraphQLObjectType({
           }
         },
       resolve(project, args) {
-        // console.log(`$---------projects query todos-----------`);
         return project.getTodos(args);
       }
     }

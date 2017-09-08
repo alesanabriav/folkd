@@ -2,7 +2,7 @@ import {
   getNotificationsQuery,
   addNotificationQuery,
   updateNotificationQuery
-} from '../queries/notificationQueries';
+} from './queries/notificationQueries';
 import apolloFetch from '../lib/apollo_fetch';
 
 const TYPE = 'NOTIFICATIONS';

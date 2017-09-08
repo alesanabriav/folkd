@@ -18,8 +18,8 @@ module.exports = function(sequelize, Sequelize) {
   );
 
   Assign.associate = (models) => {
-    Assign.belongsTo(models.User);
     Assign.belongsTo(models.Todo);
+    Assign.belongsTo(models.User);
   }
 
   return Assign;

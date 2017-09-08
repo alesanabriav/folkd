@@ -34,8 +34,8 @@ const Step = new GraphQLObjectType({
     },
     attachments: {
       type: new GraphQLList(Attachment),
-      resolve(step) {
-        return step.getAttachments();
+      resolve(step, args) {
+        return step.getAttachments(args);
       }
     }
   })

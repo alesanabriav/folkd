@@ -4,15 +4,15 @@ import {
   getTodoQuery,
   addTodoMutation,
   updateTodoMutation
-} from '../queries/todoQueries';
+} from './queries/todoQueries';
 
 import {
   updateAttachmentMutation
-} from '../queries/attachmentQueries';
+} from './queries/attachmentQueries';
 
 import {
   addStepMutation
-} from '../queries/stepQueries';
+} from './queries/stepQueries';
 
 const TYPE = 'TODOS';
 const failAction = { type: `FAIL_${TYPE}` };

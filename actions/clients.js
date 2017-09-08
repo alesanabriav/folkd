@@ -2,7 +2,7 @@ import {
   getClientsQuery,
   addClientMutation,
   updateClientMutation,
-} from '../queries/clientQueries';
+} from './queries/clientQueries';
 import apolloFetch from '../lib/apollo_fetch';
 
 const TYPE = 'CLIENTS';

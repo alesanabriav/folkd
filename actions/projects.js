@@ -2,7 +2,7 @@ import apolloFetch from '../lib/apollo_fetch';
 import {
   getClientProjectsQuery,
   addProjectMutation
-} from '../queries/projectQueries';
+} from './queries/projectQueries';
 
 const TYPE = 'PROJECTS';
 const failAction = { type: `FAIL_${TYPE}` };

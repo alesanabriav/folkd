@@ -22,7 +22,7 @@ const User = new GraphQLObjectType({
     has_drive: {
       type: GraphQLBoolean,
       resolve(todo) {
-        return todo.ga_access_token && todo.ga_access_token ? true : false
+        return todo.ga_access_token && todo.ga_refresh_token ? true : false
       }
     }
   })
