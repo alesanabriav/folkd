@@ -34,7 +34,6 @@ class Todos extends Component {
 
       this.props.addNotification(notification);
       return todo;
-
     })
     .then(todo => {
       this.state.files.forEach(attachment => {
@@ -50,6 +49,17 @@ class Todos extends Component {
 
     return this.props.addTodoStep(variables)
       .then(() => this.props.getTodo(todo.id))
+      .then(() => {
+        const { project, client, assigned } = this.props;
+
+        const notification = {
+          user_id: assigned.id,
+          message: `you were assigned to ${todo.title} on the project ${project.name}`,
+          url: `?client=${client.id}&project=${project.id}&todo=${todo.id}`
+        };
+
+        this.props.addNotification(notification);
+      })
       .then(() => this.setState({showStepForm: false}))
       .catch(err => console.log('addTodoStep', err));
   }
@@ -152,7 +162,7 @@ class Todos extends Component {
                 </div>
                 <div className="col-lg-3">
                   {assigned.id == user.id && steps.length == 0 ?
-                    <button className="btn btn-primary" onClick={this.toggleStepForm}>Replay</button>
+                    <button className="btn btn-primary btn-replay" onClick={this.toggleStepForm}>Replay</button>
                     : ''}
                 </div>
               </div>
@@ -235,6 +245,11 @@ class Todos extends Component {
           .todos h5 {
             color: #fff;
             margin-bottom: 20px
+          }
+
+          .btn-replay {
+            width: 150px;
+            float: right;
           }
 
           .todos-items {
