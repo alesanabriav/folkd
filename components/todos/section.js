@@ -26,7 +26,7 @@ class Todos extends Component {
       const { project, client } = this.props;
 
       const notification = {
-        user_id: todo.assigned.id,
+        // user_id: todo.assigned.id,
         message: `you were assigned to ${todo.title} on the project ${project.name}`,
         url: `?client=${client.id}&project=${project.id}&todo=${todo.id}`
       };
@@ -65,7 +65,7 @@ class Todos extends Component {
   }
 
   showStepForm = (steps, todo, user) => {
-    if(steps.length > 0 && user.id == steps[0].assigned.id) {
+    if(steps.length > 0) {
       return true
     } else if(steps.length == 0 && todo.hasOwnProperty('assigned') && user.id == todo.assigned.id ) {
       return true;
@@ -135,9 +135,8 @@ class Todos extends Component {
               </span>
 
               <span>
-                Assigned to: <i>{todo.assigned.id == user.id ? 'me' : todo.assigned.name}</i>
+                {/* Assigned to: <i>{todo.assigned.id == user.id ? 'me' : todo.assigned.name}</i> */}
               </span>
-
 
               <div className="deadline">
                 <span className="deadline__start">{dateFns.format(todo.deadline_start, 'DD MMM')}</span>

@@ -9,9 +9,6 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER
       },
-      assign_id: {
-        type: Sequelize.INTEGER
-      },
       project_id: {
         type: Sequelize.INTEGER
       },

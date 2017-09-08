@@ -27,7 +27,6 @@ class Step extends Component {
        <header>
          <span><h4>Step: {subtodo.position}</h4></span>
          <span>By: {subtodo.author.name}</span>
-         <span>assigned to: {subtodo.assigned.name}</span>
          <span>Date: {dateFns.format(subtodo.created_at, 'dddd DD MMM YY HH:mm')}</span>
        </header>
         <div className="todo__item__content">

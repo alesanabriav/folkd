@@ -32,12 +32,6 @@ const Step = new GraphQLObjectType({
         return step.getUser();
       }
     },
-    assigned: {
-      type: User,
-      resolve(todo) {
-        return todo.getAssign();
-      }
-    },
     attachments: {
       type: new GraphQLList(Attachment),
       resolve(step) {

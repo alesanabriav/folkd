@@ -42,10 +42,7 @@ export class Project extends Component {
               if(todo.is_completed == filters.isCompleted) {
                 return (
                   <li key={todo.id} className={todo.id == todoSelected.id ? 'projects__todo--active' : '' }>
-                    <a href="#" onClick={this.changeTodo.bind(null, todo)}>
-                      {todo.assigned.id == currentUser.id
-                        ? <i className="ion-android-radio-button-on"></i>
-                        : <i className="ion-android-radio-button-off"></i>}  {todo.title}</a>
+                    <a href="#" onClick={this.changeTodo.bind(null, todo)}>{todo.title}</a>
                   </li>
                 )
               }

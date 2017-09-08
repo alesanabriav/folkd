@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.createTable('todo_assign', {
+    queryInterface.createTable('assigns', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -9,7 +9,7 @@ module.exports = {
       todo_id: {
         type: Sequelize.INTEGER
       },
-      assign_id: {
+      user_id: {
         type: Sequelize.INTEGER
       },
 			created_at: Sequelize.DATE,
@@ -18,6 +18,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-		queryInterface.dropTable('todo_assign')
+		queryInterface.dropTable('assigns')
 	}
 };

@@ -20,7 +20,6 @@ export const getClientProjectsQuery = `
 }
 `;
 
-
 export const addProjectMutation = `
   mutation createProject($name: String!, $clientId: Int!) {
     createProject(name: $name, client_id: $clientId) {

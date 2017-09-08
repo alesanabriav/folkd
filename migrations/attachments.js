@@ -15,13 +15,16 @@ module.exports = {
 			step_id: {
         type: Sequelize.INTEGER
       },
+      'drive_id': {
+        type: Sequelize.STRING
+      },
       name: {
         type: Sequelize.STRING
       },
       url: {
         type: Sequelize.STRING
       },
-       created_at: {
+      created_at: {
         type: Sequelize.DATE
       },
       updated_at: {

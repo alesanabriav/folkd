@@ -79,6 +79,7 @@ module.exports = function(sequelize, Sequelize) {
 
   User.associate = (models) => {
     User.belongsTo(models.Company);
+    User.belongsToMany(models.Todo, { as: 'Todos', through: 'todo_assign', foreignKey: 'user_id' });
     User.hasMany(models.Todo);
     User.hasMany(models.Step);
     User.hasMany(models.Notification);

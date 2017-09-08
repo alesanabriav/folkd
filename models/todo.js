@@ -35,9 +35,9 @@ module.exports =  function(sequelize, Sequelize) {
 
   Todo.associate = (models) => {
     Todo.belongsTo(models.User);
-    Todo.belongsTo(models.User, {as: 'Assign', foreignKey: 'assign_id' });
     Todo.belongsTo(models.Project);
 
+    Todo.hasMany(models.Assign);
     Todo.hasMany(models.Step);
     Todo.hasMany(models.Attachment);
   }

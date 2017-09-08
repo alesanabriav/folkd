@@ -38,21 +38,18 @@ const Todo = new GraphQLObjectType({
     author: {
       type: User,
       resolve(todo) {
-        //  console.log(`---------todo: user call-----------`);
         return todo.getUser();
       }
     },
     assigned: {
-      type: User,
+      type: new GraphQLList(User),
       resolve(todo) {
-        //  console.log(`---------todo: assigned call-----------`);
-        return todo.getAssign();
+        return todo.getAssigns();
       }
     },
     attachments: {
       type: new GraphQLList(Attachment),
       resolve(todo) {
-        //  console.log(`---------todo: attachment call-----------`);
         return todo.getAttachments();
       }
     }
