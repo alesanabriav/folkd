@@ -8,12 +8,6 @@ class Header extends Component {
 		showNotifications: false
 	}
 
-	componentDidMount() {
-		if(this.props.user.hasOwnProperty('id')) {
-			this.getNotifications();
-		}
-	}
-
 	getNotifications = () => {
 		this.props.getNotifications(this.props.variables);
 	}
@@ -49,26 +43,21 @@ class Header extends Component {
 
 					  <div className="collapse navbar-collapse" id="navbarSupportedContent">
 							{user.hasOwnProperty('id') ?
-					    <ul className="navbar-nav mr-auto">
-					      <li className="nav-item active">
-					        <Link href="/">
-										<a className="nav-link">Profile {user.name} <span className="sr-only">(current)</span></a>
-									</Link>
-					      </li>
-					      <li className="nav-item">
-									<Link href="/">
-					        	<a className="nav-link" href="#">Team</a>
-									</Link>
-					      </li>
-								<li className="nav-item">
-					        <a className="nav-link" onClick={this.logout} href="#">cerrar</a>
-					      </li>
-					    </ul>
+						    <ul className="navbar-nav mr-auto">
+						      <li className="nav-item active">
+						        <Link href="/">
+											<a className="nav-link">Profile {user.name}</a>
+										</Link>
+						      </li>
+									<li className="nav-item">
+						        <a className="nav-link" onClick={this.logout} href="#">Sign out</a>
+						      </li>
+						    </ul>
 							: ''}
 
 							{user.hasOwnProperty('id') ?
 								<span className="navbar-text notifications-container">
-						      <button className="btn" style={{background: '#4A32D2', color: '#fff'}} onClick={this.toggleNotifications}>
+						      <button className="btn" style={{background: '#4A59D8', color: '#fff'}} onClick={this.toggleNotifications}>
 										<i className={showNotifications ? "ion-android-notifications-none" : "ion-android-notifications"}></i> {notifications.length}
 									</button>
 									<div className={ showNotifications ? "notifications notifications--show" : "notifications"}>

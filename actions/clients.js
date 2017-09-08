@@ -16,7 +16,7 @@ export function getClients(variables) {
     return apolloFetch({ query: getClientsQuery, variables })
     .then(res => {
       dispatch({ type: `FETCH_${TYPE}`, payload: res.data.clients });
-      return res.data;
+      return res.data.clients;
     })
     .catch(err => dispatch( failAction ));
   }

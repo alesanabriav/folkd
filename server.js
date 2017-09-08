@@ -88,7 +88,8 @@ app.prepare()
     })
   );
 
-  server.use('/graphiql', graphqlHTTP({
+  server.use('/graphiql',
+  graphqlHTTP({
   	schema,
   	graphiql: true
   }));

@@ -17,7 +17,6 @@ const createClient = {
 	},
 	resolve(root, args, ctx) {
     let data = {...args, company_id: ctx.user.company_id};
-    console.log('createClient------------------', data);
 		return models.Client.create(data);
 	}
 }

@@ -34,12 +34,10 @@ const Project = new GraphQLObjectType({
           },
           limit: {
             type: GraphQLInt
-          },
-          is_completed: {
-            type: GraphQLBoolean
           }
         },
       resolve(project, args) {
+        console.log(args);
         return project.getTodos(args);
       }
     }

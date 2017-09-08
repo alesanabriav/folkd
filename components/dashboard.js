@@ -26,16 +26,13 @@ class Dashboard extends Component {
   }
 
   fetchInitialData = () => {
-    const { clients, projects } = this.props;
+    const { clients } = this.props;
 
     this.props.getClients(clients.variables)
-      .then(clients => {
-        if(clients.length > 0) {
-          return this.props.setClientId(clients.selected.id);
-        }
-      })
+      // .then(clients => this.props.setClientId(clients[0].id))
+      // .then(() => this.props.getProjects(this.props.projects.variables))
+        .then(() => this.props.getAllProjects())
       .then(() => this.props.getUser())
-      .then(() => this.props.getProjects(projects.variables))
       .then(() => this.props.getUsers())
       .then(() => this.setStateByUrlQuery())
       .catch(err => console.log('fetchInitialData', err))
@@ -65,6 +62,7 @@ const mapDispatchToProps = {
   selectClient: actions.clients.selectClient,
   selectClientById: actions.clients.selectClientById,
   getProjects: actions.projects.getProjects,
+  getAllProjects: actions.projects.getAllProjects,
   setClientId: actions.projects.setClientId,
   selectProjectById: actions.projects.selectProjectById,
   getUsers: actions.users.getUsers,

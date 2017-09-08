@@ -1,5 +1,6 @@
 import apolloFetch from '../lib/apollo_fetch';
 import {
+  getAllProjectsQuery,
   getClientProjectsQuery,
   addProjectMutation
 } from './queries/projectQueries';
@@ -7,6 +8,22 @@ import {
 const TYPE = 'PROJECTS';
 const failAction = { type: `FAIL_${TYPE}` };
 const loadingAction = { type: `LOADING_${TYPE}` };
+
+export function getAllProjects() {
+  const action = (dispatch) => {
+    dispatch(loadingAction);
+    return apolloFetch({ query: getAllProjectsQuery })
+    .then(res => {
+      dispatch({ type: `FETCH_ALL_${TYPE}`, payload: res.data.projects });
+      return res.data;
+    })
+    .catch(err => {
+      dispatch( failAction );
+    });
+  }
+
+  return action;
+}
 
 export function getProjects(variables) {
   const action = (dispatch) => {

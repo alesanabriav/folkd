@@ -16,7 +16,6 @@ export default function clients(state = initialState, action) {
       return {
         ...state,
         items: action.payload,
-        selected: action.payload.length > 0 ? action.payload[0] : {},
         loading: false
       };
     case `ADD_${TYPE}`:

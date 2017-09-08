@@ -17,7 +17,7 @@ class Projects extends Component {
   changeTodo = (todo) => {
     const { client } = this.props;
     const { selected } = this.props.projects;
-    const href = `/?client=${client.id}&project=${todo.project_id}&todo=${todo.id}`
+    const href = `/?client=${selected.client_id}&project=${todo.project_id}&todo=${todo.id}`
     const as = href;
     Router.push(href, as, { shallow: true });
 

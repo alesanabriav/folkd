@@ -23,7 +23,7 @@ export default function todos(state = initialState, action) {
         item: action.payload,
         steps: action.payload.steps,
         attachments: action.payload.attachments,
-        assigned: action.payload.assigned.length > 0 ? action.payload.assigned[0].user : {},
+        assigned: action.payload.assigned,
         loading: false
       };
     case `ADD_${TYPE}`:
@@ -31,7 +31,7 @@ export default function todos(state = initialState, action) {
         ...state,
         item: action.payload,
         attachments: action.payload.attachments,
-        assigned: action.payload.assigned.length > 0 ? action.payload.assigned[0].user : {}
+        assigned: action.payload.assigned
       };
       case `UPDATE_${TYPE}_ITEM`:
         return {

@@ -15,11 +15,12 @@ const createProject = {
       type: new GraphQLNonNull(GraphQLString)
     },
     client_id: {
-      type: new GraphQLNonNull(GraphQLInt) 
+      type: new GraphQLNonNull(GraphQLInt)
     }
 	},
 	resolve(root, args) {
-		return models.Project.create(args);
+    let data = {...args, company_id: ctx.user.company_id};
+		return models.Project.create(data);
 	}
 }
 

@@ -20,15 +20,19 @@ export default function projects(state = initialState, action) {
   switch (action.type) {
     case `FETCH_${TYPE}`:
       const selected = action.payload.length > 0 ? action.payload[0] : {};
-      const todos = selected.todos ? selected.todos : [];
-
       return {
         ...state,
         items: action.payload,
         loading: false,
-        selected,
-        todos
+        selected
       };
+    case `FETCH_ALL_${TYPE}`:
+        return {
+          ...state,
+          items: action.payload,
+          selected: action.payload.length > 0 ? action.payload[0] : {},
+          loading: false
+        };
     case `SELECT_${TYPE}`:
       return {
         ...state,

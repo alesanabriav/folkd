@@ -11,8 +11,11 @@ const projectFilter = new GraphQLInputObjectType({
     fields: () => ({
       name: { type: GraphQLJSON },
       client_id: {
-        type: new GraphQLNonNull(GraphQLInt)
-      }
+        type: GraphQLInt
+      },
+      company_id: {
+        type: GraphQLInt
+      },
     })
   })
 

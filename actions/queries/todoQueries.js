@@ -13,11 +13,9 @@ export const getTodoQuery = `
 				id
 				name
 			}
-			assigned(limit: 1, order: [["id", "desc"]]) {
-				user {
-          id
-          name
-        }
+			assigned {
+				id
+        name
 			}
 			steps(order: [["id", "desc"]]) {
 				id

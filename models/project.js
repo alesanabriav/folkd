@@ -13,6 +13,7 @@ module.exports =  function(sequelize, Sequelize) {
 
   Project.associate = (models) => {
     Project.hasMany(models.Todo);
+    Project.belongsTo(models.Company);
     Project.belongsTo(models.Client);
   };
 

@@ -6,6 +6,7 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
+      company_id: Sequelize.INTEGER,
       client_id: Sequelize.INTEGER,
       name: Sequelize.STRING,
       created_at: {
