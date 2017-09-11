@@ -46,7 +46,6 @@ export const addProjectMutation = `
       id
       name
       todosCount
-      todosAssignedCount
       todos {
         id
         title
