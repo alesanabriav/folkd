@@ -74,11 +74,9 @@ export const addTodoMutation = `
       name
       url
     }
-    assigned(limit: 1, order: [["id", "desc"]]) {
-      user {
-        id
-        name
-      }
+    assigned {
+      id
+      name
     }
   }
   }
