@@ -18,7 +18,7 @@ const createProject = {
       type: new GraphQLNonNull(GraphQLInt)
     }
 	},
-	resolve(root, args) {
+	resolve(_, args, ctx) {
     let data = {...args, company_id: ctx.user.company_id};
 		return models.Project.create(data);
 	}
@@ -30,7 +30,7 @@ const updateProject = {
     id: { type: new GraphQLNonNull(GraphQLInt) },
     data: { type: new GraphQLNonNull(GraphQLJSON) }
   },
-  resolve(root, args) {
+  resolve(_, args, ctx) {
     return models.Project.update(args.data, { where: { id: args.id } })
         .then(project => models.Project.findOne({ where: args.id }));
   }
