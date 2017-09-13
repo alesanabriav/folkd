@@ -12,7 +12,7 @@ export function getUsers(variables = {}) {
     return apolloFetch({ query: getUsersQuery, variables })
     .then(res => {
       dispatch({ type: `FETCH_${TYPE}`, payload: res.data.users });
-      return res;
+      return res.data.users;
     })
     .catch(err => dispatch( failAction ));
   }
@@ -27,7 +27,7 @@ export function getUser() {
     return apolloFetch({ query: getUserQuery })
     .then(res => {
       dispatch({ type: `FETCH_${TYPE}_CURRENT`, payload: res.data.user });
-      return res;
+      return res.data.user;
     })
     .catch(err => dispatch( failAction ));
   }

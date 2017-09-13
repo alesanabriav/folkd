@@ -20,13 +20,13 @@ export const getClientProjectsQuery = `
 `;
 
 export const getAllProjectsQuery = `
-  query getProjects($order: JSON) {
+  query getProjects($order: JSON, $todoWhere: JSON) {
     projects(order: $order) {
       id
       client_id
       name
       todosCount
-      todos(order: [["id", "desc"]], where: {is_completed: false}) {
+      todos(order: [["id", "desc"]], where: $todoWhere) {
         project_id
         id
         title

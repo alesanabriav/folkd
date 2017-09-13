@@ -2,6 +2,9 @@ module.exports =  function(sequelize, Sequelize) {
   const Todo = sequelize.define(
     "todo",
     {
+      assign_id: {
+        type: Sequelize.INTEGER
+      },
       title: {
         type: Sequelize.STRING,
         validate: {
@@ -36,7 +39,7 @@ module.exports =  function(sequelize, Sequelize) {
   Todo.associate = (models) => {
     Todo.belongsTo(models.User);
     Todo.belongsTo(models.Project);
-    Todo.belongsTo(models.User, {as: 'assigned', foreignKey : 'assign_id'}); 
+    Todo.belongsTo(models.User, {as: 'assigned', foreignKey : 'assign_id'});
     Todo.hasMany(models.Step);
     Todo.hasMany(models.Attachment);
   }

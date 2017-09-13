@@ -63,7 +63,7 @@ class Clients extends Component {
         <ul className="clients__list">
           <li className="clients__item">
             <a href='#' onClick={this.allClients}>
-              All <span className="clients__item__name">clients</span>
+              All <span className="clients__item__name">Assigned</span>
             </a>
           </li>
           {items.map(client =>

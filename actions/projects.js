@@ -9,10 +9,10 @@ const TYPE = 'PROJECTS';
 const failAction = { type: `FAIL_${TYPE}` };
 const loadingAction = { type: `LOADING_${TYPE}` };
 
-export function getAllProjects() {
+export function getAllProjects(variables = {}) {
   const action = (dispatch) => {
     dispatch(loadingAction);
-    return apolloFetch({ query: getAllProjectsQuery })
+    return apolloFetch({ query: getAllProjectsQuery, variables })
     .then(res => {
       dispatch({ type: `FETCH_ALL_${TYPE}`, payload: res.data.projects });
       return res.data;

@@ -37,7 +37,6 @@ const Project = new GraphQLObjectType({
           }
         },
       resolve(project, args) {
-        console.log(args);
         return project.getTodos(args);
       }
     }

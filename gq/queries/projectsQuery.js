@@ -27,6 +27,7 @@ const projects = {
   },
   resolve(_, args, ctx) {
     const query = {...args, where: {...args.where, company_id: ctx.user.company_id} };
+    console.log(query);
     return models.Project.findAll(query);
   }
 };

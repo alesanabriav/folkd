@@ -27,12 +27,12 @@ class Dashboard extends Component {
 
   fetchInitialData = () => {
     const { clients } = this.props;
-
+    //
     this.props.getClients(clients.variables)
       // .then(clients => this.props.setClientId(clients[0].id))
       // .then(() => this.props.getProjects(this.props.projects.variables))
-        .then(() => this.props.getAllProjects())
       .then(() => this.props.getUser())
+      .then((user) => this.props.getAllProjects({todoWhere: {assign_id: user.id}}))
       .then(() => this.props.getUsers())
       .then(() => this.setStateByUrlQuery())
       .catch(err => console.log('fetchInitialData', err))
