@@ -50,6 +50,9 @@ module.exports = {
       },
       ga_refresh_token: {
         type: Sequelize.STRING
+      },
+      ga_expiry_date: {
+        type: Sequelize.STRING
       }
     });
   },
