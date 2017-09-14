@@ -81,7 +81,7 @@ export class StepForm extends Component {
 
 					button {
 						float: right;
-						width: 200px;
+						width: 100%;
 						margin-bottom: 10px;
 						cursor: pointer;
 					}

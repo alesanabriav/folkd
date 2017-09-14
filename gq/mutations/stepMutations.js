@@ -36,11 +36,11 @@ const createStep = {
       if(todo.user_id == user_id || todo.assign_id == user_id) {
         todo = await todo.update({ assign_id: args.assign_id });
         const assign = await models.Assign.create({ user_id: args.assign_id, todo_id: args.todo_id });
-        const step = models.Step.create(args);
+        const step =  await models.Step.create(args);
         return step;
       }
     } catch(err) {
-      console.log('step mutation ', err);
+      return err;
     }
 	}
 }

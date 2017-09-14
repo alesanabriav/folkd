@@ -157,8 +157,8 @@ class TodoForm extends Component {
 
 					.btn-primary, .btn-secondary {
 						float: right;
-						width: 200px;
 						margin-bottom: 10px;
+						width: 100%;
 					}
 
 					.form-body {

@@ -51,7 +51,7 @@ class Todos extends Component {
       .then(() => this.props.getTodo(todo.id))
       .then(() => {
         const { project, client, assigned } = this.props;
-        console.log('step client', client);
+
         const notification = {
           user_id: assigned.id,
           message: `you were assigned to ${todo.title} on the project ${project.name}`,
@@ -142,7 +142,7 @@ class Todos extends Component {
           <div style={{background: '#4A59D8'}}>
             <div className="todos-items__header">
               <div className="row">
-                <div className="col-lg-6">
+                <div className="col-lg-5">
                   <h2> {todo.title} </h2>
                   <span>
                     {dateFns.format(todo.created_at, 'dddd DD MMM YY HH:mm')} by <i>{todo.author.id == user.id ? 'me' : todo.author.name}</i>
@@ -152,7 +152,7 @@ class Todos extends Component {
                     Assigned to: <i>{assigned.id == user.id ? 'me' : assigned.name}</i>
                   </span>
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                   <div className="deadline">
                     <span className="deadline__start">{dateFns.format(todo.deadline_start, 'DD MMM')}</span>
                     <span className="deadline__end">{dateFns.format(todo.deadline_end, 'DD MMM')}</span>
@@ -180,7 +180,7 @@ class Todos extends Component {
           : <div/>
         }
 
-        { showStepForm
+        { todo.hasOwnProperty('id') && showStepForm
           ? <StepForm
               className="step-form"
               onSubmit={this.handleSubmitStep}
@@ -272,7 +272,7 @@ class Todos extends Component {
 
           .deadline {
             position: relative;
-            width: 200px;
+            width: 100%;
             height: 20px;
             margin: 40px 0 0 0;
           }
