@@ -143,7 +143,7 @@ class Todos extends Component {
             <div className="todos-items__header">
               <div className="row">
                 <div className="col-lg-5">
-                  <h2> {todo.title} </h2>
+                  <h3>{todo.title}</h3>
                   <span>
                     {dateFns.format(todo.created_at, 'dddd DD MMM YY HH:mm')} by <i>{todo.author.id == user.id ? 'me' : todo.author.name}</i>
                   </span>
@@ -161,6 +161,9 @@ class Todos extends Component {
                   </div>
                 </div>
                 <div className="col-lg-3">
+                  {assigned.id == user.id && steps.length > 0 && todo.is_completed == false ?
+                    <button className="btn btn-primary btn-replay" onClick={this.completeTodo}>Finish</button>
+                    : ''}
                   {assigned.id == user.id && steps.length == 0 ?
                     <button className="btn btn-primary btn-replay" onClick={this.toggleStepForm}>Replay</button>
                     : ''}
