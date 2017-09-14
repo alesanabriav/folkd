@@ -44,12 +44,11 @@ const updateTodo = {
     todo_id: { type: GraphQLInt },
     is_completed: { type: GraphQLBoolean }
   },
-  resolve(root, args) {
+  resolve(_, args, ctx) {
 
     return models.Todo.findOne({ where: args.id })
     .then(todo => {
-
-      if(todo.is_completed == false || todo.is_completed == 0) {
+      if(todo.is_completed == 0 && (todo.user_id == ctx.user.id ||  todo.assign_id == ctx.user.id)) {
         return models.Todo.update(args, { where: { id: args.id } })
           .then(() => {
             return models.Todo.findOne({ where: args.id });

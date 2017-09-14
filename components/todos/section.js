@@ -51,7 +51,7 @@ class Todos extends Component {
       .then(() => this.props.getTodo(todo.id))
       .then(() => {
         const { project, client, assigned } = this.props;
-
+        console.log('step client', client);
         const notification = {
           user_id: assigned.id,
           message: `you were assigned to ${todo.title} on the project ${project.name}`,
