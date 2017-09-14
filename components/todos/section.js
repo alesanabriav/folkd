@@ -251,7 +251,7 @@ class Todos extends Component {
           }
 
           .btn-replay {
-            width: 150px;
+            width: 100%;
             float: right;
           }
 
