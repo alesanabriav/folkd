@@ -6,7 +6,7 @@ const config = require('../config');
 
 const sequelize = new Sequelize(config.seq.database, config.seq.username, config.seq.password, {
    dialect: 'mysql',
-   logging: false
+  //  logging:false
 });
 
 sequelize

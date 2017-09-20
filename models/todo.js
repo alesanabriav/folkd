@@ -3,7 +3,12 @@ module.exports =  function(sequelize, Sequelize) {
     "todo",
     {
       assign_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        validate: {
+          notEmpty: {
+            msg: "It must have an assigned"
+          }
+        }
       },
       title: {
         type: Sequelize.STRING,

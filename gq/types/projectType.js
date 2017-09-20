@@ -9,6 +9,24 @@ const {
 } = require("graphql");
 const GraphQLJSON = require("graphql-type-json");
 const Todo = require('./todoType');
+const models = require("../../models");
+
+const DataLoader = require('dataloader');
+
+const todoLoader = (query) => {
+  console.log(query);
+  return models.Todo.find(query);
+}
+
+const todosLoader = new DataLoader(async (keys) => {
+
+  const todos = await models.Todo.findAll({where: { project_id : { in: keys } } });
+  console.log(todos.length);
+  return todos.map((todo) => {
+    console.log(todo.title);
+    return Promise.resolve(todo);
+  });
+});
 
 const Project = new GraphQLObjectType({
   name: "project",
@@ -19,8 +37,7 @@ const Project = new GraphQLObjectType({
     todosCount: {
       type: GraphQLInt,
       resolve(project, args, ctx) {
-        return project.getTodos({ attributes: ['id'] })
-          .then(todos => todos.length);
+        return 5;
       }
     },
     todos: {
@@ -37,6 +54,7 @@ const Project = new GraphQLObjectType({
           }
         },
       resolve(project, args) {
+        // return todosLoader.load(project.id);
         return project.getTodos(args);
       }
     }

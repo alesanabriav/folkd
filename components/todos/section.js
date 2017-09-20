@@ -7,6 +7,7 @@ import Todo from './item';
 import Step from './step';
 
 class Todos extends Component {
+
   state = {
     showTodoForm: false,
     showStepForm: false,
@@ -21,7 +22,9 @@ class Todos extends Component {
   handleSubmit = (variables) => {
     this.props.addTodo(variables)
     .then((todo) => {
-      return this.props.addProjectTodo(todo);
+      if(todo !== null) {
+        return this.props.addProjectTodo(todo);
+      }
     })
     .then((todo) => {
       const { project, client, assigned } = this.props;
@@ -39,6 +42,9 @@ class Todos extends Component {
       this.state.files.forEach(attachment => {
         this.props.updateTodoAttachment({...attachment, todo_id: todo.id});
       });
+    })
+    .catch(err => {
+      console.log(err);
     })
   }
 
