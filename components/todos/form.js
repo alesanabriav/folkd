@@ -24,10 +24,10 @@ class TodoForm extends Component {
 
 	handleDescription = (e) => {
 		const description = e.target.value;
-		const md = new MarkdownIt();
-		md.use(taskLists);
-		var result = md.render(description);
-		this.setState({ content: description, description: result });
+		// const md = new MarkdownIt();
+		// md.use(taskLists);
+		// var result = md.render(description);
+		this.setState({ content: description, description: description });
 	}
 
 	handleDeadline = (type, e) => {

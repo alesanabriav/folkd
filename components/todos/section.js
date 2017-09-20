@@ -171,7 +171,7 @@ class Todos extends Component {
                     <button className="btn btn-primary btn-replay" onClick={this.completeTodo}>Finish</button>
                     : ''}
                   {assigned.id == user.id && steps.length == 0 ?
-                    <button className="btn btn-primary btn-replay" onClick={this.toggleStepForm}>Replay</button>
+                    <button className="btn btn-primary btn-replay" onClick={this.toggleStepForm}>Reply</button>
                     : ''}
                 </div>
               </div>

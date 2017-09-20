@@ -18,14 +18,14 @@ class Step extends Component {
     })
   }
 
-  handleReplay = (e) => {
+  handleReply = (e) => {
     e.preventDefault();
     this.props.onOpenForm();
   }
 
   render() {
     const { subtodo, user, assigned, main } = this.props;
-    const uploadData = {user_id: user.id, step_id: subtodo.id};
+    const uploadData = { user_id: user.id, step_id: subtodo.id };
 
    return (
      <section className="todo__item">
@@ -38,7 +38,7 @@ class Step extends Component {
            </div>
            <div className="col-lg-3">
              {main && assigned.id == user.id ?
-               <button className="btn btn-main" onClick={this.handleReplay}>Replay</button>
+               <button className="btn btn-main" onClick={this.handleReply}>Reply</button>
              : ''}
            </div>
          </div>
