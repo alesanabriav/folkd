@@ -1875,6 +1875,10 @@ domhandler@^2.3.0:
   dependencies:
     domelementtype "1"
 
+dompurify:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-1.0.2.tgz#7cf47d57614324a9723a1ba69143eeb7d3c617ac"
+
 domutils@^1.5.1:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.6.2.tgz#1958cc0b4c9426e9ed367fb1c8e854891b0fa3ff"
@@ -5143,6 +5147,10 @@ sqlstring@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/sqlstring/-/sqlstring-2.2.0.tgz#c3135c4ea8abcd7e7ee741a4966a891d86a4f191"
 
+squire-rte:
+  version "1.8.9"
+  resolved "https://registry.yarnpkg.com/squire-rte/-/squire-rte-1.8.9.tgz#859ee8b2dcb87d23a0981bdac23ac1c876453fdd"
+
 sshpk@^1.7.0:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.13.1.tgz#512df6da6287144316dc4c18fe1cf1d940739be3"
@@ -5416,10 +5424,6 @@ tr46@~0.0.3:
 trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
-
-trix:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/trix/-/trix-0.11.0.tgz#74e3b6a38fa0e14e3e8a426adca558433775a673"
 
 tsscmp@~1.0.0:
   version "1.0.5"

@@ -17,7 +17,7 @@ class Main extends Component {
           <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
           <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
           <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css" />
-
+          <script src="https://unpkg.com/squire-rte@1.8.9/build/squire.js"></script>
         </Head>
         <Header user={users.current} />
 
@@ -38,6 +38,14 @@ class Main extends Component {
 
           li {
             list-style: none
+          }
+
+          .editor ul {
+            padding-left: 30px;
+          }
+
+          .editor li {
+            list-style: initial;
           }
 
           a:hover {

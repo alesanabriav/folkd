@@ -25,7 +25,7 @@ class Todo extends Component {
     return (
       <section className="todo__item">
         <div className="todo__item__content">
-          <div dangerouslySetInnerHTML={{__html: this.renderMD(todo.content)}}/>
+          <div dangerouslySetInnerHTML={{__html:todo.content}}/>
         </div>
         <div className="todo__item__upload">
 
@@ -73,6 +73,8 @@ class Todo extends Component {
             background: #F7F7F7;
             padding: 20px;
             color: #1F293B;
+            max-width: 100%;
+            overflow: hidden;
           }
 
           .todo__item__upload {

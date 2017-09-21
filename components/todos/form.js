@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import request from 'axios';
-import MarkdownIt from 'markdown-it';
-import taskLists from 'markdown-it-task-lists';
 import DatePicker from '../date-picker';
 import Upload from '../upload';
+import Editor from '../editor';
 
 class TodoForm extends Component {
 	state = {
@@ -17,6 +16,7 @@ class TodoForm extends Component {
 		date: null,
 		files: []
 	}
+
 
 	handleChange = e => {
 		this.setState({ [e.target.name] : e.target.value });
@@ -54,6 +54,10 @@ class TodoForm extends Component {
 	handleUploaded = (files) => {
 		this.props.onUploaded(files);
 		this.setState({ files });
+	}
+
+	handleContent = (content) => {
+		this.setState({ content });
 	}
 
 	render() {
@@ -119,16 +123,11 @@ class TodoForm extends Component {
 					</div>
 				</div>
 				<div className="form-body">
-					<div className="form-group">
-						<textarea
-							name="content"
-							className="form-control"
-							placeholder="Task details"
-							rows="5"
-							onChange={this.handleDescription}
-							value={this.state.content}
-							></textarea>
-					</div>
+					<Editor onChange={this.handleContent} />
+				</div>
+
+				<div className="form-body">
+
 
 					<div className="form__uploads">
 						<Upload
