@@ -44,7 +44,7 @@ class Step extends Component {
          </div>
        </header>
         <div className="todo__item__content">
-          <div dangerouslySetInnerHTML={{__html: this.renderMD(subtodo.content)}}/>
+          <div dangerouslySetInnerHTML={{__html: subtodo.content}}/>
        </div>
 
        <div className="todo__item__upload">

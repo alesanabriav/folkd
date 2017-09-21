@@ -26,7 +26,6 @@ class Editor extends Component {
 
   handleResult = (html) => {
     const result = DOMPurify.sanitize(html);
-    console.log(result);
     this.props.onChange(result);
   }
 
@@ -92,7 +91,7 @@ class Editor extends Component {
       <div>
         <div className="dropdown">
           <button className="btn btn-sm dropdown-toggle" onClick={this.toggleFontSize}>
-            font size
+            Font size
           </button>
           <div className={`dropdown-menu ${this.state.showFontsize ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
             <a className="dropdown-item" onClick={this.handleFontSize.bind(null, 'small')}>Small</a>
@@ -106,7 +105,7 @@ class Editor extends Component {
         <button className="btn btn-sm" onClick={this.handleList}>List</button>
         <div className="dropdown">
           <button className="btn btn-sm dropdown-toggle" onClick={this.toggleTextAlign}>
-            text align
+            Text align
           </button>
           <div className={`dropdown-menu ${this.state.showTextAlign ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
             <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'left')}>left</a>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Editor from '../editor';
 
 export class StepForm extends Component {
 	state = {
@@ -8,6 +9,10 @@ export class StepForm extends Component {
 
 	handleChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
+	}
+
+	handleContent = (content) => {
+		this.setState({ content });
 	}
 
 	handleSubmit = (e) => {
@@ -56,14 +61,7 @@ export class StepForm extends Component {
 
 				<div className="form-content">
 					<div className="form-group">
-						<textarea
-							name="content"
-							className="form-control"
-							rows="5"
-							onChange={this.handleChange}
-							value={this.state.content}
-							placeholder="Task detail"
-							></textarea>
+						<Editor onChange={this.handleContent} />
 					</div>
 				</div>
 
