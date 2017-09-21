@@ -1,4 +1,5 @@
 # Folkders
 
-# features
-get current state by url ?client=2&project=2&todo=11
+### todos
+- [ ] fix add todo to projects after created
+- [ ] on complete remove todo from projects

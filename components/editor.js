@@ -146,6 +146,7 @@ class Editor extends Component {
             </div>
           </div>
         </div>
+
         <div className="editor" ref={editor => this.editorNode = editor }></div>
         <style jsx>{`
           .editor {
