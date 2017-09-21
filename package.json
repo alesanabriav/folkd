@@ -51,6 +51,7 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
     "sequelize": "^4.5.0",
+    "simple-color-picker": "^0.1.2",
     "squire-rte": "^1.8.9",
     "uid": "^0.0.2",
     "url-parse": "^1.1.9"

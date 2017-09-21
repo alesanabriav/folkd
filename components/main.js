@@ -18,7 +18,8 @@ class Main extends Component {
           <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
           <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css" />
-          <script src="https://unpkg.com/squire-rte@1.8.9/build/squire.js"></script>
+          <link rel="stylesheet" href="https://unpkg.com/simple-color-picker/src/simple-color-picker.css" />
+
         </Head>
         <Header user={users.current} />
 
@@ -123,6 +124,10 @@ class Main extends Component {
           }
           .react-datepicker__day--keyboard-selected {
             background-color: rgba(0,0,0,.5)
+          }
+
+          .Scp {
+            padding: 0 !important;
           }
         `}</style>
       </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DOMPurify from 'dompurify';
+import ColorPicker from './colorPicker';
 
 class Editor extends Component {
 
@@ -8,7 +9,8 @@ class Editor extends Component {
     list: false,
     align: {},
     showFontsize: false,
-    showTextAlign: false
+    showTextAlign: false,
+    showTextColor: false
   }
 
   componentDidMount() {
@@ -22,6 +24,17 @@ class Editor extends Component {
     this.editor.addEventListener('input', () => {
       this.handleResult(this.editor.getHTML());
     });
+
+
+    // document.addEventListener('click', this.handleGlobalClick, true)
+  }
+
+  handleGlobalClick = (e) => {
+    const el = this.editorNode;
+    console.log(el, e.target);
+    if (el.contains(e.target)) {
+      console.log('inside');
+    }
   }
 
   handleResult = (html) => {
@@ -86,9 +99,20 @@ class Editor extends Component {
     this.setState({ showTextAlign: !this.state.showTextAlign })
   }
 
+  toggleTextColor = (e) => {
+    if(e) e.preventDefault();
+      this.setState({ showTextColor: !this.state.showTextColor })
+  }
+
+  handleTextColor = (color) => {
+    if(this.hasOwnProperty('editor')) {
+      this.editor.setTextColour(color);
+    }
+  }
+
   render() {
     return (
-      <div>
+      <div ref={container => this.container = container}>
         <div className="editor-toolbar">
           <div className="dropdown">
             <button className="btn btn-sm dropdown-toggle" onClick={this.toggleFontSize}>
@@ -115,6 +139,12 @@ class Editor extends Component {
             </div>
           </div>
           <button className="btn btn-sm" onClick={this.handleClean}><span className="fa fa-eraser"></span></button>
+          <div className="dropdown">
+            <button className="btn dropdown-toggle" onClick={this.toggleTextColor}><span className="ion-android-color-palette"></span></button>
+            <div className={`dropdown-menu ${this.state.showTextColor ? 'show' : ''}`}>
+              <ColorPicker onChange={this.handleTextColor} />
+            </div>
+          </div>
         </div>
         <div className="editor" ref={editor => this.editorNode = editor }></div>
         <style jsx>{`
