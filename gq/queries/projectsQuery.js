@@ -11,7 +11,6 @@ const GraphQLJSON =  require("graphql-type-json");
 const Project =  require("../types/projectType");
 const projectsFilter =  require("../types/projectFilterType");
 const models =  require("../../models");
-const { createBatchResolver } = require('graphql-resolve-batch');
 
 const projects = {
   type: new GraphQLList(Project),

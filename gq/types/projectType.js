@@ -11,22 +11,6 @@ const GraphQLJSON = require("graphql-type-json");
 const Todo = require('./todoType');
 const models = require("../../models");
 const { createBatchResolver } = require('graphql-resolve-batch');
-const DataLoader = require('dataloader');
-
-const todoLoader = (query) => {
-  console.log(query);
-  return models.Todo.find(query);
-}
-
-const todosLoader = new DataLoader(async (keys) => {
-
-  const todos = await models.Todo.findAll({where: { project_id : { in: keys } } });
-  console.log(todos.length);
-  return todos.map((todo) => {
-    console.log(todo.title);
-    return Promise.resolve(todo);
-  });
-});
 
 const Project = new GraphQLObjectType({
   name: "project",
@@ -58,10 +42,11 @@ const Project = new GraphQLObjectType({
           const keys = sources.map(({id}) => id);
           const query = {...args, where: {...args.where, project_id : { in: keys } }};
           let todos = await models.Todo.findAll(query);
+
           todos = keys.map(key => {
             return todos.filter(todo => todo.project_id == key);
           })
-          
+
           return todos;
         })
 
