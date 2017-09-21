@@ -7,7 +7,8 @@ class Editor extends Component {
     bold: false,
     list: false,
     align: {},
-    showFontsize: false
+    showFontsize: false,
+    showTextAlign: false
   }
 
   componentDidMount() {
@@ -63,6 +64,7 @@ class Editor extends Component {
     e.preventDefault();
     console.log(this.editor.hasFormat('text-align: center'));
     this.editor.setTextAlignment(position);
+    this.toggleTextAlign();
   }
 
   handleItalic = (e) => {
@@ -78,6 +80,11 @@ class Editor extends Component {
   toggleFontSize = (e) => {
     if(e) e.preventDefault();
     this.setState({ showFontsize: !this.state.showFontsize })
+  }
+
+  toggleTextAlign = (e) => {
+    if(e) e.preventDefault();
+    this.setState({ showTextAlign: !this.state.showTextAlign })
   }
 
   render() {
@@ -97,9 +104,16 @@ class Editor extends Component {
         <button className="btn btn-sm" onClick={this.handleBold}>Bold</button>
         <button className="btn btn-sm" onClick={this.handleItalic}>Italic</button>
         <button className="btn btn-sm" onClick={this.handleList}>List</button>
-        <button className="btn btn-sm" onClick={this.handleAlign.bind(null, 'left')}>left</button>
-        <button className="btn btn-sm" onClick={this.handleAlign.bind(null, 'center')}>center</button>
-        <button className="btn btn-sm" onClick={this.handleAlign.bind(null, 'right')}>right</button>
+        <div className="dropdown">
+          <button className="btn btn-sm dropdown-toggle" onClick={this.toggleTextAlign}>
+            text align
+          </button>
+          <div className={`dropdown-menu ${this.state.showTextAlign ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
+            <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'left')}>left</a>
+            <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'center')}>center</a>
+            <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'right')}>right</a>
+          </div>
+        </div>
         <button className="btn btn-sm" onClick={this.handleClean}>Clean</button>
         <div className="editor" ref={editor => this.editorNode = editor }></div>
         <style jsx>{`
