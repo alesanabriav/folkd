@@ -1698,10 +1698,6 @@ data-uri-to-buffer@1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/data-uri-to-buffer/-/data-uri-to-buffer-1.2.0.tgz#77163ea9c20d8641b4707e8f18abdf9a78f34835"
 
-dataloader:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-1.3.0.tgz#6fec5be4b30a712e4afd30b86b4334566b97673b"
-
 date-fns:
   version "1.28.5"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.28.5.tgz#257cfc45d322df45ef5658665967ee841cd73faf"
@@ -2633,6 +2629,10 @@ googleapis:
 graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.4:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
+
+graphql-resolve-batch:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/graphql-resolve-batch/-/graphql-resolve-batch-1.0.2.tgz#ab069df8ab3410a0188701ed9fa8e382bbb8d6a5"
 
 graphql-type-json@^0.1.4:
   version "0.1.4"

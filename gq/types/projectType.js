@@ -10,7 +10,7 @@ const {
 const GraphQLJSON = require("graphql-type-json");
 const Todo = require('./todoType');
 const models = require("../../models");
-
+const { createBatchResolver } = require('graphql-resolve-batch');
 const DataLoader = require('dataloader');
 
 const todoLoader = (query) => {
@@ -53,10 +53,22 @@ const Project = new GraphQLObjectType({
             type: GraphQLInt
           }
         },
-      resolve(project, args) {
-        // return todosLoader.load(project.id);
-        return project.getTodos(args);
-      }
+        resolve: createBatchResolver(async function(sources, args, context) {
+
+          const keys = sources.map(({id}) => id);
+          const query = {...args, where: {...args.where, project_id : { in: keys } }};
+          let todos = await models.Todo.findAll(query);
+          todos = keys.map(key => {
+            return todos.filter(todo => todo.project_id == key);
+          })
+          
+          return todos;
+        })
+
+      // resolve(project, args) {
+      //   // return todosLoader.load(project.id);
+      //   return project.getTodos(args);
+      // }
     }
   })
 });
