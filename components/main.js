@@ -16,6 +16,7 @@ class Main extends Component {
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" />
           <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
           <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
           <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css" />
           <script src="https://unpkg.com/squire-rte@1.8.9/build/squire.js"></script>
         </Head>
@@ -55,6 +56,10 @@ class Main extends Component {
           .btn {
             cursor: pointer;
             border-radius: 0;
+          }
+
+          .btn:active {
+            outline: none;
           }
 
           .btn-primary {

@@ -6,12 +6,6 @@ import Upload from '../upload';
 
 class Step extends Component {
 
-  renderMD(content) {
-    const md = new MarkdownIt();
-		md.use(taskLists);
-		return md.render(content);
-  }
-
   handleUploaded(files) {
     files.forEach(file => {
       this.props.addStepAttachment(file);

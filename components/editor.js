@@ -89,31 +89,33 @@ class Editor extends Component {
   render() {
     return (
       <div>
-        <div className="dropdown">
-          <button className="btn btn-sm dropdown-toggle" onClick={this.toggleFontSize}>
-            Font size
-          </button>
-          <div className={`dropdown-menu ${this.state.showFontsize ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" onClick={this.handleFontSize.bind(null, 'small')}>Small</a>
-            <a className="dropdown-item" onClick={this.handleFontSize.bind(null, 'normal')}>Normal</a>
-            <a className="dropdown-item" onClick={this.handleFontSize.bind(null, 'large')}>Large</a>
+        <div className="editor-toolbar">
+          <div className="dropdown">
+            <button className="btn btn-sm dropdown-toggle" onClick={this.toggleFontSize}>
+              <span className="fa fa-font"></span>
+            </button>
+            <div className={`dropdown-menu ${this.state.showFontsize ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
+              <a className="dropdown-item" onClick={this.handleFontSize.bind(null, 'small')}>Small</a>
+              <a className="dropdown-item" onClick={this.handleFontSize.bind(null, 'normal')}>Normal</a>
+              <a className="dropdown-item" onClick={this.handleFontSize.bind(null, 'large')}>Large</a>
+            </div>
           </div>
-        </div>
 
-        <button className="btn btn-sm" onClick={this.handleBold}>Bold</button>
-        <button className="btn btn-sm" onClick={this.handleItalic}>Italic</button>
-        <button className="btn btn-sm" onClick={this.handleList}>List</button>
-        <div className="dropdown">
-          <button className="btn btn-sm dropdown-toggle" onClick={this.toggleTextAlign}>
-            Text align
-          </button>
-          <div className={`dropdown-menu ${this.state.showTextAlign ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'left')}>left</a>
-            <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'center')}>center</a>
-            <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'right')}>right</a>
+          <button className="btn btn-sm" onClick={this.handleBold}><span className="fa fa-bold"></span></button>
+          <button className="btn btn-sm" onClick={this.handleItalic}><span className="fa fa-italic"></span></button>
+          <button className="btn btn-sm" onClick={this.handleList}><span className="fa fa-list"></span></button>
+          <div className="dropdown">
+            <button className="btn btn-sm dropdown-toggle" onClick={this.toggleTextAlign}>
+              <span className="fa fa-align-left"></span>
+            </button>
+            <div className={`dropdown-menu ${this.state.showTextAlign ? 'show' : ''}`} aria-labelledby="dropdownMenuButton">
+              <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'left')}>left</a>
+              <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'center')}>center</a>
+              <a className="dropdown-item" onClick={this.handleAlign.bind(null, 'right')}>right</a>
+            </div>
           </div>
+          <button className="btn btn-sm" onClick={this.handleClean}><span className="fa fa-eraser"></span></button>
         </div>
-        <button className="btn btn-sm" onClick={this.handleClean}>Clean</button>
         <div className="editor" ref={editor => this.editorNode = editor }></div>
         <style jsx>{`
           .editor {
@@ -125,6 +127,15 @@ class Editor extends Component {
 
           .editor:focus {
             outline: none;
+          }
+
+          .editor-toolbar {
+            width: 100%;
+            background: #fff;
+          }
+
+          .editor-toolbar .btn {
+            background: #fff;
           }
 
           .dropdown {
