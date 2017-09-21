@@ -57,6 +57,7 @@ export default function projects(state = initialState, action) {
         items: [action.payload].concat(state.items)
       };
     case `ADD_${TYPE}_TODO`:
+    console.log('add todo', action.payload);
       return {
         ...state,
         todos: [action.payload].concat(state.todos)

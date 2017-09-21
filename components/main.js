@@ -91,6 +91,10 @@ class Main extends Component {
             border-radius: 0;
           }
 
+          .form-control:disabled, .form-control[readonly] {
+            background: #fff;
+          }
+
           .btn-outline-light:hover, .btn-light:hover {
             color: #333;
           }
