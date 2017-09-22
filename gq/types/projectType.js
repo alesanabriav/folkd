@@ -40,7 +40,7 @@ const Project = new GraphQLObjectType({
         resolve: createBatchResolver(async function(sources, args, context) {
 
           const keys = sources.map(({id}) => id);
-          const query = {...args, where: {...args.where, project_id : { in: keys } }};
+          const query = {...args, where: {...args.where, project_id: { in: keys } }};
           let todos = await models.Todo.findAll(query);
 
           todos = keys.map(key => {

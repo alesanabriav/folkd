@@ -12,6 +12,8 @@ const Assign = require('./assignType');
 const User = require('./userType');
 const Step = require('./stepType');
 const Attachment = require('./attachmentType');
+const models = require("../../models");
+const { createBatchResolver } = require('graphql-resolve-batch');
 
 const Todo = new GraphQLObjectType({
   name: "todo",
@@ -38,14 +40,35 @@ const Todo = new GraphQLObjectType({
     author: {
       type: User,
       resolve(todo, args) {
+        console.log('--------------user todo---------');
         return todo.getUser(args);
       }
     },
     assigned: {
       type: User,
-      resolve(todo, args) {
-        return todo.getAssigned();
-      }
+      resolve: createBatchResolver(async (todos, args) => {
+        const keys = todos.map(todo => {
+          return todo.assign_id;
+        });
+
+        const query = { where:  {id: {in: keys} } };
+        let users = await models.User.findAll(query);
+
+        users = keys.map((key) => {
+          return users.filter(user => {
+            return user.id == key
+          })[0];
+        });
+
+        return users;
+      })
+      // resolve(todo, args) {
+      //
+      //   return todo.getAssigned().then(user => {
+      //       console.log('--------------user assigned---------');
+      //     return user;
+      //   });
+      // }
     },
     attachments: {
       type: new GraphQLList(Attachment),
