@@ -33,9 +33,13 @@ const Todo = new GraphQLObjectType({
         order: { type: GraphQLJSON },
         limit: { type: GraphQLInt }
       },
-      resolve(todo, args) {
-        return todo.getSteps(args);
-      }
+      resolve: createBatchResolver((todos, args) => {
+        const keys = todos.map(todo => todo.id);
+        const query = { ...args, where: { ...args.where, todo_id: {in: keys} } };
+        let steps = models.Step.findAll(query);
+        steps = keys.map(key => steps.filter(step => step.todo_id == key));
+        return steps;
+      })
     },
     author: {
       type: User,
@@ -62,17 +66,11 @@ const Todo = new GraphQLObjectType({
 
         return users;
       })
-      // resolve(todo, args) {
-      //
-      //   return todo.getAssigned().then(user => {
-      //       console.log('--------------user assigned---------');
-      //     return user;
-      //   });
-      // }
     },
     attachments: {
       type: new GraphQLList(Attachment),
       resolve(todo, args) {
+
         return todo.getAttachments(args);
       }
     }
