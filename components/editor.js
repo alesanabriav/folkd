@@ -29,6 +29,12 @@ class Editor extends Component {
     // document.addEventListener('click', this.handleGlobalClick, true)
   }
 
+  componentWillUnmount() {
+    this.editor.removeEventListener('keydown');
+    this.editor.removeEventListener('input');
+    this.editor.destroy()
+  }
+
   handleGlobalClick = (e) => {
     const el = this.editorNode;
     console.log(el, e.target);

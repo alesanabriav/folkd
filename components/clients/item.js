@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Client extends Component {
-  selectClient = e => {
+  selectClient = (e) => {
     e.preventDefault();
     this.props.selectClient(this.props.client);
   }
