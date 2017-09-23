@@ -10,7 +10,7 @@ class Client extends Component {
     const { client, selected } = this.props;
     return (
       <li className={`clients__item ${client.id == selected.id ? 'clients__item--active' : ''}`}>
-        <a href='#' onClick={this.selectClient}>
+        <a href="#" onClick={this.selectClient}>
           {client.abbreviation} <span className="clients__item__name">{client.name}</span>
         </a>
         <style jsx>{`

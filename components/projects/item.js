@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export class Project extends Component {
-
   selectProject = (e) => {
     e.preventDefault();
     this.props.onSelectProject(this.props.project);
@@ -25,30 +24,30 @@ export class Project extends Component {
       currentUser,
       filters,
       todosAssignedCount,
-      todosCount
+      todosCount,
     } = this.props;
 
     return (
       <li className={`projects__item ${project.id == selected.id ? 'projects__item--active' : ''}`}>
         <a href="#" onClick={this.selectProject}>
           <span className="projects__item__name">{project.name}</span>
-          <span className={project.id == selected.id ? "projects__item__icon ion-chevron-right" : "projects__item__icon ion-plus"}></span>
-          <span className="projects__item__todos-count"></span>
-      </a>
+          <span className={project.id == selected.id ? 'projects__item__icon ion-chevron-right' : 'projects__item__icon ion-plus'} />
+          <span className="projects__item__todos-count" />
+        </a>
 
         {project.todos.length > 0 ?
-          <ul className={"projects__todos--open" }>
-            {project.todos.map(todo => {
-              if(todo.is_completed == filters.isCompleted) {
+          <ul className={'projects__todos--open'}>
+            {project.todos.map((todo) => {
+              if (todo.is_completed == filters.isCompleted) {
                 return (
-                  <li key={todo.id} className={todo.id == todoSelected.id ? 'projects__todo--active' : '' }>
+                  <li key={todo.id} className={todo.id == todoSelected.id ? 'projects__todo--active' : ''}>
                     <a href="#" onClick={this.changeTodo.bind(null, todo)}>{todo.title}</a>
                   </li>
-                )
+                );
               }
             })}
           </ul>
-        : ''}
+          : ''}
 
         <style jsx>{`
           .projects__item {
@@ -118,7 +117,7 @@ export class Project extends Component {
 
         `}</style>
       </li>
-    )
+    );
   }
 }
 

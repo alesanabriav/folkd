@@ -8,6 +8,8 @@
 - 5 [ ] fix notifications to open todo without need of refresh
 - 6 [x] look out how do less requests to db with dataloader or some alternative.
 - 7 [ ] add some kind of of profiling https://github.com/RuntimeTools/appmetrics
+- 8 [ ] clean function binds to make react render faster...
+
 ### actions
 - 1 test normalizr.
 - 4 on click notification dispatch actions to change state to show todo and change url.
